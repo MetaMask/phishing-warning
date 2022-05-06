@@ -2,12 +2,13 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["ES2020"],
-    "module": "CommonJS",
+    "lib": ["DOM", "ES2020"],
+    "module": "es2022",
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
     "target": "es2017"
   },
+  "include": ["./types/**/*.d.ts", "./src/**/*.ts"],
   "exclude": ["./dist/**/*"]
 }

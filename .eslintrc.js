@@ -7,6 +7,9 @@ module.exports = {
     {
       files: ['*.ts'],
       extends: ['@metamask/eslint-config-typescript'],
+      globals: {
+        window: 'readonly',
+      },
     },
 
     {
@@ -18,10 +21,24 @@ module.exports = {
     },
 
     {
-      files: ['*.test.ts', '*.test.js'],
+      files: ['rollup.config.js'],
+      parserOptions: {
+        sourceType: 'module',
+      },
+    },
+
+    {
+      files: ['*.test.ts'],
       extends: ['@metamask/eslint-config-jest'],
+      parserOptions: {
+        sourceType: 'module',
+      },
+      rules: {
+        // disabled to allow use of Jest tags to set inline test environment options
+        'jsdoc/check-tag-names': 'off',
+      },
     },
   ],
 
-  ignorePatterns: ['!.eslintrc.js', '!.prettierrc.js', 'dist/'],
+  ignorePatterns: ['!.eslintrc.js', '!.prettierrc.js', 'dist/', '*.d.ts'],
 };
