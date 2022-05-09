@@ -2,9 +2,12 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { queryByText } from '@testing-library/dom';
 
-const phishingHtml = readFileSync(path.join(__dirname, 'index.html'), {
-  encoding: 'utf8',
-});
+const phishingHtml = readFileSync(
+  path.resolve(__dirname, '..', 'static', 'index.html'),
+  {
+    encoding: 'utf8',
+  },
+);
 
 /**
  * Returns a URL for the phishing warning page. Optionally a hostname and an
