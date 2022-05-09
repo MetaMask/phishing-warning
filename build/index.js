@@ -27,7 +27,7 @@ const filesFromPackages = [
     filename: 'design-tokens.css',
   },
   {
-    source: require.resolve('globalthis/implementation.browser.js'),
+    source: require.resolve('globalthis/dist/browser.js'),
     filename: 'globalthis.js',
   },
   {

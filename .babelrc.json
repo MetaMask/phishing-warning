@@ -4,8 +4,9 @@
       "@babel/env",
       {
         "bugfixes": true,
-        "corejs": "3.22",
-        "useBuiltIns": "usage"
+        "targets": {
+          "browsers": ["chrome >= 66", "firefox >= 68"]
+        }
       }
     ],
     [
