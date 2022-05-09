@@ -10,7 +10,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "rimraf dist/* && rollup --config rollup.config.js && cpy './src/*.html' dist",
+    "build": "node ./build/index.js",
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:eslint": "eslint . --cache --ext js,ts",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@metamask/post-message-stream": "^4.0.0",
-    "@rollup/plugin-replace": "^4.0.0",
     "obj-multiplex": "^1.0.0",
     "pump": "^3.0.0"
   },
@@ -36,9 +35,6 @@
     "@metamask/eslint-config-jest": "^9.0.0",
     "@metamask/eslint-config-nodejs": "^9.0.0",
     "@metamask/eslint-config-typescript": "^9.0.1",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^21.1.0",
-    "@rollup/plugin-node-resolve": "^13.2.1",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^26.0.13",
@@ -47,8 +43,9 @@
     "@types/readable-stream": "^2.3.13",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
     "core-js": "^3.22.4",
-    "cpy-cli": "^4.1.0",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.22.1",
@@ -56,18 +53,19 @@
     "eslint-plugin-jsdoc": "^36.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.1",
+    "exorcist": "^2.0.0",
     "jest": "^28.0.0",
     "jest-environment-jsdom": "^28.1.0",
+    "minify-stream": "^2.1.0",
     "prettier": "^2.6.2",
     "prettier-plugin-packagejson": "^2.2.17",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.70.2",
+    "terser": "^5.13.1",
     "ts-jest": "^28.0.1",
     "ts-node": "^10.7.0",
     "typescript": "^4.4.4"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
   "publishConfig": {
     "access": "public",
@@ -75,8 +73,8 @@
   },
   "lavamoat": {
     "allowScripts": {
-      "core-js": false,
-      "@lavamoat/preinstall-always-fail": false
+      "@lavamoat/preinstall-always-fail": false,
+      "core-js": false
     }
   }
 }
