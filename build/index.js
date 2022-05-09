@@ -11,6 +11,14 @@ const distDirectory = path.join(rootDirectory, 'dist');
 const staticDirectory = path.join(rootDirectory, 'static');
 const sourceMapPath = path.join(distDirectory, 'bundle.js.map');
 
+// This workaround is needed because the minified lockdown module isn't
+// exported by ses, but "require.resolve" only works for exported modules.
+const lockdownSource = require.resolve('ses/lockdown');
+const minifiedLockdownSource = path.join(
+  path.dirname(lockdownSource),
+  'lockdown.umd.min.js',
+);
+
 const filesFromPackages = [
   {
     source: require.resolve(
@@ -19,11 +27,11 @@ const filesFromPackages = [
     filename: 'design-tokens.css',
   },
   {
-    source: require.resolve('globalthis/dist/browser.js'),
+    source: require.resolve('globalthis/implementation.browser.js'),
     filename: 'globalthis.js',
   },
   {
-    source: require.resolve('ses/dist/lockdown.umd.min.js'),
+    source: minifiedLockdownSource,
     filename: 'lockdown-install.js',
   },
 ];
