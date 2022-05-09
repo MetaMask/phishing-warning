@@ -23,8 +23,10 @@
   "dependencies": {
     "@metamask/design-tokens": "^1.6.0",
     "@metamask/post-message-stream": "^4.0.0",
+    "globalthis": "^1.0.3",
     "obj-multiplex": "^1.0.0",
-    "pump": "^3.0.0"
+    "pump": "^3.0.0",
+    "ses": "^0.15.15"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

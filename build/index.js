@@ -9,10 +9,24 @@ const { copy } = require('fs-extra');
 const rootDirectory = path.resolve(__dirname, '..');
 const distDirectory = path.join(rootDirectory, 'dist');
 const staticDirectory = path.join(rootDirectory, 'static');
-const designTokensCss = require.resolve(
-  '@metamask/design-tokens/src/css/design-tokens.css',
-);
 const sourceMapPath = path.join(distDirectory, 'bundle.js.map');
+
+const filesFromPackages = [
+  {
+    source: require.resolve(
+      '@metamask/design-tokens/src/css/design-tokens.css',
+    ),
+    filename: 'design-tokens.css',
+  },
+  {
+    source: require.resolve('globalthis/dist/browser.js'),
+    filename: 'globalthis.js',
+  },
+  {
+    source: require.resolve('ses/dist/lockdown.umd.min.js'),
+    filename: 'lockdown-install.js',
+  },
+];
 
 /**
  * Build a JavaScript bundle for the phishing warning page.
@@ -35,7 +49,9 @@ async function main() {
   );
 
   await Promise.all([
-    fs.copyFile(designTokensCss, path.join(distDirectory, 'design-tokens.css')),
+    ...filesFromPackages.map(async ({ source, filename }) => {
+      await fs.copyFile(source, path.join(distDirectory, filename));
+    }),
     copy(staticDirectory, distDirectory, {
       overwrite: false,
       errorOnExist: true,
