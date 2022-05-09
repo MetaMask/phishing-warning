@@ -4,9 +4,14 @@ const { pipeline } = require('stream/promises');
 const browserify = require('browserify');
 const minifyStream = require('minify-stream');
 const exorcist = require('exorcist');
+const { copy } = require('fs-extra');
 
-const distDirectory = path.resolve(__dirname, '..', 'dist');
-const srcDirectory = path.resolve(__dirname, '..', 'src');
+const rootDirectory = path.resolve(__dirname, '..');
+const distDirectory = path.join(rootDirectory, 'dist');
+const staticDirectory = path.join(rootDirectory, 'static');
+const designTokensCss = require.resolve(
+  '@metamask/design-tokens/src/css/design-tokens.css',
+);
 const sourceMapPath = path.join(distDirectory, 'bundle.js.map');
 
 /**
@@ -29,10 +34,12 @@ async function main() {
     createWriteStream(path.join(distDirectory, 'bundle.js')),
   );
 
-  await fs.copyFile(
-    path.join(srcDirectory, 'index.html'),
-    path.join(distDirectory, 'index.html'),
-  );
+  await Promise.all([
+    fs.copyFile(designTokensCss, path.join(distDirectory, 'design-tokens.css')),
+    copy(staticDirectory, distDirectory, {
+      overwrite: false,
+      errorOnExist: true,
+    }),
+  ]);
 }
-
 main().catch(console.error);

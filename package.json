@@ -21,6 +21,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@metamask/design-tokens": "^1.6.0",
     "@metamask/post-message-stream": "^4.0.0",
     "obj-multiplex": "^1.0.0",
     "pump": "^3.0.0"
@@ -54,6 +55,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.1",
     "exorcist": "^2.0.0",
+    "fs-extra": "^10.1.0",
     "jest": "^28.0.0",
     "jest-environment-jsdom": "^28.1.0",
     "minify-stream": "^2.1.0",
