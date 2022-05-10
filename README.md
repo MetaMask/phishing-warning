@@ -1,22 +1,8 @@
-# MetaMask Module Template
+# Phishing Warning Page
 
-This TypeScript module is maintained in the style of the MetaMask team.
+A page to warn users about a suspected phishing site. This is used as part of the MetaMask extension.
 
-## Installation
-
-`yarn add @metamask/this-module`
-
-or
-
-`npm install @metamask/this-module`
-
-## Usage
-
-_Add examples here_
-
-## API
-
-_Add examples here_
+This package is published to npm so that we can host it locally when running end-to-end tests. This is not intended to be used as a library.
 
 ## Contributing
 

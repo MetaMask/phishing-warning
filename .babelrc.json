@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "bugfixes": true,
+        "targets": {
+          "browsers": ["chrome >= 66", "firefox >= 68"]
+        }
+      }
+    ],
+    [
+      "@babel/preset-typescript",
+      {
+        "isTSX": true,
+        "allExtensions": true,
+        "allowDeclareFields": true,
+        "onlyRemoveTypeImports": true,
+        "optimizeConstEnums": true
+      }
+    ]
+  ]
+}
