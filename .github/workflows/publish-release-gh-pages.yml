@@ -1,0 +1,12 @@
+name: Publish release to GitHub Pages
+
+on:
+  push:
+    tags: '*'
+
+jobs:
+  publish-to-gh-pages:
+    name: Publish build to `${{ github.ref_name }}` directory of `gh-pages` branch
+    uses: ./.github/workflows/publish-gh-pages.yml
+    with:
+      destination_dir: ${{ github.ref_name }}
