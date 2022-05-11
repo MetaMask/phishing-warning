@@ -7,6 +7,8 @@ on:
 jobs:
   publish-to-gh-pages:
     name: Publish build to `latest` directory of `gh-pages` branch
+    permissions:
+      contents: write
     uses: ./.github/workflows/publish-gh-pages.yml
     with:
       destination_dir: latest
