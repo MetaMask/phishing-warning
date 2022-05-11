@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'Euclid';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/EuclidCircularB-Regular-WebXL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Euclid';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/EuclidCircularB-RegularItalic-WebXL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Euclid';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/EuclidCircularB-Bold-WebXL.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var(--color-error-default);
+  font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  background-color: var(--color-background-default);
+  box-shadow: 0 0 15px var(--brand-colors-grey-grey500);
+}
+
+.content__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: var(--color-error-default);
+  border-bottom: 1px solid var(--color-border-default);
+  padding: 2em;
+}
+
+.content__header h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.content__header h1 svg {
+  margin-right: 0.25em;
+  fill: var(--color-error-default);
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+
+.content__header img {
+  margin-bottom: 3em;
+  width: 130px;
+}
+
+.content__body {
+  background-color: var(--color-background-alternative);
+  font-size: 1rem;
+  color: var(--color-text-default);
+}
+
+.content__body p {
+  margin: 2em;
+}
+
+.content__body p a {
+  text-decoration: underline;
+  color: var(--color-primary-default);
+  cursor: pointer;
+}
