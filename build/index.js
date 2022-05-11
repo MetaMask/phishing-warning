@@ -5,6 +5,8 @@ const browserify = require('browserify');
 const minifyStream = require('minify-stream');
 const exorcist = require('exorcist');
 const { copy } = require('fs-extra');
+const { generateSW } = require('workbox-build');
+const babelConfig = require('../.babelrc.json');
 
 const rootDirectory = path.resolve(__dirname, '..');
 const distDirectory = path.join(rootDirectory, 'dist');
@@ -37,6 +39,24 @@ const filesFromPackages = [
 ];
 
 /**
+ * Generate a service worker.
+ */
+async function generateServiceWorker() {
+  await generateSW({
+    babelPresetEnvTargets: babelConfig.presets[0][1].targets.browsers,
+    cacheId: 'phishing-warning-page',
+    cleanupOutdatedCaches: true,
+    // Pre-cache CSS, HTML, SVG, and JavaScript files,
+    // The fonts and the favicon are conditionally fetched and not strictly necessary.
+    globDirectory: distDirectory,
+    globPatterns: ['**/*.{css,html,js,svg}'],
+    // eslint-disable-next-line node/no-process-env
+    mode: process.env.NODE_ENV,
+    swDest: path.join(distDirectory, 'service-worker.js'),
+  });
+}
+
+/**
  * Build a JavaScript bundle for the phishing warning page.
  */
 async function main() {
@@ -65,5 +85,8 @@ async function main() {
       errorOnExist: true,
     }),
   ]);
+
+  await generateServiceWorker();
 }
+
 main().catch(console.error);
