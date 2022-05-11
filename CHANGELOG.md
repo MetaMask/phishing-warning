@@ -6,4 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/
+## [1.0.0]
+### Changed
+- Initial implementation of the phishing warning page
+  - This should behave identically to the phishing warning page built into the MetaMask extension.
+
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/MetaMask/phishing-warning/releases/tag/v1.0.0
