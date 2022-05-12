@@ -42,7 +42,7 @@ jobs:
       - name: Run allowed npm lifecycle scripts
         run: yarn allow-scripts
       - name: Run build script
-        run: yarn build
+        run: yarn build:prod
       - name: Deploy to `${{ inputs.destination_dir }}` directory of `gh-pages` branch
         uses: peaceiris/actions-gh-pages@068dc23d9710f1ba62e86896f84735d869951305
         with:

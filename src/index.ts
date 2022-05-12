@@ -23,6 +23,17 @@ function createRandomId(): number {
 }
 
 window.document.addEventListener('DOMContentLoaded', start);
+window.addEventListener('load', async () => {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('./service-worker.js');
+      console.log('Service worker registered!');
+    } catch (error) {
+      console.warn('Error registering service worker:');
+      console.warn(error);
+    }
+  }
+});
 
 /**
  * Initialize the phishing warning page.
