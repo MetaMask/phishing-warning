@@ -22,7 +22,17 @@ function createRandomId(): number {
   return idCounter;
 }
 
-window.document.addEventListener('DOMContentLoaded', start);
+/**
+ * Check whether this page is being loaded during the extension startup, in an
+ * attempt to ensure the service worker is installed.
+ *
+ * @returns Whether this appears to be an extension startup page load.
+ */
+function isExtensionStartup() {
+  const { hash } = window.location;
+  return hash === '#extensionStartup';
+}
+
 window.addEventListener('load', async () => {
   if ('serviceWorker' in navigator) {
     try {
@@ -35,8 +45,15 @@ window.addEventListener('load', async () => {
   }
 });
 
+// Skip stream initialization on extension startup, when this page is loaded
+// in a hidden iframe. No need to setup streams to handle user interaction in
+// that case.
+if (!isExtensionStartup()) {
+  window.document.addEventListener('DOMContentLoaded', start);
+}
+
 /**
- * Initialize the phishing warning page.
+ * Initialize the phishing warning page streams.
  */
 function start() {
   const metamaskStream = new WindowPostMessageStream({
