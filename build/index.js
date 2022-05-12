@@ -39,7 +39,13 @@ const filesFromPackages = [
 ];
 
 /**
- * Generate a service worker.
+ * Generate a service worker using Workbox.
+ *
+ * Documentation about the `generateSW` function can be found here:
+ * {@link https://developer.chrome.com/docs/workbox/modules/workbox-build/#generatesw }
+ *
+ * This service worker will pre-cache all essential components of the page. It does not perform
+ * any runtime caching.
  */
 async function generateServiceWorker() {
   await generateSW({
