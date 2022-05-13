@@ -36,6 +36,16 @@ body {
   font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
 }
 
+p {
+  margin: 2em;
+}
+
+p a {
+  text-decoration: underline;
+  color: var(--color-primary-default);
+  cursor: pointer;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -81,12 +91,8 @@ body {
   color: var(--color-text-default);
 }
 
-.content__body p {
-  margin: 2em;
-}
-
-.content__body p a {
-  text-decoration: underline;
-  color: var(--color-primary-default);
-  cursor: pointer;
+.content__framed-body {
+  background-color: var(--color-background-alternative);
+  font-size: 1rem;
+  color: var(--color-text-default);
 }

@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style id="antiClickjackSubFrameStyles">
+      .content__body {
+        display: none !important;
+      }
+    </style>
+    <style id="antiClickjackTopFrameStyles">
+      .content__framed-body {
+        display: none !important;
+      }
+    </style>
+    <script type="text/javascript">
+      if (self === top) {
+        const antiClickjackSubFrameStyles = document.getElementById('antiClickjackSubFrameStyles');
+        antiClickjackSubFrameStyles.parentNode.removeChild(antiClickjackSubFrameStyles);
+      } else {
+        const antiClickjackTopFrameStyles = document.getElementById('antiClickjackTopFrameStyles');
+        antiClickjackTopFrameStyles.parentNode.removeChild(antiClickjackTopFrameStyles);
+      }
+    </script>
     <title>MetaMask Phishing Detection</title>
     <script
       src="./globalthis.js"
@@ -83,6 +102,18 @@
             href="https://github.com/metamask/eth-phishing-detect/issues/new"
             >please file an issue</a
           >.
+        </p>
+      </div>
+      <div id="content__framed-body" class="content__framed-body">
+        <p>
+          This domain is currently on the MetaMask domain warning list. This
+          means that based on information available to us, MetaMask believes
+          this domain could currently compromise your security and, as an added
+          safety feature, MetaMask has restricted access to the site.
+        </p>
+        <p>
+          <a id="open-self-in-new-tab" target="_blank">Open this warning in a new tab</a> for more information
+          on why this domain is blocked, and how to continue at your own risk.
         </p>
       </div>
     </div>

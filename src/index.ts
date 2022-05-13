@@ -45,11 +45,35 @@ window.addEventListener('load', async () => {
   }
 });
 
-// Skip stream initialization on extension startup, when this page is loaded
-// in a hidden iframe. No need to setup streams to handle user interaction in
-// that case.
+// Skip stream initialization on extension startup (when this page is loaded
+// in a hidden iframe), and in sub-frames. In both cases, the user interactions
+// handled by the streams are not possible.
 if (!isExtensionStartup()) {
-  window.document.addEventListener('DOMContentLoaded', start);
+  if (window.top === window.self) {
+    window.document.addEventListener('DOMContentLoaded', start);
+  } else {
+    // The sub-frame case requires the "open in new tab" href to be set
+    // dynamically because a relative `href` attribute would not preserve
+    // the URL hash.
+    window.document.addEventListener(
+      'DOMContentLoaded',
+      setupOpenSelfInNewTabLink,
+    );
+  }
+}
+
+/**
+ * Setup the "Open in new tab" link.
+ *
+ * This is necessary so that the "open in new tab" link includes the current
+ * URL hash. A statically-set relative `href` would drop the URL hash.
+ */
+function setupOpenSelfInNewTabLink() {
+  const newTabLink = window.document.getElementById('open-self-in-new-tab');
+  if (!newTabLink) {
+    throw new Error('Unable to locate "Open in new tab" link');
+  }
+  newTabLink.setAttribute('href', window.location.href);
 }
 
 /**
