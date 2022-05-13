@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [1.1.0]
-### Uncategorized
+### Added
 - Add service worker for offline caching ([#9](https://github.com/MetaMask/phishing-warning/pull/9))
 - Add favicons ([#8](https://github.com/MetaMask/phishing-warning/pull/8))
 - Add actions to publish to gh-pages ([#3](https://github.com/MetaMask/phishing-warning/pull/3))
 - Add dummy "main" script ([#6](https://github.com/MetaMask/phishing-warning/pull/6))
-- Update changelog for v1.0.0 ([#5](https://github.com/MetaMask/phishing-warning/pull/5))
-- Bump @metamask/design-tokens from 1.6.0 to 1.6.5 ([#4](https://github.com/MetaMask/phishing-warning/pull/4))
+  - This allows locating the package install directory using `require.resolve`, which is better for compatibility between package managers.
+  - The main script throws an error, helping to prevent accidental misuse.
+- Skip initialization if the page is being loaded solely to install the service worker ([#11](https://github.com/MetaMask/phishing-warning/pull/11))
+  - If the hash `#extensionStartup` is set, skip setup and assume the page is being loaded just for service worker installation. We use this technique to ensure the service worker is installed during the MetaMask extension startup process.
+- Add anti-clickjacking measures ([#12](https://github.com/MetaMask/phishing-warning/pull/12))
+  - A script was added to the HTML file to detect when the frame is being embedded. If it detects that it is embedded, a separate design is used that prompts the user to open the warning page in a new tab to proceed. This ensures the blocked page cannot be added to the safelist via a clickjacking attack.
 
 ## [1.0.0]
 ### Changed
