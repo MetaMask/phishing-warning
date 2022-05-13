@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <style id="antiClickjackSubFrameStyles">
-      .content__body {
-        display: none !important;
-      }
-    </style>
-    <style id="antiClickjackTopFrameStyles">
-      .content__framed-body {
+    <style id="antiClickjack">
+      #content__body {
         display: none !important;
       }
     </style>
     <script type="text/javascript">
       if (self === top) {
-        const antiClickjackSubFrameStyles = document.getElementById('antiClickjackSubFrameStyles');
-        antiClickjackSubFrameStyles.parentNode.removeChild(antiClickjackSubFrameStyles);
-      } else {
-        const antiClickjackTopFrameStyles = document.getElementById('antiClickjackTopFrameStyles');
-        antiClickjackTopFrameStyles.parentNode.removeChild(antiClickjackTopFrameStyles);
+        document.getElementById('antiClickjack').innerHTML =
+          '#content__framed-body { display: none !important; }';
       }
     </script>
     <title>MetaMask Phishing Detection</title>
@@ -60,7 +52,7 @@
          MetaMask Phishing Detection
         </h1>
       </div>
-      <div class="content__body">
+      <div id="content__body" class="content__body">
         <p>
           This domain is currently on the MetaMask domain warning list. This
           means that based on information available to us, MetaMask believes
