@@ -77,6 +77,20 @@ function setupOpenSelfInNewTabLink() {
 }
 
 /**
+ * Checks to see if the suspectHref is a valid format to forward on
+ * Specifically checks the protocol of the passed href.
+ *
+ * @param href - The href value to check.
+ * @returns Boolean on if its valid to attack to a href prop.
+ */
+function isValidSuspectHref(href: string) {
+  const allowedProtocols = ['http:', 'https:'];
+  const parsedSuspectHref = new URL(href);
+
+  return allowedProtocols.indexOf(parsedSuspectHref.protocol) !== -1;
+}
+
+/**
  * Initialize the phishing warning page streams.
  */
 function start() {
@@ -121,6 +135,11 @@ function start() {
   }
 
   continueLink.addEventListener('click', async () => {
+    if (isValidSuspectHref(suspectHref) === false) {
+      console.log(`Disallowed Protocol, cannot continue.`);
+      return;
+    }
+
     phishingSafelistStream.write({
       jsonrpc: '2.0',
       method: 'safelistPhishingDomain',

@@ -103,6 +103,10 @@ describe('Phishing warning page', () => {
     'should redirect to the site after the user continues at their own risk',
   );
 
+  it.todo(
+    'should not redirect to the site after the user continues at their own risk and the href is an invalid protocol',
+  );
+
   it('should throw an error if the hostname is missing', async () => {
     mockLocation(getUrl(undefined, 'https://example.com'));
 
