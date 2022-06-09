@@ -150,5 +150,3 @@ function start() {
     window.location.href = suspectHref;
   });
 }
-
-module.exports = isValidSuspectHref;

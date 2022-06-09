@@ -152,28 +152,4 @@ describe('Phishing warning page', () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('');
   });
-
-  it('should allow a https:// link', async() => {
-    const isValidSuspectHref = require('./index.ts');
-    mockLocation(getUrl('example.com', 'https://example.com'));
-    
-    expect(isValidSuspectHref(`https://example.com`)).toBe(true);
-
-    await import('./index');
-    // non-null assertion used because TypeScript doesn't know the event handler was run
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('');
-  })
-
-  it('should allow a https:// link', async() => {
-    const isValidSuspectHref = require('./index.ts');
-    mockLocation(getUrl('example.com', 'ftp://example.com'));
-    
-    expect(isValidSuspectHref(`ftp://example.com`)).toBe(false);
-
-    await import('./index');
-    // non-null assertion used because TypeScript doesn't know the event handler was run
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('');
-  })
 });
