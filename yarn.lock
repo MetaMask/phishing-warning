@@ -1497,12 +1497,20 @@
   resolved "https://registry.yarnpkg.com/@metamask/eslint-config/-/eslint-config-9.0.0.tgz#22d4911b705f7e4e566efbdda0e37912da33e30f"
   integrity sha512-mWlLGQKjXXFOj9EtDClKSoTLeQuPW2kM1w3EpUMf4goYAQ+kLXCCa8pEff6h8ApWAnjhYmXydA1znQ2J4XvD+A==
 
-"@metamask/post-message-stream@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@metamask/post-message-stream/-/post-message-stream-4.0.0.tgz#72f120e562346ca86ccc9b3684023ad44265f0df"
-  integrity sha512-r0JcoWXNuHycProx8ClxiIElJY/GVb/0/WWXTMsZu7qDejLo52VNXlwfydCdVjbMXeoT2nK1Yt3d5gjmHy5BWw==
+"@metamask/post-message-stream@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@metamask/post-message-stream/-/post-message-stream-5.0.0.tgz#7dc0acc65704f8aaec499ecafa1abc8ac360a6ba"
+  integrity sha512-xdD8vW752nWUnT0uYB/PYvvWzP1V6DhLHuYI2MCGVpdF/va3Q6oaNJP2otNF3bWloK/EUBa3gA2p0yeDG1S4pQ==
   dependencies:
+    "@metamask/utils" "^2.0.0"
     readable-stream "2.3.3"
+
+"@metamask/utils@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@metamask/utils/-/utils-2.0.0.tgz#fe7e970416a256751c429f4a5e96aec6c4366ba7"
+  integrity sha512-AZ63AhRxAZXll+/SEiyEXgrxuAL4yOj0ny4V36VgPmTDvt+7GrmVJWrQF3o5PZZWV6ooaHZ9291RZHRcKZm0HA==
+  dependencies:
+    fast-deep-equal "^3.1.3"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"

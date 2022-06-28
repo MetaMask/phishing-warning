@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@metamask/design-tokens": "^1.6.0",
-    "@metamask/post-message-stream": "^4.0.0",
+    "@metamask/post-message-stream": "^5.0.0",
     "globalthis": "1.0.1",
     "obj-multiplex": "^1.0.0",
     "pump": "^3.0.0",
