@@ -104,6 +104,7 @@ describe('Phishing warning page', () => {
   );
 
   it('should show a different message if the URL contains an unsupported protocol', async () => {
+    /* eslint-disable-next-line */
     mockLocation(getUrl('example.com', 'javascript:alert("example")'));
 
     await import('./index');
