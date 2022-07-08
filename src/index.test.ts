@@ -46,8 +46,8 @@ function mockLocation(url: string) {
 
 describe('Phishing warning page', () => {
   let onDomContentLoad: EventListener | undefined;
-  beforeEach(() => {
-    document.getElementsByTagName('html')[0].innerHTML = phishingHtml;
+
+  beforeAll(async () => {
     jest
       .spyOn(window.document, 'addEventListener')
       .mockImplementation(
@@ -60,6 +60,11 @@ describe('Phishing warning page', () => {
           }
         },
       );
+    await import('./index');
+  });
+
+  beforeEach(() => {
+    document.getElementsByTagName('html')[0].innerHTML = phishingHtml;
   });
 
   afterEach(() => {
@@ -83,7 +88,6 @@ describe('Phishing warning page', () => {
   it('should correctly construct "New issue" link', async () => {
     mockLocation(getUrl('example.com', 'https://example.com'));
 
-    await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     onDomContentLoad!(new Event('DOMContentLoaded'));
@@ -105,19 +109,21 @@ describe('Phishing warning page', () => {
   it('should throw an error if the hostname is missing', async () => {
     mockLocation(getUrl(undefined, 'https://example.com'));
 
-    await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow("Missing 'hostname' query parameter");
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow(
+      "Missing 'hostname' query parameter",
+    );
   });
 
   it('should throw an error if the href is missing', async () => {
     mockLocation(getUrl('example.com'));
 
-    await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow("Missing 'href' query parameter");
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow(
+      "Missing 'href' query parameter",
+    );
   });
 
   it('should throw an error if the new issue link is missing', async () => {
@@ -128,10 +134,11 @@ describe('Phishing warning page', () => {
     }
     newIssueLink.remove();
 
-    await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('Unable to locate new issue link');
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow(
+      'Unable to locate new issue link',
+    );
   });
 
   it('should throw an error if the continue link is missing', async () => {
@@ -142,9 +149,10 @@ describe('Phishing warning page', () => {
     }
     continueLink.remove();
 
-    await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('Unable to locate unsafe continue link');
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow(
+      'Unable to locate unsafe continue link',
+    );
   });
 });
