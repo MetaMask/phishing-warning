@@ -63,7 +63,6 @@ describe('Phishing warning page', () => {
   });
 
   afterEach(() => {
-    onDomContentLoad = undefined;
     document.getElementsByTagName('html')[0].innerHTML = '';
   });
 
@@ -109,7 +108,7 @@ describe('Phishing warning page', () => {
     await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('');
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow("Missing 'hostname' query parameter");
   });
 
   it('should throw an error if the href is missing', async () => {
@@ -118,7 +117,7 @@ describe('Phishing warning page', () => {
     await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('');
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow("Missing 'href' query parameter");
   });
 
   it('should throw an error if the new issue link is missing', async () => {
@@ -132,7 +131,7 @@ describe('Phishing warning page', () => {
     await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('');
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('Unable to locate new issue link');
   });
 
   it('should throw an error if the continue link is missing', async () => {
@@ -146,6 +145,6 @@ describe('Phishing warning page', () => {
     await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('');
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow('Unable to locate unsafe continue link');
   });
 });
