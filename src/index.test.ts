@@ -18,9 +18,13 @@ const phishingHtml = readFileSync(
  * @param href - The href to include in the URL fragment.
  * @returns The phishing warning page URL.
  */
-function getUrl(hostname?: string, href?: string) {
+function getUrl(hostname?: string, href?: string, newIssueUrl?: string) {
   const baseUrl = 'https://metamask.github.io/phishing-warning/#';
-  if (hostname && href) {
+  if (hostname && href && newIssueUrl) {
+    return `${baseUrl}hostname=${encodeURIComponent(
+      hostname,
+    )}&href=${encodeURIComponent(href)}&newIssueUrl=${encodeURIComponent(newIssueUrl)}`;
+  } else if (hostname && href) {
     return `${baseUrl}hostname=${encodeURIComponent(
       hostname,
     )}&href=${encodeURIComponent(href)}`;
@@ -95,6 +99,32 @@ describe('Phishing warning page', () => {
     const newIssueLink = window.document.getElementById('new-issue-link');
     expect(newIssueLink?.getAttribute('href')).toBe(
       'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20example.com&body=https%3A%2F%2Fexample.com',
+    );
+  });
+
+  it('should correctly construct "New issue" link', async () => {
+    mockLocation(getUrl('example.com', 'https://example.com'));
+
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+
+    const newIssueLink = window.document.getElementById('new-issue-link');
+    expect(newIssueLink?.getAttribute('href')).toBe(
+      'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20example.com&body=https%3A%2F%2Fexample.com',
+    );
+  });
+
+  it('should have the correct "New issue" link if a newIssueUrl is specified in the hash query string', async () => {
+    mockLocation(getUrl('example.com', 'https://example.com', 'https://example.com'));
+
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+
+    const newIssueLink = window.document.getElementById('new-issue-link');
+    expect(newIssueLink?.getAttribute('href')).toBe(
+      'https://example.com?title=[Legitimate%20Site%20Blocked]%20example.com&body=https%3A%2F%2Fexample.com',
     );
   });
 

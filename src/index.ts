@@ -109,7 +109,7 @@ function start() {
     throw new Error('Unable to locate new issue link');
   }
 
-  const newIssueUrl = `https://github.com/MetaMask/eth-phishing-detect/issues/new`;
+  const newIssueUrl = hashQueryString.get('newIssueUrl') || `https://github.com/MetaMask/eth-phishing-detect/issues/new`;
   const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
     suspectHostname,
   )}&body=${encodeURIComponent(suspectHref)}`;
