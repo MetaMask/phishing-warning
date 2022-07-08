@@ -50,11 +50,17 @@ window.addEventListener('load', async () => {
 // handled by the streams are not possible.
 if (!isExtensionStartup()) {
   if (window.top === window.self) {
-    window.document.addEventListener('DOMContentLoaded', start);
-  } else {
+    if (document.readyState === 'complete') {
+      start();
+    } else {
+      window.document.addEventListener('DOMContentLoaded', start);
+    }
     // The sub-frame case requires the "open in new tab" href to be set
     // dynamically because a relative `href` attribute would not preserve
     // the URL hash.
+  } else if (document.readyState === 'complete') {
+    setupOpenSelfInNewTabLink();
+  } else {
     window.document.addEventListener(
       'DOMContentLoaded',
       setupOpenSelfInNewTabLink,

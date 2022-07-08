@@ -36,7 +36,7 @@ const config: Config.InitialOptions = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: 'v8',
+  coverageProvider: 'babel',
 
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: ['text', 'html'],
@@ -147,7 +147,7 @@ const config: Config.InitialOptions = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: 'jsdom',
+  testEnvironment: './test/custom-test-environment.ts',
 
   // Options that will be passed to the testEnvironment
   testEnvironmentOptions: { url: BASE_URL },
