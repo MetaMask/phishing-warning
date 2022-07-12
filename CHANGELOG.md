@@ -7,11 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [1.2.1]
-### Uncategorized
-- Ensure build script has failing exit code upon failure ([#28](https://github.com/MetaMask/phishing-warning/pull/28))
-- Fix build script ([#27](https://github.com/MetaMask/phishing-warning/pull/27))
+### Fixed
+- Fix build script to exclude file imports from `@metamask/post-message-stream` which expect to only run in the context of a Web worker ([#27](https://github.com/MetaMask/phishing-warning/pull/27))
 
-## [1.2.0]
+## [1.2.0] [DEPRECATED]
 ### Added
 - Add a check for the protocol of the url being blocked. Remove `continue at your own risk` option if protocol is disallowed ([#16](https://github.com/MetaMask/phishing-warning/pull/16))
 - Add optional arg `newIssueUrl` to `getUrl` function so that the correct link to direct disputes can be specified by a hash query param. ([#23](https://github.com/MetaMask/phishing-warning/pull/23))
