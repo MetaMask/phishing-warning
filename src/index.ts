@@ -84,6 +84,7 @@ function setupOpenSelfInNewTabLink() {
  * @returns Boolean on if its valid to attack to a href prop.
  */
 function isValidSuspectHref(href: string) {
+  /* eslint-disable-next-line */
   const disallowedProtocols = ['javascript:'];
   const parsedSuspectHref = new URL(href);
 
