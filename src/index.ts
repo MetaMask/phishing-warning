@@ -77,6 +77,21 @@ function setupOpenSelfInNewTabLink() {
 }
 
 /**
+ * Checks to see if the suspectHref is a valid format to forward on
+ * Specifically checks the protocol of the passed href.
+ *
+ * @param href - The href value to check.
+ * @returns Boolean on if its valid to attack to a href prop.
+ */
+function isValidSuspectHref(href: string) {
+  /* eslint-disable-next-line */
+  const disallowedProtocols = ['javascript:'];
+  const parsedSuspectHref = new URL(href);
+
+  return disallowedProtocols.indexOf(parsedSuspectHref.protocol) < 0;
+}
+
+/**
  * Initialize the phishing warning page streams.
  */
 function start() {
@@ -109,7 +124,9 @@ function start() {
     throw new Error('Unable to locate new issue link');
   }
 
-  const newIssueUrl = `https://github.com/MetaMask/eth-phishing-detect/issues/new`;
+  const newIssueUrl =
+    hashQueryString.get('newIssueUrl') ||
+    `https://github.com/MetaMask/eth-phishing-detect/issues/new`;
   const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
     suspectHostname,
   )}&body=${encodeURIComponent(suspectHref)}`;
@@ -120,7 +137,22 @@ function start() {
     throw new Error('Unable to locate unsafe continue link');
   }
 
+  if (isValidSuspectHref(suspectHref) === false) {
+    const redirectWarningMessage = document.getElementById(
+      'redirect-warning-message',
+    );
+    if (redirectWarningMessage) {
+      redirectWarningMessage.innerHTML = `<br />`;
+      redirectWarningMessage.innerText = `This URL does not use a supported protocol so we won't give you the option to skip this warning.`;
+    }
+  }
+
   continueLink.addEventListener('click', async () => {
+    if (isValidSuspectHref(suspectHref) === false) {
+      console.log(`Disallowed Protocol, cannot continue.`);
+      return;
+    }
+
     phishingSafelistStream.write({
       jsonrpc: '2.0',
       method: 'safelistPhishingDomain',
