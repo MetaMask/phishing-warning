@@ -26,4 +26,4 @@ jobs:
           node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
       - uses: MetaMask/action-publish-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.METAMASKBOT_PUBLISH_TOKEN }}
