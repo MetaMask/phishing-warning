@@ -1,5 +1,5 @@
 import pump from 'pump';
-import { WindowPostMessageStream } from '@metamask/post-message-stream';
+import { WindowPostMessageStream } from '@metamask/post-message-stream/dist/window/WindowPostMessageStream';
 import ObjectMultiplex from 'obj-multiplex';
 
 const MAX = Number.MAX_SAFE_INTEGER;
