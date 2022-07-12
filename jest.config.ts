@@ -4,6 +4,8 @@
  */
 import type { Config } from '@jest/types';
 
+import { BASE_URL } from './test/constants';
+
 const config: Config.InitialOptions = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -148,7 +150,7 @@ const config: Config.InitialOptions = {
   testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
-  // testEnvironmentOptions: {},
+  testEnvironmentOptions: { url: BASE_URL },
 
   // Adds a location field to test results
   // testLocationInResults: false,
