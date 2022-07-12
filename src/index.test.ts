@@ -76,6 +76,7 @@ describe('Phishing warning page', () => {
   });
 
   afterEach(() => {
+    // onDomContentLoad = undefined;
     document.getElementsByTagName('html')[0].innerHTML = '';
   });
 
@@ -128,6 +129,23 @@ describe('Phishing warning page', () => {
   it.todo(
     'should redirect to the site after the user continues at their own risk',
   );
+
+  it('should show a different message if the URL contains an unsupported protocol', async () => {
+    /* eslint-disable-next-line */
+    mockLocation(getUrl('example.com', 'javascript:alert("example")'));
+
+    await import('./index');
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+
+    const redirectWarningMessage = window.document.getElementById(
+      'redirect-warning-message',
+    );
+    expect(redirectWarningMessage?.innerText).toBe(
+      "This URL does not use a supported protocol so we won't give you the option to skip this warning.",
+    );
+  });
 
   it('should throw an error if the hostname is missing', async () => {
     mockLocation(getUrl(undefined, 'https://example.com'));
