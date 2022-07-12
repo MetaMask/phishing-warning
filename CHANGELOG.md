@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1]
+### Uncategorized
+- Ensure build script has failing exit code upon failure ([#28](https://github.com/MetaMask/phishing-warning/pull/28))
+- Fix build script ([#27](https://github.com/MetaMask/phishing-warning/pull/27))
+
 ## [1.2.0]
 ### Added
 - Add a check for the protocol of the url being blocked. Remove `continue at your own risk` option if protocol is disallowed ([#16](https://github.com/MetaMask/phishing-warning/pull/16))
@@ -29,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/MetaMask/phishing-warning/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/MetaMask/phishing-warning/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/MetaMask/phishing-warning/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/MetaMask/phishing-warning/releases/tag/v1.0.0
