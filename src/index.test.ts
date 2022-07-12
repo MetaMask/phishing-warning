@@ -2,6 +2,8 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { queryByText } from '@testing-library/dom';
 
+import { BASE_URL } from '../test/constants';
+
 const phishingHtml = readFileSync(
   path.resolve(__dirname, '..', 'static', 'index.html'),
   {
@@ -21,35 +23,22 @@ const phishingHtml = readFileSync(
  * @returns The phishing warning page URL.
  */
 function getUrl(hostname?: string, href?: string, newIssueUrl?: string) {
-  const baseUrl = 'https://metamask.github.io/phishing-warning/#';
   if (hostname && href && newIssueUrl) {
-    return `${baseUrl}hostname=${encodeURIComponent(
+    return `${BASE_URL}hostname=${encodeURIComponent(
       hostname,
     )}&href=${encodeURIComponent(href)}&newIssueUrl=${encodeURIComponent(
       newIssueUrl,
     )}`;
   } else if (hostname && href) {
-    return `${baseUrl}hostname=${encodeURIComponent(
+    return `${BASE_URL}hostname=${encodeURIComponent(
       hostname,
     )}&href=${encodeURIComponent(href)}`;
   } else if (hostname) {
-    return `${baseUrl}hostname=${encodeURIComponent(hostname)}`;
+    return `${BASE_URL}hostname=${encodeURIComponent(hostname)}`;
   } else if (href) {
-    return `${baseUrl}href=${encodeURIComponent(href)}`;
+    return `${BASE_URL}href=${encodeURIComponent(href)}`;
   }
-  return baseUrl;
-}
-
-/**
- * Replace `window.location` with a mock created with the given URL.
- *
- * @param url - The URL to create the mock location with.
- */
-function mockLocation(url: string) {
-  jest.spyOn(window, 'location', 'get').mockImplementation(() => {
-    const fakeLocation = new URL(url);
-    return fakeLocation as unknown as Location;
-  });
+  return BASE_URL;
 }
 
 describe('Phishing warning page', () => {
@@ -95,7 +84,10 @@ describe('Phishing warning page', () => {
   });
 
   it('should correctly construct "New issue" link', async () => {
-    mockLocation(getUrl('example.com', 'https://example.com'));
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+    );
 
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -108,8 +100,10 @@ describe('Phishing warning page', () => {
   });
 
   it('should have the correct "New issue" link if a newIssueUrl is specified in the hash query string', async () => {
-    mockLocation(
-      getUrl('example.com', 'https://example.com', 'https://example.com'),
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+      'https://example.com',
     );
 
     // non-null assertion used because TypeScript doesn't know the event handler was run
@@ -131,8 +125,11 @@ describe('Phishing warning page', () => {
   );
 
   it('should show a different message if the URL contains an unsupported protocol', async () => {
-    /* eslint-disable-next-line */
-    mockLocation(getUrl('example.com', 'javascript:alert("example")'));
+    window.document.location.href = getUrl(
+      'example.com',
+      // eslint-disable-next-line no-script-url
+      'javascript:alert("example")',
+    );
 
     await import('./index');
     // non-null assertion used because TypeScript doesn't know the event handler was run
@@ -148,7 +145,7 @@ describe('Phishing warning page', () => {
   });
 
   it('should throw an error if the hostname is missing', async () => {
-    mockLocation(getUrl(undefined, 'https://example.com'));
+    window.document.location.href = getUrl(undefined, 'https://example.com');
 
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -158,7 +155,7 @@ describe('Phishing warning page', () => {
   });
 
   it('should throw an error if the href is missing', async () => {
-    mockLocation(getUrl('example.com'));
+    window.document.location.href = getUrl('example.com');
 
     // non-null assertion used because TypeScript doesn't know the event handler was run
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -168,7 +165,10 @@ describe('Phishing warning page', () => {
   });
 
   it('should throw an error if the new issue link is missing', async () => {
-    mockLocation(getUrl('example.com', 'https://example.com'));
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+    );
     const newIssueLink = document.getElementById('new-issue-link');
     if (!newIssueLink) {
       throw new Error('Unable to locate new issue link');
@@ -183,7 +183,10 @@ describe('Phishing warning page', () => {
   });
 
   it('should throw an error if the continue link is missing', async () => {
-    mockLocation(getUrl('example.com', 'https://example.com'));
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+    );
     const continueLink = document.getElementById('unsafe-continue');
     if (!continueLink) {
       throw new Error('Unable to locate unsafe continue link');
