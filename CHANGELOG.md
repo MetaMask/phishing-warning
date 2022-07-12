@@ -7,16 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [1.2.0]
-### Uncategorized
-- Fix `gh-pages` publishing ([#25](https://github.com/MetaMask/phishing-warning/pull/25))
-- Bump @metamask/post-message-stream from 4.0.0 to 5.1.0 ([#21](https://github.com/MetaMask/phishing-warning/pull/21))
-- Bump @metamask/design-tokens from 1.6.5 to 1.8.0 ([#20](https://github.com/MetaMask/phishing-warning/pull/20))
-- Bump @metamask/auto-changelog from 2.6.0 to 2.6.1 ([#18](https://github.com/MetaMask/phishing-warning/pull/18))
-- Remove unnecessary location test mock ([#24](https://github.com/MetaMask/phishing-warning/pull/24))
-- Protocol sanity check ([#16](https://github.com/MetaMask/phishing-warning/pull/16))
-- Allow newIssueUrl to be specified by a hash query param ([#23](https://github.com/MetaMask/phishing-warning/pull/23))
-- Improvements and fixes to index.test.js ([#22](https://github.com/MetaMask/phishing-warning/pull/22))
-- Bump @metamask/auto-changelog from 2.5.0 to 2.6.0 ([#14](https://github.com/MetaMask/phishing-warning/pull/14))
+### Added
+- Add a check for the protocol of the url being blocked. Remove `continue at your own risk` option if protocol is disallowed ([#16](https://github.com/MetaMask/phishing-warning/pull/16))
+- Add optional arg `newIssueUrl` to `getUrl` function so that the correct link to direct disputes can be specified by a hash query param. ([#23](https://github.com/MetaMask/phishing-warning/pull/23))
 
 ## [1.1.0]
 ### Added
