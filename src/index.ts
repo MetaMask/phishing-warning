@@ -84,10 +84,10 @@ function setupOpenSelfInNewTabLink() {
  * @returns Boolean on if its valid to attack to a href prop.
  */
 function isValidSuspectHref(href: string) {
-  const allowedProtocols = ['http:', 'https:'];
+  const disallowedProtocols = ['javascript:'];
   const parsedSuspectHref = new URL(href);
 
-  return allowedProtocols.indexOf(parsedSuspectHref.protocol) !== -1;
+  return disallowedProtocols.indexOf(parsedSuspectHref.protocol) < 0;
 }
 
 /**
