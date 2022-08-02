@@ -1527,10 +1527,10 @@
   resolved "https://registry.yarnpkg.com/@metamask/eslint-config/-/eslint-config-9.0.0.tgz#22d4911b705f7e4e566efbdda0e37912da33e30f"
   integrity sha512-mWlLGQKjXXFOj9EtDClKSoTLeQuPW2kM1w3EpUMf4goYAQ+kLXCCa8pEff6h8ApWAnjhYmXydA1znQ2J4XvD+A==
 
-"@metamask/post-message-stream@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@metamask/post-message-stream/-/post-message-stream-5.1.0.tgz#3e9a2ed11b540b3868a0a28ffa8ec5a6e5fca29d"
-  integrity sha512-BQi/H67iM7wdtmvoPfgW9bazk/WjvRhXRa5lQ1FpgDlASv1bsCDJaQQ83Q3BwYyisnpnjgJRuC/2bRmas0LMxA==
+"@metamask/post-message-stream@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@metamask/post-message-stream/-/post-message-stream-6.0.0.tgz#e8c26b1ef41452b2f1862004651ae3970b944868"
+  integrity sha512-z0l6UMW3z6W4qIhKSh48/6n2Q9AG1oOh9tus+Ncs9w6dAbkElKke+mXZ7tT6oAyE3T4JZLnDfGKbPWYoq+nrsA==
   dependencies:
     "@metamask/utils" "^2.0.0"
     readable-stream "2.3.3"
