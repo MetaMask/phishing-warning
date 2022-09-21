@@ -116,6 +116,44 @@ describe('Phishing warning page', () => {
     );
   });
 
+  it('should not show where to report an issue if the issue URL uses an invalid protocol', async () => {
+    // eslint-disable-next-line no-script-url
+    const invalidIssueUrl = 'javascript:alert(1)';
+
+    window.document.location.href = getUrl(
+      'hostname.com',
+      'https://href.com',
+      invalidIssueUrl,
+    );
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+
+    const newIssueLink = window.document.getElementById(
+      'open-new-issue-content',
+    );
+    expect(newIssueLink).toBeNull();
+  });
+
+  it('should show where to report an issue if the issue URL uses a valid protocol', async () => {
+    const validIssueUrl = 'https://example.com';
+
+    window.document.location.href = getUrl(
+      'hostname.com',
+      'https://href.com',
+      validIssueUrl,
+    );
+
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+
+    const newIssueLink = window.document.getElementById(
+      'open-new-issue-content',
+    );
+    expect(newIssueLink).not.toBeNull();
+  });
+
   it.todo(
     'should add site to safelist when the user continues at their own risk',
   );
@@ -179,6 +217,24 @@ describe('Phishing warning page', () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow(
       'Unable to locate new issue link',
+    );
+  });
+
+  it('should throw an error if the open-new-issue-content is missing', async () => {
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+    );
+    const openIssueContent = document.getElementById('open-new-issue-content');
+    if (!openIssueContent) {
+      throw new Error('Unable to locate open-new-issue-content');
+    }
+    openIssueContent.remove();
+
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow(
+      'Unable to locate content to prompt opening a dispute issue.',
     );
   });
 

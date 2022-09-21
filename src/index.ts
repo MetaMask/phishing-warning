@@ -1,6 +1,8 @@
 import pump from 'pump';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
 import ObjectMultiplex from 'obj-multiplex';
+import { PHISHING_DETECT_NEW_ISSUE_URL } from './constants';
+import { buildNewIssueURL, usesAcceptedProtocol } from './utilities';
 
 const MAX = Number.MAX_SAFE_INTEGER;
 
@@ -112,6 +114,7 @@ function start() {
   const hashQueryString = new URLSearchParams(hashContents);
   const suspectHostname = hashQueryString.get('hostname');
   const suspectHref = hashQueryString.get('href');
+  const customNewIssueUrl = hashQueryString.get('newIssueUrl');
 
   if (!suspectHostname) {
     throw new Error("Missing 'hostname' query parameter");
@@ -119,18 +122,33 @@ function start() {
     throw new Error("Missing 'href' query parameter");
   }
 
+  const openNewIssueContent = document.getElementById('open-new-issue-content');
+  if (!openNewIssueContent) {
+    throw new Error(
+      'Unable to locate content to prompt opening a dispute issue.',
+    );
+  }
+
   const newIssueLink = document.getElementById('new-issue-link');
   if (!newIssueLink) {
     throw new Error('Unable to locate new issue link');
   }
 
-  const newIssueUrl =
-    hashQueryString.get('newIssueUrl') ||
-    `https://github.com/MetaMask/eth-phishing-detect/issues/new`;
-  const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
-    suspectHostname,
-  )}&body=${encodeURIComponent(suspectHref)}`;
-  newIssueLink.setAttribute('href', `${newIssueUrl}${newIssueParams}`);
+  const invalidIssueUrlProvided =
+    customNewIssueUrl && !usesAcceptedProtocol(customNewIssueUrl);
+
+  if (invalidIssueUrlProvided) {
+    openNewIssueContent.remove();
+  } else {
+    newIssueLink.setAttribute(
+      'href',
+      buildNewIssueURL({
+        hostname: suspectHostname,
+        href: suspectHref,
+        newIssueUrl: customNewIssueUrl || PHISHING_DETECT_NEW_ISSUE_URL,
+      }),
+    );
+  }
 
   const continueLink = document.getElementById('unsafe-continue');
   if (!continueLink) {
