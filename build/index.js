@@ -60,19 +60,24 @@ async function generateServiceWorker() {
   //   mode: process.env.NODE_ENV,
   //   swDest: path.join(distDirectory, 'service-worker.js'),
   // });
-  await injectManifest({
-    // cleanupOutdatedCaches: true,
-    // // Pre-cache CSS, HTML, SVG, and JavaScript files,
-    // // The fonts and the favicon are conditionally fetched and not strictly necessary.
-    globDirectory: distDirectory,
-    globPatterns: [
-      '**/*.{js,css,ico,ttf,html,webmanifest,svg}'
-    ],
-    // // eslint-disable-next-line node/no-process-env
-    // mode: process.env.NODE_ENV,
-    swDest: path.join(distDirectory, 'service-worker.js'),
-    swSrc: path.join(rootDirectory,'sw.js'),
-  })
+  try{
+
+    await injectManifest({
+      // cleanupOutdatedCaches: true,
+      // // Pre-cache CSS, HTML, SVG, and JavaScript files,
+      // // The fonts and the favicon are conditionally fetched and not strictly necessary.
+      globDirectory: distDirectory,
+      globPatterns: [
+        '**/*.{js,css,ico,ttf,html,webmanifest,svg}'
+      ],
+      // // eslint-disable-next-line node/no-process-env
+      // mode: process.env.NODE_ENV,
+      swDest: path.join(distDirectory, 'service-worker.js'),
+      swSrc: path.join(rootDirectory,'sw.js'),
+    })
+  } catch (err) {
+    console.log("errr:", err)
+  }
 }
 
 /**

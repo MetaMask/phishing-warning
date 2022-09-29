@@ -36,7 +36,7 @@ function isExtensionStartup() {
 window.addEventListener('load', async () => {
   if ('serviceWorker' in navigator) {
     try {
-      await navigator.serviceWorker.register('./service-worker.js');
+      await navigator.serviceWorker.register('./sw.js');
       console.log('Service worker registered!');
     } catch (error) {
       console.warn('Error registering service worker:');
