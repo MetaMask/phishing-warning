@@ -11,9 +11,9 @@
     "dist/"
   ],
   "scripts": {
-    "build": "node ./build/index.js && yarn build:sw",
+    "build": "node ./build/index.js",
     "build:prod": "NODE='production' yarn build",
-    "build:sw": "esbuild --outfile=./dist/sw.js --bundle sw.js && workbox injectManifest",
+    "build:sw": "esbuild --outfile=./dist/service-worker.js --bundle sw.js && workbox injectManifest",
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:eslint": "eslint . --cache --ext js,ts",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
