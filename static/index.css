@@ -7,13 +7,6 @@
 
 @font-face {
   font-family: 'Euclid';
-  font-style: italic;
-  font-weight: 400;
-  src: url('fonts/EuclidCircularB-RegularItalic-WebXL.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Euclid';
   font-style: normal;
   font-weight: 700;
   src: url('fonts/EuclidCircularB-Bold-WebXL.ttf') format('truetype');
@@ -32,7 +25,8 @@ body {
   width: 100vw;
   height: 100vh;
 
-  background-color: var(--color-error-default);
+  /*background-color: var(--color-error-default);*/
+  background-color: #D03242; /*Error Default*/
   font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -42,8 +36,25 @@ p {
 
 p a {
   text-decoration: underline;
-  color: var(--color-primary-default);
+  color: white;
   cursor: pointer;
+}
+
+ul {
+  margin: 2em;
+  padding-left: 2em;
+}
+
+button {
+  color: red;
+  background: white;
+  padding: 1em;
+  border-radius: 2em;
+  border: none;
+  float: right;
+  margin: 2em;
+  font-size: 0.9em;
+  font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
 }
 
 .content {
@@ -51,44 +62,32 @@ p a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
-  background-color: var(--color-background-default);
-  box-shadow: 0 0 15px var(--brand-colors-grey-grey500);
+  width: 50%;
 }
 
 .content__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  color: var(--color-error-default);
-  border-bottom: 1px solid var(--color-border-default);
+  color: white;
   padding: 2em;
 }
 
 .content__header h1 {
-  font-size: 1.5rem;
-  font-weight: normal;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
-.content__header h1 svg {
-  margin-right: 0.25em;
-  fill: var(--color-error-default);
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-}
-
-.content__header img {
-  margin-bottom: 3em;
-  width: 130px;
+.content__header svg {
+  /*fill: var(--color-error-default);*/
+  fill: white;
+  width: 4em;
+  height: 4em;
+  margin-bottom: 2em;
 }
 
 .content__body {
-  background-color: var(--color-background-alternative);
-  font-size: 1rem;
-  color: var(--color-text-default);
+  font-size: 1.1rem;
+  /*color: var(--color-text-alternative);*/
+  color: white;
 }
 
 .content__framed-body {
