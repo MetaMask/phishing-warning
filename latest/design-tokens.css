@@ -18,6 +18,7 @@
   --brand-colors-grey-grey500: #6a737d;
   --brand-colors-grey-grey600: #535a61;
   --brand-colors-grey-grey700: #3b4046;
+  --brand-colors-grey-grey750: #2e3339;
   --brand-colors-grey-grey800: #24272a;
   --brand-colors-grey-grey900: #141618;
   --brand-colors-blue-blue000: #eaf6ff;
@@ -60,6 +61,8 @@
   --brand-colors-red-red700: #8e1d28;
   --brand-colors-red-red800: #64141c;
   --brand-colors-red-red900: #3a0c10;
+  --brand-colors-purple-purple500: #8b45b6;
+  --brand-colors-violet-violet300: #CFB5F0;
   --brand-colors-yellow-yellow000: #fffdf8;
   --brand-colors-yellow-yellow100: #fefcde;
   --brand-colors-yellow-yellow200: #fff2c5;
@@ -240,7 +243,11 @@
 
 :root {
   --color-background-default: var(--brand-colors-white-white000);
+  --color-background-default-hover: var(--brand-colors-grey-grey030);
+  --color-background-default-pressed: var(--brand-colors-grey-grey030);
   --color-background-alternative: var(--brand-colors-grey-grey040);
+  --color-background-alternative-hover: var(--brand-colors-grey-grey100);
+  --color-background-alternative-pressed: var(--brand-colors-grey-grey100);
   --color-text-default: var(--brand-colors-grey-grey800);
   --color-text-alternative: var(--brand-colors-grey-grey600);
   --color-text-muted: var(--brand-colors-grey-grey200);
@@ -285,6 +292,14 @@
   --color-info-muted: #037dd619;
   --color-info-inverse: var(--brand-colors-white-white010);
   --color-info-disabled: #037dd680;
+  --color-network-goerli-default: var(--brand-colors-blue-blue400);
+  --color-network-goerli-inverse: var(--brand-colors-white-white010);
+  --color-network-localhost-default: var(--brand-colors-grey-grey200);
+  --color-network-localhost-inverse: var(--brand-colors-white-white010);
+  --color-network-sepolia-default: var(--brand-colors-violet-violet300);
+  --color-network-sepolia-inverse: var(--brand-colors-white-white010);
+  --color-flask-default: var(--brand-colors-purple-purple500);
+  --color-flask-inverse: var(--brand-colors-white-white010);
 
   /* Components */
   /* button */
@@ -301,7 +316,11 @@
 
 [data-theme='dark'] {
   --color-background-default: var(--brand-colors-grey-grey800);
+  --color-background-default-hover: var(--brand-colors-grey-grey700);
+  --color-background-default-pressed: var(--brand-colors-grey-grey700);
   --color-background-alternative: var(--brand-colors-grey-grey900);
+  --color-background-alternative-hover: var(--brand-colors-grey-grey750);
+  --color-background-alternative-pressed: var(--brand-colors-grey-grey750);
   --color-text-default: var(--brand-colors-white-white000);
   --color-text-alternative: var(--brand-colors-grey-grey100);
   --color-text-muted: var(--brand-colors-grey-grey400);
