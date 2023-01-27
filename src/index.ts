@@ -137,16 +137,6 @@ function start() {
     throw new Error('Unable to locate unsafe continue link');
   }
 
-  if (isValidSuspectHref(suspectHref) === false) {
-    const redirectWarningMessage = document.getElementById(
-      'redirect-warning-message',
-    );
-    if (redirectWarningMessage) {
-      redirectWarningMessage.innerHTML = `<br />`;
-      redirectWarningMessage.innerText = `This URL does not use a supported protocol so we won't give you the option to skip this warning.`;
-    }
-  }
-
   continueLink.addEventListener('click', async () => {
     if (isValidSuspectHref(suspectHref) === false) {
       console.log(`Disallowed Protocol, cannot continue.`);

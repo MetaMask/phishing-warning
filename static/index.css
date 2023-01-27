@@ -32,17 +32,38 @@ body {
   width: 100vw;
   height: 100vh;
 
-  background-color: var(--color-error-default);
+  background-color: #d03242;
   font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
-}
-
-p {
-  margin: 2em;
 }
 
 p a {
   text-decoration: underline;
-  color: var(--color-primary-default);
+  color: white;
+  cursor: pointer;
+}
+
+h1 {
+  color: black;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  text-shadow: 0px 4px rgba(0,0,0, 0.15);
+}
+
+ul {
+  padding-left: 2em;
+}
+
+button {
+  color: red;
+  background: white;
+  padding: 1em;
+  border-radius: 2em;
+  border: none;
+  float: right;
+  margin-top: 3em;
+  font-size: 0.9em;
+  font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
   cursor: pointer;
 }
 
@@ -51,48 +72,34 @@ p a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%;
-  background-color: var(--color-background-default);
-  box-shadow: 0 0 15px var(--brand-colors-grey-grey500);
+  width: 50%;
+  padding: 5rem;
 }
 
 .content__header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   color: var(--color-error-default);
   border-bottom: 1px solid var(--color-border-default);
-  padding: 2em;
+  margin-bottom: 1rem;
 }
 
 .content__header h1 {
-  font-size: 1.5rem;
-  font-weight: normal;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  float: left;
 }
 
-.content__header h1 svg {
-  margin-right: 0.25em;
-  fill: var(--color-error-default);
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-}
-
-.content__header img {
-  margin-bottom: 3em;
-  width: 130px;
+.content__header svg {
+  fill: white;
+  width: 4em;
+  height: 4em;
+  margin-bottom: 2em;
 }
 
 .content__body {
-  background-color: var(--color-background-alternative);
   font-size: 1rem;
-  color: var(--color-text-default);
-}
-
-.content__framed-body {
-  background-color: var(--color-background-alternative);
-  font-size: 1rem;
-  color: var(--color-text-default);
+  color: white;
 }
