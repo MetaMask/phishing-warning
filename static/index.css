@@ -54,8 +54,11 @@ button {
   border: none;
   float: right;
   margin-top: 3em;
-  font-size: 0.9em;
-  font-family: Euclid, Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--typography-s-body-md-font-family);
+  font-weight: var(--typography-s-body-md-font-weight);
+  font-size: var(--typography-s-body-md-font-size);
+  line-height: var(--typography-s-body-md-line-height);
+  letter-spacing: var(--typography-s-body-md-letter-spacing);
   cursor: pointer;
 }
 
