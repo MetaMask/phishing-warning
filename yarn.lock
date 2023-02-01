@@ -2,21 +2,6 @@
 # yarn lockfile v1
 
 
-"@agoric/babel-standalone@^7.9.5":
-  version "7.17.7"
-  resolved "https://registry.yarnpkg.com/@agoric/babel-standalone/-/babel-standalone-7.17.7.tgz#cb4be87b89d7077c4a33f5ed8c65a5375cc171d6"
-  integrity sha512-4KgPH3fj8sDuvDrxgg1IxP21ljO3lTYDI0tsyS23c7FTAA9dDSGfgOsxkU0BEo5FUFE9WJnK5iwehova+iK+qw==
-
-"@agoric/make-hardener@^0.1.2":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@agoric/make-hardener/-/make-hardener-0.1.3.tgz#807b0072bef95d935c3370d406d9dfeb719f69ee"
-  integrity sha512-rc9M2ErE/Zu822OLCnAltr957ZVTsBvVZ7KA2unqDpjo3q7PqZF2hWFB1xXD2Qkfwt5exQ3BjFbkj+NUaTg4gA==
-
-"@agoric/transform-module@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@agoric/transform-module/-/transform-module-0.4.1.tgz#9fb152364faf372e1bda535cb4ef89717724f57c"
-  integrity sha512-4TJJHXeXAWu1FCA7yXCAZmhBNoGTB/BEAe2pv+J2X8W/mJTr9b395OkDCSRMpzvmSshLfBx6wT0D7dqWIWEC1w==
-
 "@ampproject/remapping@^2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.1.2.tgz#4edca94973ded9630d20101cd8559cedb8d8bd34"
@@ -6351,14 +6336,10 @@ serialize-javascript@^4.0.0:
   dependencies:
     randombytes "^2.1.0"
 
-ses@0.12.4:
-  version "0.12.4"
-  resolved "https://registry.yarnpkg.com/ses/-/ses-0.12.4.tgz#f466f7199292b5c4454949c7d497f5569ade5805"
-  integrity sha512-qbtkhuuAXNXb390yiaNUdNvDg/QmX7W2cO+srIUJllINMYADc/8m0vt7DNBmq+rqOBRrjVRPPeyQq8ZTLK3Rmw==
-  dependencies:
-    "@agoric/babel-standalone" "^7.9.5"
-    "@agoric/make-hardener" "^0.1.2"
-    "@agoric/transform-module" "^0.4.1"
+ses@0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/ses/-/ses-0.16.0.tgz#d405fff49daa8e19b1b04344e2a752c9268afa72"
+  integrity sha512-2oKCzl3W24aNqBifLWWEh3OGd+78+SY1GVKWP5ogrqBOjs3X1trwE2akx5pX4M1MFExqXoJGav1CmCq2KBMqOg==
 
 set-blocking@~2.0.0:
   version "2.0.0"
