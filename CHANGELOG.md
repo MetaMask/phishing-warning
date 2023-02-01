@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.2]
+### Uncategorized
+- update ses version ([#53](https://github.com/MetaMask/phishing-warning/pull/53))
+- Bump @metamask/design-tokens from 1.11.0 to 1.11.1 ([#46](https://github.com/MetaMask/phishing-warning/pull/46))
+- Bump @metamask/post-message-stream from 6.0.0 to 6.1.0 ([#50](https://github.com/MetaMask/phishing-warning/pull/50))
+- Bump json5 from 1.0.1 to 1.0.2 ([#51](https://github.com/MetaMask/phishing-warning/pull/51))
+- Bump qs from 6.5.2 to 6.5.3 ([#48](https://github.com/MetaMask/phishing-warning/pull/48))
+- Bump minimatch from 3.0.4 to 3.1.2 ([#44](https://github.com/MetaMask/phishing-warning/pull/44))
+- Bump @metamask/design-tokens from 1.9.0 to 1.11.0 ([#43](https://github.com/MetaMask/phishing-warning/pull/43))
+- Bump @metamask/auto-changelog from 3.0.0 to 3.1.0 ([#42](https://github.com/MetaMask/phishing-warning/pull/42))
+- Bump @metamask/design-tokens from 1.8.0 to 1.9.0 ([#34](https://github.com/MetaMask/phishing-warning/pull/34))
+- Bump @metamask/auto-changelog from 2.6.1 to 3.0.0 ([#41](https://github.com/MetaMask/phishing-warning/pull/41))
+- Bump @metamask/post-message-stream from 5.1.0 to 6.0.0 ([#31](https://github.com/MetaMask/phishing-warning/pull/31))
+- Bump terser from 5.13.1 to 5.14.2 ([#32](https://github.com/MetaMask/phishing-warning/pull/32))
+
 ## [1.2.1]
 ### Fixed
 - Fix build script to exclude file imports from `@metamask/post-message-stream` which expect to only run in the context of a Web worker ([#27](https://github.com/MetaMask/phishing-warning/pull/27))
@@ -33,7 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/MetaMask/phishing-warning/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/MetaMask/phishing-warning/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/MetaMask/phishing-warning/compare/v1.0.0...v1.1.0
