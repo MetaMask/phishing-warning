@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.2]
+### Changed
+- Update `ses` version from v0.12.4 to v10.18.1 ([#53](https://github.com/MetaMask/phishing-warning/pull/53))
+- Update @metamask/design-tokens from 1.9.0 to 1.11.1 ([#46](https://github.com/MetaMask/phishing-warning/pull/46))
+  - This includes minor color updates.
+
 ## [1.2.1]
 ### Fixed
 - Fix build script to exclude file imports from `@metamask/post-message-stream` which expect to only run in the context of a Web worker ([#27](https://github.com/MetaMask/phishing-warning/pull/27))
@@ -33,7 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/MetaMask/phishing-warning/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/MetaMask/phishing-warning/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/MetaMask/phishing-warning/compare/v1.0.0...v1.1.0
