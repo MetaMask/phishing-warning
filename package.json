@@ -28,7 +28,7 @@
     "globalthis": "1.0.1",
     "obj-multiplex": "^1.0.0",
     "pump": "^3.0.0",
-    "ses": "0.12.4"
+    "ses": "^0.18.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
