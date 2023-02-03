@@ -49,9 +49,9 @@ ul {
 button {
   color: var(--color-error-alternative);
   background: var(--color-error-inverse);
+  border: 1px solid var(--color-error-alternative);
   padding: 1em;
   border-radius: 2em;
-  border: none;
   float: right;
   margin-top: 3em;
   font-family: var(--typography-s-body-md-font-family);
@@ -60,6 +60,12 @@ button {
   line-height: var(--typography-s-body-md-line-height);
   letter-spacing: var(--typography-s-body-md-letter-spacing);
   cursor: pointer;
+}
+
+.button:hover{
+  color: var(--color-error-inverse);
+  background-color: var(--color-error-alternative);
+  box-shadow: var(--color-error-alternative);
 }
 
 .content {
