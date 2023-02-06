@@ -14,11 +14,11 @@
 
       window.onload = function() {
         document.getElementById("suspect-link").innerText = document.referrer;
-        if(('https://metamask.github.io/phishing-warning/v1.2.1/#hostname=www.primalfrens.club&href=https%3A%2F%2Fwww.primalfrens.club%2F&newIssueUrl=https%3A%2F%2Fgithub.com%2Fmetamask%2Fphishfort-lists%2Fissues%2Fnew').includes('eth-phishing-detect')){
+        if((window.location.href).includes('eth-phishing-detect')){
           document.getElementById("detection-repo").innerText = 'Ethereum Phishing Detector';
           document.getElementById("new-issue-link").onclick = function(){window.open('https://github.com/metamask/eth-phishing-detect/issues/new')};
         }
-        if(('https://metamask.github.io/phishing-warning/v1.2.1/#hostname=www.primalfrens.club&href=https%3A%2F%2Fwww.primalfrens.club%2F&newIssueUrl=https%3A%2F%2Fgithub.com%2Fmetamask%2Fphishfort-lists%2Fissues%2Fnew').includes('phishfort-lists')){
+        if((window.location.href).includes('phishfort-lists')){
           document.getElementById("detection-repo").innerText = 'PhishFort';
           document.getElementById("new-issue-link").onclick = function(){window.open('https://github.com/phishfort/phishfort-lists/issues/new')};
         }
