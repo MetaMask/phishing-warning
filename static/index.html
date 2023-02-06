@@ -16,11 +16,11 @@
         document.getElementById("suspect-link").innerText = document.referrer;
         if((window.location.href).includes('eth-phishing-detect')){
           document.getElementById("detection-repo").innerText = 'Ethereum Phishing Detector';
-          document.getElementById("new-issue-link").onclick = function(){window.open('https://github.com/metamask/eth-phishing-detect/issues/new')};
+          document.getElementById("new-issue-link").href = 'https://github.com/metamask/eth-phishing-detect/issues/new';
         }
         if((window.location.href).includes('phishfort-lists')){
           document.getElementById("detection-repo").innerText = 'PhishFort';
-          document.getElementById("new-issue-link").onclick = function(){window.open('https://github.com/phishfort/phishfort-lists/issues/new')};
+          document.getElementById("new-issue-link").href = 'https://github.com/phishfort/phishfort-lists/issues/new';
         }
       }
     </script>
@@ -67,7 +67,7 @@
       </div>
       <div id="content__body" class="content__body">
         <p>
-          MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous. <a id="csdbLink" href='' onclick="window.open('https://cryptoscamdb.org/search')">Learn more</a>
+          MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous. <a id="csdbLink" rel="noopener" href='https://cryptoscamdb.org/search' target='_blank'>Learn more</a>
         </p>
       </br>
         <p>Potential threats on <span id="suspect-link"></span> include:
@@ -81,7 +81,7 @@
         <p>Advisory provided by <span id="detection-repo"></span>.</p>
       </br>
       </br>
-        <p>If we're flagging a legitimate website, please <a id="new-issue-link" href=''>report a detection problem.</a></p>
+        <p>If we're flagging a legitimate website, please <a id="new-issue-link" rel="noopener" href='' target='_blank'>report a detection problem.</a></p>
         <p>If you understand the risks and still want to proceed, you can <a id="unsafe-continue">continue to the site.</a></p>
         <button class="button-secondary" type="submit" onclick="window.close()">Back to safety</button>
       </div>
