@@ -74,13 +74,6 @@ describe('Phishing warning page', () => {
     expect(queryByText(container, 'Deceptive site ahead')).not.toBeNull();
   });
 
-  it('should have correct default "New issue" link', () => {
-    const newIssueLink = window.document.getElementById('new-issue-link');
-    expect(newIssueLink?.getAttribute('onclick')).toBe(
-      "window.open('https://github.com/metamask/eth-phishing-detect/issues/new')",
-    );
-  });
-
   it('should correctly construct "New issue" link', async () => {
     window.document.location.href = getUrl(
       'example.com',

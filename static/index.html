@@ -14,6 +14,14 @@
 
       window.onload = function() {
         document.getElementById("suspect-link").innerText = document.referrer;
+        if(('https://metamask.github.io/phishing-warning/v1.2.1/#hostname=www.primalfrens.club&href=https%3A%2F%2Fwww.primalfrens.club%2F&newIssueUrl=https%3A%2F%2Fgithub.com%2Fmetamask%2Fphishfort-lists%2Fissues%2Fnew').includes('eth-phishing-detect')){
+          document.getElementById("detection-repo").innerText = 'Ethereum Phishing Detector';
+          document.getElementById("new-issue-link").onclick = function(){window.open('https://github.com/metamask/eth-phishing-detect/issues/new')};
+        }
+        if(('https://metamask.github.io/phishing-warning/v1.2.1/#hostname=www.primalfrens.club&href=https%3A%2F%2Fwww.primalfrens.club%2F&newIssueUrl=https%3A%2F%2Fgithub.com%2Fmetamask%2Fphishfort-lists%2Fissues%2Fnew').includes('phishfort-lists')){
+          document.getElementById("detection-repo").innerText = 'PhishFort';
+          document.getElementById("new-issue-link").onclick = function(){window.open('https://github.com/phishfort/phishfort-lists/issues/new')};
+        }
       }
     </script>
     <title>MetaMask Phishing Detection</title>
@@ -70,12 +78,12 @@
           </ul>
         </p>
       </br>
-        <p>Advisory provided by Ethereum Phishing Detector, CryptoScamDB, and PhishFort.</p>
+        <p>Advisory provided by <span id="detection-repo"></span>.</p>
       </br>
       </br>
-        <p>If we're flagging a legitimate website, please <a id="new-issue-link" href='' onclick="window.open('https://github.com/metamask/eth-phishing-detect/issues/new')">report a detection problem.</a></p>
+        <p>If we're flagging a legitimate website, please <a id="new-issue-link" href=''>report a detection problem.</a></p>
         <p>If you understand the risks and still want to proceed, you can <a id="unsafe-continue">continue to the site.</a></p>
-        <button class="button btn--rounded btn-primary" type="submit" onclick="window.close()">Back to safety</button>
+        <button class="button-secondary" type="submit" onclick="window.close()">Back to safety</button>
       </div>
     </div>
   </body>
