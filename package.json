@@ -1,6 +1,6 @@
 {
   "name": "@metamask/phishing-warning",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A page to warn users about a suspected phishing site.",
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "globalthis": "1.0.1",
     "obj-multiplex": "^1.0.0",
     "pump": "^3.0.0",
-    "ses": "0.12.4"
+    "ses": "^0.18.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
