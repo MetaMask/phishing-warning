@@ -16,12 +16,11 @@
         document.getElementById("suspect-link").innerText = document.referrer;
         if((window.location.href).includes('eth-phishing-detect')){
           document.getElementById("detection-repo").innerText = 'Ethereum Phishing Detector';
-          document.getElementById("new-issue-link").href = 'https://github.com/metamask/eth-phishing-detect/issues/new';
         }
         if((window.location.href).includes('phishfort-lists')){
           document.getElementById("detection-repo").innerText = 'PhishFort';
-          document.getElementById("new-issue-link").href = 'https://github.com/phishfort/phishfort-lists/issues/new';
         }
+
       }
     </script>
     <title>MetaMask Phishing Detection</title>
@@ -81,7 +80,7 @@
         <p>Advisory provided by <span id="detection-repo"></span>.</p>
       </br>
       </br>
-        <p>If we're flagging a legitimate website, please <a id="new-issue-link" rel="noopener" href='' target='_blank'>report a detection problem.</a></p>
+        <p>If we're flagging a legitimate website, please <a id="new-issue-link" rel="noopener" target='_blank' href="https://github.com/metamask/eth-phishing-detect/issues/new">report a detection problem.</a></p>
         <p>If you understand the risks and still want to proceed, you can <a id="unsafe-continue">continue to the site.</a></p>
         <button class="button-secondary" type="submit" onclick="window.close()">Back to safety</button>
       </div>
