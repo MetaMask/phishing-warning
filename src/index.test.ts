@@ -71,16 +71,7 @@ describe('Phishing warning page', () => {
 
   it('should render page', async () => {
     const container = window.document.getElementsByTagName('body')[0];
-    expect(
-      queryByText(container, 'MetaMask Phishing Detection'),
-    ).not.toBeNull();
-  });
-
-  it('should have correct default "New issue" link', () => {
-    const newIssueLink = window.document.getElementById('new-issue-link');
-    expect(newIssueLink?.getAttribute('href')).toBe(
-      'https://github.com/metamask/eth-phishing-detect/issues/new',
-    );
+    expect(queryByText(container, 'Deceptive site ahead')).not.toBeNull();
   });
 
   it('should correctly construct "New issue" link', async () => {
@@ -119,30 +110,6 @@ describe('Phishing warning page', () => {
   it.todo(
     'should add site to safelist when the user continues at their own risk',
   );
-
-  it.todo(
-    'should redirect to the site after the user continues at their own risk',
-  );
-
-  it('should show a different message if the URL contains an unsupported protocol', async () => {
-    window.document.location.href = getUrl(
-      'example.com',
-      // eslint-disable-next-line no-script-url
-      'javascript:alert("example")',
-    );
-
-    await import('./index');
-    // non-null assertion used because TypeScript doesn't know the event handler was run
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    onDomContentLoad!(new Event('DOMContentLoaded'));
-
-    const redirectWarningMessage = window.document.getElementById(
-      'redirect-warning-message',
-    );
-    expect(redirectWarningMessage?.innerText).toBe(
-      "This URL does not use a supported protocol so we won't give you the option to skip this warning.",
-    );
-  });
 
   it('should throw an error if the hostname is missing', async () => {
     window.document.location.href = getUrl(undefined, 'https://example.com');
@@ -198,5 +165,23 @@ describe('Phishing warning page', () => {
     expect(() => onDomContentLoad!(new Event('DOMContentLoaded'))).toThrow(
       'Unable to locate unsafe continue link',
     );
+  });
+
+  it('should redirect when continue to the site is clicked', async () => {
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+    );
+
+    await import('./index');
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+
+    const continueLink = document.getElementById('unsafe-continue');
+
+    continueLink?.click();
+
+    expect(global.window.location.href).toContain('example.com');
   });
 });
