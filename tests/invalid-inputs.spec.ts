@@ -51,6 +51,16 @@ test('throws an error about the href query parameter being missing', async ({
   );
 });
 
+test('ignores attempts to dispute a block', async ({ page }) => {
+  await page.goto('/');
+
+  await page.getByRole('link', { name: 'report a detection problem' }).click();
+  // Wait for dynamic configuration check
+  await page.waitForLoadState('networkidle');
+
+  await expect(page).toHaveURL('/#');
+});
+
 test('does not allow user to bypass warning for invalid protocols', async ({
   page,
 }) => {

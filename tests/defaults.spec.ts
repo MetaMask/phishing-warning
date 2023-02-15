@@ -34,20 +34,6 @@ test('shows an empty list of detection projects', async ({ page }) => {
   );
 });
 
-test('directs users to eth-phishing-detect to dispute a block', async ({
-  page,
-}) => {
-  await page.goto('/');
-
-  const popupPromise = page.waitForEvent('popup');
-  await page.getByRole('link', { name: 'report a detection problem' }).click();
-  const popup = await popupPromise;
-
-  await expect(popup).toHaveURL(
-    'https://github.com/metamask/eth-phishing-detect/issues/new',
-  );
-});
-
 test('opens CryptoScamDB in a new tab', async ({ page }) => {
   await page.goto('/');
 
