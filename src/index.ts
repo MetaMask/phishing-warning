@@ -119,6 +119,12 @@ function start() {
     throw new Error("Missing 'href' query parameter");
   }
 
+  const suspectLink = document.getElementById('suspect-link');
+  if (!suspectLink) {
+    throw new Error('Unable to locate suspect link');
+  }
+  suspectLink.innerText = suspectHref;
+
   const newIssueLink = document.getElementById('new-issue-link');
   if (!newIssueLink) {
     throw new Error('Unable to locate new issue link');
