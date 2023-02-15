@@ -11,16 +11,6 @@
         document.getElementById('antiClickjack').innerHTML =
           '#content__framed-body { display: none !important; }';
       }
-
-      window.onload = function() {
-        if((window.location.href).includes('eth-phishing-detect')){
-          document.getElementById("detection-repo").innerText = 'Ethereum Phishing Detector';
-        }
-        if((window.location.href).includes('phishfort-lists')){
-          document.getElementById("detection-repo").innerText = 'PhishFort';
-        }
-
-      }
     </script>
     <title>MetaMask Phishing Detection</title>
     <script
@@ -76,7 +66,7 @@
           </ul>
         </p>
       </br>
-        <p>Advisory provided by <span id="detection-repo"></span>.</p>
+        <p>Advisory provided by <span id="detection-repo">Ethereum Phishing Detector and PhishFort</span>.</p>
       </br>
       </br>
         <p>If we're flagging a legitimate website, please <a id="new-issue-link" rel="noopener" target='_blank' href="https://github.com/metamask/eth-phishing-detect/issues/new">report a detection problem.</a></p>
