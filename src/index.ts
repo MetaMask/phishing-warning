@@ -130,6 +130,11 @@ function start() {
     throw new Error('Unable to locate new issue link');
   }
 
+  const detectionRepo = document.getElementById('detection-repo');
+  if (!detectionRepo) {
+    throw new Error('Unable to locate detection repo span');
+  }
+
   const newIssueUrl =
     hashQueryString.get('newIssueUrl') ||
     `https://github.com/MetaMask/eth-phishing-detect/issues/new`;
@@ -137,6 +142,13 @@ function start() {
     suspectHostname,
   )}&body=${encodeURIComponent(suspectHref)}`;
   newIssueLink.setAttribute('href', `${newIssueUrl}${newIssueParams}`);
+
+  const blockedByMetamask = newIssueUrl.includes('eth-phishing-detect');
+  if (blockedByMetamask) {
+    detectionRepo.innerText = 'Ethereum Phishing Detector';
+  } else {
+    detectionRepo.innerText = 'PhishFort';
+  }
 
   const continueLink = document.getElementById('unsafe-continue');
   if (!continueLink) {

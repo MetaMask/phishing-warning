@@ -134,6 +134,55 @@ describe('Phishing warning page', () => {
     expect(suspectLink?.innerText).toBe('https://example.com');
   });
 
+  it('should default to crediting both projects', async () => {
+    const detectionRepo = window.document.getElementById('detection-repo');
+
+    expect(detectionRepo?.innerHTML).toBe(
+      'Ethereum Phishing Detector and PhishFort',
+    );
+  });
+
+  it('should credit Ethereum Phishing Detector when the source is not provided', async () => {
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+    );
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+    const detectionRepo = window.document.getElementById('detection-repo');
+
+    expect(detectionRepo?.innerText).toBe('Ethereum Phishing Detector');
+  });
+
+  it('should credit Ethereum Phishing Detector when the block source is MetaMask', async () => {
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+      'https://github.com/metamask/eth-phishing-detect/issues/new',
+    );
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+    const detectionRepo = window.document.getElementById('detection-repo');
+
+    expect(detectionRepo?.innerText).toBe('Ethereum Phishing Detector');
+  });
+
+  it('should credit PhishFort when the block source is PhishFort', async () => {
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+      'https://github.com/phishfort/phishfort-lists/issues/new',
+    );
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+    const detectionRepo = window.document.getElementById('detection-repo');
+
+    expect(detectionRepo?.innerText).toBe('PhishFort');
+  });
+
   it.todo(
     'should add site to safelist when the user continues at their own risk',
   );
