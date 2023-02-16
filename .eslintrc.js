@@ -36,6 +36,7 @@ module.exports = {
   ignorePatterns: [
     '!.eslintrc.js',
     '!.prettierrc.js',
+    '.yarn/',
     'dist/',
     '*.d.ts',
     'static',
