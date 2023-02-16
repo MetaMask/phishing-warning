@@ -13,11 +13,19 @@ This package is published to npm so that we can host it locally when running end
 - Install [Yarn v3](https://yarnpkg.com/getting-started/install)
 - Run `yarn install` to install dependencies and run any required post-install scripts
 
-### Testing and Linting
-
-Run `yarn test` to run the tests once. To run tests on file changes, run `yarn test:watch`.
+### Linting
 
 Run `yarn lint` to run the linter, or run `yarn lint:fix` to run the linter and fix any automatically fixable issues.
+
+### Testing
+
+Before running tests using Playright, you will need to install the required browsers using this command:
+
+```
+yarn playwright install --with-deps chrome chromium firefox msedge
+```
+
+After that, tests can be run using `yarn test`.
 
 ### Release & Publishing
 
