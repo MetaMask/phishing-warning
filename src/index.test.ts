@@ -114,6 +114,26 @@ describe('Phishing warning page', () => {
     );
   });
 
+  it('should initialize the suspected link as an empty string', () => {
+    const suspectLink = window.document.getElementById('suspect-link');
+    expect(suspectLink?.textContent).toBe('');
+  });
+
+  it('should correctly set the suspected link', () => {
+    window.document.location.href = getUrl(
+      'example.com',
+      'https://example.com',
+      'https://example.com',
+    );
+
+    // non-null assertion used because TypeScript doesn't know the event handler was run
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    onDomContentLoad!(new Event('DOMContentLoaded'));
+
+    const suspectLink = window.document.getElementById('suspect-link');
+    expect(suspectLink?.innerText).toBe('https://example.com');
+  });
+
   it.todo(
     'should add site to safelist when the user continues at their own risk',
   );
