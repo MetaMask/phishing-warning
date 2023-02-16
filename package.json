@@ -16,8 +16,8 @@
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:eslint": "eslint . --cache --ext js,ts",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
-    "lint:misc": "prettier '**/*.json' '**/*.md' '!CHANGELOG.md' '**/*.yml' --ignore-path .gitignore --no-error-on-unmatched-pattern",
-    "prepublishOnly": "yarn build:prod && yarn lint && yarn test",
+    "lint:misc": "prettier '**/*.json' '**/*.md' '!CHANGELOG.md' '**/*.yml' '!.yarnrc.yml' --ignore-path .gitignore --no-error-on-unmatched-pattern",
+    "prepack": "yarn build:prod && yarn lint && yarn test",
     "setup": "yarn install && yarn allow-scripts",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -34,7 +34,7 @@
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
-    "@lavamoat/allow-scripts": "^1.0.5",
+    "@lavamoat/allow-scripts": "^2.3.0",
     "@metamask/auto-changelog": "^3.0.0",
     "@metamask/eslint-config": "^9.0.0",
     "@metamask/eslint-config-jest": "^9.0.0",
@@ -70,6 +70,7 @@
     "typescript": "~4.4.4",
     "workbox-build": "^6.5.3"
   },
+  "packageManager": "yarn@3.4.1",
   "engines": {
     "node": ">=14.0.0"
   },
