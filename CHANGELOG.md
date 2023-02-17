@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0]
+### Uncategorized
+- Dynamically lookup the source of a block ([#57](https://github.com/MetaMask/phishing-warning/pull/57))
+- Migrate from Jest to Playwright ([#62](https://github.com/MetaMask/phishing-warning/pull/62))
+- Bump @metamask/utils from 3.4.1 to 3.5.0 ([#65](https://github.com/MetaMask/phishing-warning/pull/65))
+- Update GitHub Actions to match template ([#63](https://github.com/MetaMask/phishing-warning/pull/63))
+- Fix initialization of "detection-repo" span ([#58](https://github.com/MetaMask/phishing-warning/pull/58))
+- Fix suspect href initialization ([#59](https://github.com/MetaMask/phishing-warning/pull/59))
+- Upgrade from Yarn v1 to Yarn v3 ([#61](https://github.com/MetaMask/phishing-warning/pull/61))
+- Restore test ([#60](https://github.com/MetaMask/phishing-warning/pull/60))
+- New design for phishing warning page ([#52](https://github.com/MetaMask/phishing-warning/pull/52))
+
 ## [1.2.2]
 ### Changed
 - Update `ses` version from v0.12.4 to v10.18.1 ([#53](https://github.com/MetaMask/phishing-warning/pull/53))
@@ -39,7 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...v2.0.0
 [1.2.2]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/MetaMask/phishing-warning/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/MetaMask/phishing-warning/compare/v1.1.0...v1.2.0
