@@ -13,11 +13,33 @@ This package is published to npm so that we can host it locally when running end
 - Install [Yarn v3](https://yarnpkg.com/getting-started/install)
 - Run `yarn install` to install dependencies and run any required post-install scripts
 
-### Testing and Linting
-
-Run `yarn test` to run the tests once. To run tests on file changes, run `yarn test:watch`.
+### Linting
 
 Run `yarn lint` to run the linter, or run `yarn lint:fix` to run the linter and fix any automatically fixable issues.
+
+### Testing
+
+#### Installing Playwright
+
+Before running tests using Playright, you will need to install the required browsers using `yarn playwright install [space-separated browsers]`. Use the `--with-deps` flag as well to prompt Playwright to install OS dependencies as well if possible, though be warned that this may require elevated privileges.
+
+The browsers we test with in CI are `chrome`, `chromium`, `firefox`, and `msedge`.
+
+To install all browsers we use on CI and any OS dependencies, run:
+
+```
+yarn playwright install --with-deps chrome chromium firefox msedge
+```
+
+You may want to consider using just one or two browsers for local testing to speed things up. These install steps are long and require a decent amount of disk space.
+
+#### Running tests
+
+Tests can be run using `yarn test`. This will run all tests using all browsers.
+
+To run with just a single browser, you'll need to use the flag `--project=[browser name]`. For example, `yarn test --project=chromium` to run all tests with Chromium. See the Playwright configuration (`playwright.config.ts`) to see the other project names.
+
+If you want to run a single test suite, pass in the test filename as a parameter. For example, `yarn test ./tests/defaults.spec.ts` will run just the "defaults" test suite.
 
 ### Release & Publishing
 

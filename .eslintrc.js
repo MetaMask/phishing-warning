@@ -19,18 +19,6 @@ module.exports = {
       },
       extends: ['@metamask/eslint-config-nodejs'],
     },
-
-    {
-      files: ['*.test.ts'],
-      extends: ['@metamask/eslint-config-jest'],
-      parserOptions: {
-        sourceType: 'module',
-      },
-      rules: {
-        // disabled to allow use of Jest tags to set inline test environment options
-        'jsdoc/check-tag-names': 'off',
-      },
-    },
   ],
 
   ignorePatterns: [

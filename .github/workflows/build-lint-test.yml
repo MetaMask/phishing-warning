@@ -74,7 +74,8 @@ jobs:
           fi
 
   test:
-    name: Test
+    name: Run Playwright tests
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     needs:
       - prepare
@@ -89,7 +90,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
       - run: yarn --immutable --immutable-cache
-      - run: yarn test
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps chrome chromium firefox msedge
+      - name: Run Playwright tests
+        run: yarn test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
       - name: Require clean working directory
         shell: bash
         run: |
