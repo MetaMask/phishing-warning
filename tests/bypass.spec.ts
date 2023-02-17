@@ -20,15 +20,13 @@ test('allows the user to bypass the warning and add the site to the allowlist', 
 
   await expect(page).toHaveURL('https://test.com');
   await expect(postMessageLogs.length).toBe(1);
-  await expect([postMessageLogs[0].message]).toStrictEqual([
-    {
-      data: {
-        id: expect.any(Number),
-        jsonrpc: '2.0',
-        method: 'safelistPhishingDomain',
-        params: ['test.com'],
-      },
-      name: 'metamask-phishing-safelist',
+  await expect(postMessageLogs[0].message).toStrictEqual({
+    data: {
+      id: expect.any(Number),
+      jsonrpc: '2.0',
+      method: 'safelistPhishingDomain',
+      params: ['test.com'],
     },
-  ]);
+    name: 'metamask-phishing-safelist',
+  });
 });
