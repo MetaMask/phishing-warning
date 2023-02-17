@@ -19,13 +19,27 @@ Run `yarn lint` to run the linter, or run `yarn lint:fix` to run the linter and 
 
 ### Testing
 
-Before running tests using Playright, you will need to install the required browsers using this command:
+#### Installing Playwright
+
+Before running tests using Playright, you will need to install the required browsers using `yarn playwright install [space-separated browsers]`. Use the `--with-deps` flag as well to prompt Playwright to install OS dependencies as well if possible, though be warned that this may require elevated privileges.
+
+The browsers we test with in CI are `chrome`, `chromium`, `firefox`, and `msedge`.
+
+To install all browsers we use on CI and any OS dependencies, run:
 
 ```
 yarn playwright install --with-deps chrome chromium firefox msedge
 ```
 
-After that, tests can be run using `yarn test`.
+You may want to consider using just one or two browsers for local testing to speed things up. These install steps are long and require a decent amount of disk space.
+
+#### Running tests
+
+Tests can be run using `yarn test`. This will run all tests using all browsers.
+
+To run with just a single browser, you'll need to use the flag `--project=[browser name]`. For example, `yarn test --project=chromium` to run all tests with Chromium. See the Playwright configuration (`playwright.config.ts`) to see the other project names.
+
+If you want to run a single test suite, pass in the test filename as a parameter. For example, `yarn test ./tests/defaults.spec.ts` will run just the "defaults" test suite.
 
 ### Release & Publishing
 
