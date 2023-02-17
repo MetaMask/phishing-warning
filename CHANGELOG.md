@@ -7,16 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [2.0.0]
-### Uncategorized
-- Dynamically lookup the source of a block ([#57](https://github.com/MetaMask/phishing-warning/pull/57))
-- Migrate from Jest to Playwright ([#62](https://github.com/MetaMask/phishing-warning/pull/62))
-- Bump @metamask/utils from 3.4.1 to 3.5.0 ([#65](https://github.com/MetaMask/phishing-warning/pull/65))
-- Update GitHub Actions to match template ([#63](https://github.com/MetaMask/phishing-warning/pull/63))
-- Fix initialization of "detection-repo" span ([#58](https://github.com/MetaMask/phishing-warning/pull/58))
-- Fix suspect href initialization ([#59](https://github.com/MetaMask/phishing-warning/pull/59))
-- Upgrade from Yarn v1 to Yarn v3 ([#61](https://github.com/MetaMask/phishing-warning/pull/61))
-- Restore test ([#60](https://github.com/MetaMask/phishing-warning/pull/60))
-- New design for phishing warning page ([#52](https://github.com/MetaMask/phishing-warning/pull/52))
+### Changed
+- **BREAKING:** Dynamically lookup the source of a block ([#57](https://github.com/MetaMask/phishing-warning/pull/57))
+  - The query parameter `newIssueUrl` is no longer accepted. Instead this page will look up the source of a block dynamically.
+  - We no longer show on the page which project is responsible for the block. This will be restored in a future version.
+- Redesign the phishing warning page ([#52](https://github.com/MetaMask/phishing-warning/pull/52))
 
 ## [1.2.2]
 ### Changed
