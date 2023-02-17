@@ -47,7 +47,6 @@ export async function setupStreamInitialization(
         } else if (message.data !== 'ACK') {
           window.logCall(message.data, targetOrigin);
         }
-        console.log(`Called with ${JSON.stringify(message)}`);
       }
     };
   });
