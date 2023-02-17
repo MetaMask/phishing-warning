@@ -1675,6 +1675,7 @@ __metadata:
     "@testing-library/user-event": ^14.1.1
     "@types/node": ^17.0.23
     "@types/pump": ^1.1.1
+    "@types/punycode": ^2.1.0
     "@types/readable-stream": ^2.3.13
     "@typescript-eslint/eslint-plugin": ^4.33.0
     "@typescript-eslint/parser": ^4.33.0
@@ -1686,6 +1687,7 @@ __metadata:
     eslint-plugin-jsdoc: ^36.1.0
     eslint-plugin-node: ^11.1.0
     eslint-plugin-prettier: ^3.4.1
+    eth-phishing-detect: ^1.2.0
     exorcist: ^2.0.0
     fs-extra: ^10.1.0
     globalthis: 1.0.1
@@ -1696,6 +1698,7 @@ __metadata:
     prettier: ^2.6.2
     prettier-plugin-packagejson: ^2.2.17
     pump: ^3.0.0
+    punycode: ^2.1.1
     ses: ^0.18.1
     terser: ^5.13.1
     ts-node: ^10.7.0
@@ -2032,6 +2035,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: dd4a1485f2f6052cacb71a94b48d9f360e07a2fc3fac03782ae4caa9856e6df7017ee89515d70ecefcfe281553311cde4a3748219c9fcd757fdb77f3a47e0f29
+  languageName: node
+  linkType: hard
+
+"@types/punycode@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@types/punycode@npm:2.1.0"
+  checksum: 6835698becab395eb9ac186970fd7879aeb522ea72d516ef9d681d787989653fcc2439ecc07d48280e1ca11862773b806efeec3fdbd1207528829a83b65d4275
   languageName: node
   linkType: hard
 
@@ -4055,6 +4065,15 @@ __metadata:
   version: 2.0.3
   resolution: "esutils@npm:2.0.3"
   checksum: 22b5b08f74737379a840b8ed2036a5fb35826c709ab000683b092d9054e5c2a82c27818f12604bfc2a9a76b90b6834ef081edbc1c7ae30d1627012e067c6ec87
+  languageName: node
+  linkType: hard
+
+"eth-phishing-detect@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "eth-phishing-detect@npm:1.2.0"
+  dependencies:
+    fast-levenshtein: ^2.0.6
+  checksum: 66a6a7c249ec8494e0360663596ce980ca75747cd202c47732eca0bfc7a97c6debbae359842e4f3e4ac7e6c44ab1f7f091c3aa7baa330449d3c1b7cc58608b71
   languageName: node
   linkType: hard
 

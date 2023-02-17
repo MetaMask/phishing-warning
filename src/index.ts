@@ -1,4 +1,6 @@
 import pump from 'pump';
+import { toASCII } from 'punycode/';
+import PhishingDetector from 'eth-phishing-detect/src/detector';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
 import ObjectMultiplex from 'obj-multiplex';
 
@@ -91,6 +93,51 @@ function isValidSuspectHref(href: string) {
   return disallowedProtocols.indexOf(parsedSuspectHref.protocol) < 0;
 }
 
+const newIssueUrls = {
+  metamask: 'https://github.com/MetaMask/eth-phishing-detect/issues/new',
+  phishfort: 'https://github.com/phishfort/phishfort-lists/issues/new',
+};
+
+const metamaskConfigUrl =
+  'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/config.json';
+
+/**
+ * Determines whether the given URL was blocked by our phishing configuration or not.
+ *
+ * @param href - The blocked URL.
+ * @returns `true` if this URL is blocked by our phishing configuration, `false` otherwise.
+ */
+async function isBlockedByMetamask(href: string) {
+  try {
+    const response = await fetch(metamaskConfigUrl, { cache: 'no-cache' });
+    if (!response.ok) {
+      throw new Error(`Received non-200 response: ${response.status}`);
+    }
+    const config = await response.json();
+    const detector = new PhishingDetector([
+      {
+        allowlist: config.whitelist,
+        blocklist: config.blacklist,
+        fuzzylist: config.fuzzylist,
+        tolerance: config.tolerance,
+        name: 'MetaMask',
+        version: config.version,
+      },
+    ]);
+    const { hostname } = new URL(href);
+
+    const punycodeHostname = toASCII(hostname);
+    const phishingTestResponse = detector.check(punycodeHostname);
+    console.debug('Phishing config test results:', phishingTestResponse);
+
+    return phishingTestResponse.result;
+  } catch (error) {
+    console.error(error);
+    // default to assuming that it is blocked by our configuration
+    return true;
+  }
+}
+
 /**
  * Initialize the phishing warning page streams.
  */
@@ -130,25 +177,16 @@ function start() {
     throw new Error('Unable to locate new issue link');
   }
 
-  const detectionRepo = document.getElementById('detection-repo');
-  if (!detectionRepo) {
-    throw new Error('Unable to locate detection repo span');
-  }
-
-  const newIssueUrl =
-    hashQueryString.get('newIssueUrl') ||
-    `https://github.com/MetaMask/eth-phishing-detect/issues/new`;
   const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
     suspectHostname,
   )}&body=${encodeURIComponent(suspectHref)}`;
-  newIssueLink.setAttribute('href', `${newIssueUrl}${newIssueParams}`);
 
-  const blockedByMetamask = newIssueUrl.includes('eth-phishing-detect');
-  if (blockedByMetamask) {
-    detectionRepo.innerText = 'Ethereum Phishing Detector';
-  } else {
-    detectionRepo.innerText = 'PhishFort';
-  }
+  newIssueLink.addEventListener('click', async () => {
+    const listName = (await isBlockedByMetamask(suspectHref))
+      ? 'metamask'
+      : 'phishfort';
+    window.location.href = `${newIssueUrls[listName]}${newIssueParams}`;
+  });
 
   const continueLink = document.getElementById('unsafe-continue');
   if (!continueLink) {
