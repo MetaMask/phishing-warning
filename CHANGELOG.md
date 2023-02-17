@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0]
+### Changed
+- **BREAKING:** Dynamically lookup the source of a block ([#57](https://github.com/MetaMask/phishing-warning/pull/57))
+  - The query parameter `newIssueUrl` is no longer accepted. Instead this page will look up the source of a block dynamically.
+  - We no longer show on the page which project is responsible for the block. This will be restored in a future version.
+- Redesign the phishing warning page ([#52](https://github.com/MetaMask/phishing-warning/pull/52))
+
 ## [1.2.2]
 ### Changed
 - Update `ses` version from v0.12.4 to v10.18.1 ([#53](https://github.com/MetaMask/phishing-warning/pull/53))
@@ -39,7 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...v2.0.0
 [1.2.2]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/MetaMask/phishing-warning/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/MetaMask/phishing-warning/compare/v1.1.0...v1.2.0
