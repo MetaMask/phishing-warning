@@ -18,4 +18,4 @@ jobs:
           node-version-file: '.nvmrc'
       - uses: MetaMask/action-publish-release@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.METAMASKBOT_PUBLISH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
