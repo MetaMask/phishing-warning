@@ -15,14 +15,26 @@ function getPageWithIframe(url?: string) {
       <title>title</title>
     </head>
     <body>
-      <iframe src="${url}"></iframe>
+      <iframe id="embedded-warning" src="${url}"></iframe>
     </body>
   </html>`;
 }
 
-export const test = base.extend({
+const validQueryParams = new URLSearchParams({
+  hostname: 'test.com',
+  href: 'https://test.com',
+});
+
+const test = base.extend({
   page: async ({ baseURL, page }, use) => {
-    await page.setContent(getPageWithIframe(baseURL));
+    await page.setContent(getPageWithIframe(`${baseURL}/#${validQueryParams}`));
+    await use(page);
+  },
+});
+
+const testWithInvalidInputs = base.extend({
+  page: async ({ baseURL, page }, use) => {
+    await page.setContent(getPageWithIframe(`${baseURL}/#`));
     await use(page);
   },
 });
@@ -31,7 +43,50 @@ test.beforeEach(async ({ context }) => {
   await setupDefaultMocks(context);
 });
 
-test('does not render any buttons or links', async ({ page }) => {
+test('does not allow the user to bypass the warning', async ({ page }) => {
   await expect(await page.getByRole('button').all()).toStrictEqual([]);
+  await expect(await page.getByRole('checkbox').all()).toStrictEqual([]);
+  await expect(await page.getByRole('combobox').all()).toStrictEqual([]);
   await expect(await page.getByRole('link').all()).toStrictEqual([]);
 });
+
+test('does not link to any external page', async ({ page }) => {
+  await expect(await page.getByRole('link').all()).toStrictEqual([]);
+});
+
+test('opens the warning in a new tab with valid inputs preserved', async ({
+  page,
+}) => {
+  const openInNewTab = await page
+    .frameLocator('#embedded-warning')
+    .getByRole('link', {
+      name: 'Open this warning in a new tab',
+    });
+  await openInNewTab.scrollIntoViewIfNeeded();
+
+  const popupPromise = page.waitForEvent('popup');
+  await openInNewTab.click();
+  const popup = await popupPromise;
+
+  await expect(popup).toHaveTitle('MetaMask Phishing Detection');
+  await expect(popup).toHaveURL(`/#${validQueryParams}`);
+});
+
+testWithInvalidInputs(
+  'opens the warning in a new tab with invalid inputs preserved',
+  async ({ page }) => {
+    const openInNewTab = await page
+      .frameLocator('#embedded-warning')
+      .getByRole('link', {
+        name: 'Open this warning in a new tab',
+      });
+    await openInNewTab.scrollIntoViewIfNeeded();
+
+    const popupPromise = page.waitForEvent('popup');
+    await openInNewTab.click();
+    const popup = await popupPromise;
+
+    await expect(popup).toHaveTitle('MetaMask Phishing Detection');
+    await expect(popup).toHaveURL('/#');
+  },
+);
