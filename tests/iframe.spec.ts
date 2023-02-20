@@ -15,14 +15,26 @@ function getPageWithIframe(url?: string) {
       <title>title</title>
     </head>
     <body>
-      <iframe src="${url}"></iframe>
+      <iframe id="embedded-warning" src="${url}"></iframe>
     </body>
   </html>`;
 }
 
-export const test = base.extend({
+const validQueryParams = new URLSearchParams({
+  hostname: 'test.com',
+  href: 'https://test.com',
+});
+
+const test = base.extend({
   page: async ({ baseURL, page }, use) => {
-    await page.setContent(getPageWithIframe(baseURL));
+    await page.setContent(getPageWithIframe(`${baseURL}/#${validQueryParams}`));
+    await use(page);
+  },
+});
+
+const testWithInvalidInputs = base.extend({
+  page: async ({ baseURL, page }, use) => {
+    await page.setContent(getPageWithIframe(`${baseURL}/#`));
     await use(page);
   },
 });
@@ -31,7 +43,63 @@ test.beforeEach(async ({ context }) => {
   await setupDefaultMocks(context);
 });
 
-test('does not render any buttons or links', async ({ page }) => {
-  await expect(await page.getByRole('button').all()).toStrictEqual([]);
-  await expect(await page.getByRole('link').all()).toStrictEqual([]);
+test('does not allow the user to bypass the warning', async ({ page }) => {
+  const iframe = await page.frameLocator('#embedded-warning');
+  await expect(await iframe.getByRole('button').count()).toBe(0);
+  await expect(
+    await iframe.getByRole('link', { name: 'continue to the site' }).count(),
+  ).toBe(0);
 });
+
+test('only shows one link, which is to open the same warning in a new tab', async ({
+  page,
+}) => {
+  const links = await page
+    .frameLocator('#embedded-warning')
+    .getByRole('link')
+    .all();
+  const hrefs = await Promise.all(
+    links.map((locator) => locator.getAttribute('href')),
+  );
+
+  expect(hrefs).toStrictEqual([
+    'http://localhost:8080/#hostname=test.com&href=https%3A%2F%2Ftest.com',
+  ]);
+});
+
+test('opens the warning in a new tab with valid inputs preserved', async ({
+  page,
+}) => {
+  const openInNewTab = await page
+    .frameLocator('#embedded-warning')
+    .getByRole('link', {
+      name: 'Open this warning in a new tab',
+    });
+  await openInNewTab.scrollIntoViewIfNeeded();
+
+  const popupPromise = page.waitForEvent('popup');
+  await openInNewTab.click();
+  const popup = await popupPromise;
+
+  await expect(popup).toHaveTitle('MetaMask Phishing Detection');
+  await expect(popup).toHaveURL(`/#${validQueryParams}`);
+});
+
+testWithInvalidInputs(
+  'opens the warning in a new tab with invalid inputs preserved',
+  async ({ page }) => {
+    const openInNewTab = await page
+      .frameLocator('#embedded-warning')
+      .getByRole('link', {
+        name: 'Open this warning in a new tab',
+      });
+    await openInNewTab.scrollIntoViewIfNeeded();
+
+    const popupPromise = page.waitForEvent('popup');
+    await openInNewTab.click();
+    const popup = await popupPromise;
+
+    await expect(popup).toHaveTitle('MetaMask Phishing Detection');
+    await expect(popup).toHaveURL('/#');
+  },
+);
