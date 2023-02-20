@@ -71,3 +71,5 @@ jobs:
     permissions:
       contents: write
     uses: ./.github/workflows/publish-release.yml
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
