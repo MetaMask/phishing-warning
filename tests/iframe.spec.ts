@@ -44,14 +44,27 @@ test.beforeEach(async ({ context }) => {
 });
 
 test('does not allow the user to bypass the warning', async ({ page }) => {
-  await expect(await page.getByRole('button').all()).toStrictEqual([]);
-  await expect(await page.getByRole('checkbox').all()).toStrictEqual([]);
-  await expect(await page.getByRole('combobox').all()).toStrictEqual([]);
-  await expect(await page.getByRole('link').all()).toStrictEqual([]);
+  const iframe = await page.frameLocator('#embedded-warning');
+  await expect(await iframe.getByRole('button').count()).toBe(0);
+  await expect(
+    await iframe.getByRole('link', { name: 'continue to the site' }).count(),
+  ).toBe(0);
 });
 
-test('does not link to any external page', async ({ page }) => {
-  await expect(await page.getByRole('link').all()).toStrictEqual([]);
+test('only shows one link, which is to open the same warning in a new tab', async ({
+  page,
+}) => {
+  const links = await page
+    .frameLocator('#embedded-warning')
+    .getByRole('link')
+    .all();
+  const hrefs = await Promise.all(
+    links.map((locator) => locator.getAttribute('href')),
+  );
+
+  expect(hrefs).toStrictEqual([
+    'http://localhost:8080/#hostname=test.com&href=https%3A%2F%2Ftest.com',
+  ]);
 });
 
 test('opens the warning in a new tab with valid inputs preserved', async ({
