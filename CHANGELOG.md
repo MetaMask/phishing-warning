@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [2.0.1]
-### Uncategorized
+### Fixed
 - Restore iframe warning and "open in new tab" link ([#73](https://github.com/MetaMask/phishing-warning/pull/73))
-- Fix release publishing ([#71](https://github.com/MetaMask/phishing-warning/pull/71))
 
 ## [2.0.0]
 ### Changed
