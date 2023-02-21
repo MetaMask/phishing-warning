@@ -9,4 +9,4 @@ if [[ -n $SKIP_PREPACK ]]; then
   exit 0
 fi
 
-yarn build:prod
+yarn build:prod && yarn lint
