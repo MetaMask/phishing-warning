@@ -1,0 +1,25 @@
+name: Manually publish release candidate to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-candidate-version:
+        description: 'The release candidate version to publish'
+        default: 'rc-v1.1.0'
+        type: choice
+        options:
+          - rc-v1.1.0
+          - rc-v1.2.0
+          - rc-v1.2.1
+          - rc-v1.2.2
+          - rc-v2.0.0
+        required: true
+
+jobs:
+  patch-github-pages:
+    name: Publish build to `${{ github.event.inputs.release-candidate-version }}` directory of `gh-pages` branch
+    permissions:
+      contents: write
+    uses: ./.github/workflows/publish-gh-pages.yml
+    with:
+      destination_dir: ${{ github.event.inputs.release-candidate-version }}
