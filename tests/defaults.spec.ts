@@ -55,7 +55,7 @@ test('does nothing when the user tries to bypass the warning', async ({
   await expect(page.isClosed()).toBe(false);
 });
 
-test('closes the window when the user clicks "Back to safety"', async ({
+test('replaces tab with a new blank page when the user clicks "Back to safety"', async ({
   page,
 }) => {
   // Calling `replace` here instead of `goto` to ensure that the page loads with a browser history
@@ -65,10 +65,10 @@ test('closes the window when the user clicks "Back to safety"', async ({
   const baseURL = config.use?.baseURL;
   await page.evaluate((url) => window.location.replace(url), `${baseURL}/`);
 
-  const onClose = page.waitForEvent('close');
+  const onReloadNewBlankPage = page.waitForURL('about:blank');
   await page.getByRole('button', { name: 'Back to safety' }).click();
 
-  await onClose;
+  await onReloadNewBlankPage;
 });
 
 test('logs that the service worker is registered', async ({ page }) => {
