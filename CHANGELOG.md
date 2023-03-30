@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [2.1.0]
-### Uncategorized
-- fix(18194): fix trigger to close window when clicking "back to safety" ([#84](https://github.com/MetaMask/phishing-warning/pull/84))
-- Fix GitHub pages release deployment ([#83](https://github.com/MetaMask/phishing-warning/pull/83))
+### Changed
+- "Back to safety" button now triggers a `backToSafetyPhishingWarning` message to be sent on the `phishingSafelistStream` ([#84](https://github.com/MetaMask/phishing-warning/pull/84))
 
 ## [2.0.1]
 ### Fixed
