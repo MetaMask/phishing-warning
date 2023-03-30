@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import config from '../playwright.config';
 import { setupDefaultMocks } from './helpers/default-mocks';
+import { setupStreamInitialization } from './helpers/stream-initialization';
 
 test.beforeEach(async ({ context }) => {
   await setupDefaultMocks(context);
@@ -55,20 +55,25 @@ test('does nothing when the user tries to bypass the warning', async ({
   await expect(page.isClosed()).toBe(false);
 });
 
-test('replaces tab with a new blank page when the user clicks "Back to safety"', async ({
-  page,
-}) => {
-  // Calling `replace` here instead of `goto` to ensure that the page loads with a browser history
-  // of length 1. Using `goto` would result in a length of 2, because Playwright starts each page
-  // on `about:blank`.
-  // We need a 1-length history so that the browser allows `window.close()` to work.
-  const baseURL = config.use?.baseURL;
-  await page.evaluate((url) => window.location.replace(url), `${baseURL}/`);
+test('redirects when the user clicks "Back to safety"', async ({ page }) => {
+  const postMessageLogs = await setupStreamInitialization(page);
+  const querystring = new URLSearchParams({
+    hostname: 'test.com',
+    href: 'https://test.com',
+  });
+  await page.goto(`/#${querystring}`);
 
-  const onReloadNewBlankPage = page.waitForURL('about:blank');
   await page.getByRole('button', { name: 'Back to safety' }).click();
-
-  await onReloadNewBlankPage;
+  await expect(postMessageLogs.length).toBe(1);
+  await expect(postMessageLogs[0].message).toStrictEqual({
+    data: {
+      id: expect.any(Number),
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning',
+      params: [],
+    },
+    name: 'metamask-phishing-safelist',
+  });
 });
 
 test('logs that the service worker is registered', async ({ page }) => {
