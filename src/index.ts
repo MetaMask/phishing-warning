@@ -194,7 +194,7 @@ function start() {
   }
 
   continueLink.addEventListener('click', async () => {
-    if (isValidSuspectHref(suspectHref) === false) {
+    if (!isValidSuspectHref(suspectHref)) {
       console.log(`Disallowed Protocol, cannot continue.`);
       return;
     }
@@ -207,5 +207,19 @@ function start() {
     });
 
     window.location.href = suspectHref;
+  });
+
+  const backToSafetyLink = document.getElementById('back-to-safety');
+  if (!backToSafetyLink) {
+    throw new Error('Unable to locate back to safety link');
+  }
+
+  backToSafetyLink.addEventListener('click', async () => {
+    phishingSafelistStream.write({
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning',
+      params: [],
+      id: createRandomId(),
+    });
   });
 }
