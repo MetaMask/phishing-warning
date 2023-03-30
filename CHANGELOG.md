@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0]
+### Uncategorized
+- fix(18194): fix trigger to close window when clicking "back to safety" ([#84](https://github.com/MetaMask/phishing-warning/pull/84))
+- Fix GitHub pages release deployment ([#83](https://github.com/MetaMask/phishing-warning/pull/83))
+
 ## [2.0.1]
 ### Fixed
 - Restore iframe warning and "open in new tab" link ([#73](https://github.com/MetaMask/phishing-warning/pull/73))
@@ -50,7 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.0.1...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/MetaMask/phishing-warning/compare/v2.0.1...v2.1.0
 [2.0.1]: https://github.com/MetaMask/phishing-warning/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...v2.0.0
 [1.2.2]: https://github.com/MetaMask/phishing-warning/compare/v1.2.1...v1.2.2
