@@ -93,9 +93,9 @@ jobs:
 
   publish-release-to-gh-pages:
     needs: get-release-version
-    name: Publish site to `${{ needs.get-release-version.outputs.RELEASE_VERSION }}` directory of `gh-pages` branch
+    name: Publish site to `v${{ needs.get-release-version.outputs.RELEASE_VERSION }}` directory of `gh-pages` branch
     permissions:
       contents: write
     uses: ./.github/workflows/publish-gh-pages.yml
     with:
-      destination_dir: ${{ needs.get-release-version.outputs.RELEASE_VERSION }}
+      destination_dir: v${{ needs.get-release-version.outputs.RELEASE_VERSION }}
