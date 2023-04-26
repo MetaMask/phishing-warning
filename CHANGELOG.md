@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.1]
+### Uncategorized
+- Include `v` prefix in path for releases ([#88](https://github.com/MetaMask/phishing-warning/pull/88))
+- Bump @metamask/post-message-stream from 6.1.0 to 6.1.1 ([#82](https://github.com/MetaMask/phishing-warning/pull/82))
+
 ## [2.1.0]
 ### Changed
 - "Back to safety" button now triggers a `backToSafetyPhishingWarning` message to be sent on the `phishingSafelistStream` ([#84](https://github.com/MetaMask/phishing-warning/pull/84))
@@ -54,7 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/MetaMask/phishing-warning/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/MetaMask/phishing-warning/compare/v2.0.1...v2.1.0
 [2.0.1]: https://github.com/MetaMask/phishing-warning/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/MetaMask/phishing-warning/compare/v1.2.2...v2.0.0
