@@ -1747,8 +1747,8 @@ __metadata:
     prettier: ^2.6.2
     prettier-plugin-packagejson: ^2.2.17
     pump: ^3.0.0
-    punycode: ^2.1.1
-    ses: ^0.18.1
+    punycode: ^2.3.0
+    ses: ^0.18.7
     terser: ^5.13.1
     ts-node: ^10.7.0
     typescript: ~4.4.4
@@ -6769,6 +6769,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"punycode@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "punycode@npm:2.3.0"
+  checksum: 39f760e09a2a3bbfe8f5287cf733ecdad69d6af2fe6f97ca95f24b8921858b91e9ea3c9eeec6e08cede96181b3bb33f95c6ffd8c77e63986508aa2e8159fa200
+  languageName: node
+  linkType: hard
+
 "qs@npm:^6.4.0":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
@@ -7276,7 +7283,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ses@npm:^0.18.1":
+"ses@npm:^0.18.7":
   version: 0.18.7
   resolution: "ses@npm:0.18.7"
   dependencies:
