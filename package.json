@@ -33,9 +33,9 @@
     "ses": "^0.18.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
+    "@babel/core": "^7.22.15",
+    "@babel/preset-env": "^7.22.15",
+    "@babel/preset-typescript": "^7.22.15",
     "@lavamoat/allow-scripts": "^2.3.1",
     "@metamask/auto-changelog": "^3.0.0",
     "@metamask/eslint-config": "^9.0.0",
