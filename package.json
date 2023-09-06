@@ -36,7 +36,7 @@
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
-    "@lavamoat/allow-scripts": "^2.3.0",
+    "@lavamoat/allow-scripts": "^2.3.1",
     "@metamask/auto-changelog": "^3.0.0",
     "@metamask/eslint-config": "^9.0.0",
     "@metamask/eslint-config-nodejs": "^9.0.0",
