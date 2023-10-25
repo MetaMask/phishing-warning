@@ -46,62 +46,36 @@
   <body>
     <div class="content">
       <div class="content__header">
-        <img src="./metamask-fox.svg" alt="MetaMask Logo" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"/>
+        </svg>
         <h1>
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
-         MetaMask Phishing Detection
+          Deceptive site ahead
         </h1>
       </div>
       <div id="content__body" class="content__body">
         <p>
-          This domain is currently on the MetaMask domain warning list. This
-          means that based on information available to us, MetaMask believes
-          this domain could currently compromise your security and, as an added
-          safety feature, MetaMask has restricted access to the site. To
-          override this, please read the rest of this warning for instructions
-          on how to continue at your own risk.
+          MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous. <a id="csdbLink" rel="noopener" href='https://cryptoscamdb.org/search' target='_blank'>Learn more</a>
         </p>
-        <p>
-          There are many reasons sites can appear on our warning list, and our
-          warning list compiles from other widely used industry lists. Such
-          reasons can include known fraud or security risks, such as domains
-          that test positive on the
-          <a href="https://github.com/metamask/eth-phishing-detect"
-            >Ethereum Phishing Detector</a
-          >. Domains on these warning lists may include outright malicious
-          websites and legitimate websites that have been compromised by a
-          malicious actor.
+      </br>
+        <p>Potential threats on <span id="suspect-link"></span> include:
+          <ul>
+            <li>Fake versions of MetaMask</li>
+            <li>Secret Recovery Phrase or password theft</li>
+            <li>Malicious transactions resulting in stolen assets </li>
+          </ul>
         </p>
-        <p>
-          To read more about this site
-          <a id="csdbLink" href="https://cryptoscamdb.org/search"
-            >please search for the domain on CryptoScamDB</a
-          >.
-        </p>
-        <p>
-          Note that this warning list is compiled on a voluntary basis. This
-          list may be inaccurate or incomplete. Just because a domain does not
-          appear on this list is not an implicit guarantee of that domain's
-          safety. As always, your transactions are your own responsibility. If
-          you wish to interact with any domain on our warning list, you can do
-          so by <a id="unsafe-continue">continuing at your own risk</a>.
-        </p>
-        <p>
-          If you think this domain is incorrectly flagged or if a blocked
-          legitimate website has resolved its security issues,
-          <a
-            id="new-issue-link"
-            href="https://github.com/metamask/eth-phishing-detect/issues/new"
-            >please file an issue</a
-          >.
-        </p>
+      </br>
+        <p>Advisory provided by <span id="detection-repo">Ethereum Phishing Detector and PhishFort</span>.</p>
+      </br>
+      </br>
+        <p>If we're flagging a legitimate website, please <a id="new-issue-link" href="#">report a detection problem.</a></p>
+        <p>If you understand the risks and still want to proceed, you can <a id="unsafe-continue">continue to the site.</a></p>
+        <button class="button-secondary" type="submit" onclick="window.close()">Back to safety</button>
       </div>
       <div id="content__framed-body" class="content__framed-body">
         <p>
-          This domain is currently on the MetaMask domain warning list. This
-          means that based on information available to us, MetaMask believes
-          this domain could currently compromise your security and, as an added
-          safety feature, MetaMask has restricted access to the site.
+          MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous.
         </p>
         <p>
           <a id="open-self-in-new-tab" target="_blank">Open this warning in a new tab</a> for more information
