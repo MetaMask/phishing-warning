@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style id="antiClickjack">
+      #content__body {
+        display: none !important;
+      }
+    </style>
+    <script type="text/javascript">
+      if (self === top) {
+        document.getElementById('antiClickjack').innerHTML =
+          '#content__framed-body { display: none !important; }';
+      }
+    </script>
     <title>MetaMask Phishing Detection</title>
     <script
       src="./globalthis.js"
@@ -29,6 +40,8 @@
     ></script>
     <link rel="stylesheet" type="text/css" href="./design-tokens.css">
     <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="icon" href="./favicon.ico" sizes="any"><!-- 32×32 -->
+    <link rel="icon" href="./metamask-fox.svg" type="image/svg+xml">
   </head>
   <body>
     <div class="content">
@@ -39,7 +52,7 @@
          MetaMask Phishing Detection
         </h1>
       </div>
-      <div class="content__body">
+      <div id="content__body" class="content__body">
         <p>
           This domain is currently on the MetaMask domain warning list. This
           means that based on information available to us, MetaMask believes
@@ -69,9 +82,9 @@
           Note that this warning list is compiled on a voluntary basis. This
           list may be inaccurate or incomplete. Just because a domain does not
           appear on this list is not an implicit guarantee of that domain's
-          safety. As always, your transactions are your own responsibility. If
+          safety. As always, your transactions are your own responsibility. <span id="redirect-warning-message">If
           you wish to interact with any domain on our warning list, you can do
-          so by <a id="unsafe-continue">continuing at your own risk</a>.
+          so by <a id="unsafe-continue">continuing at your own risk</a>.</span>
         </p>
         <p>
           If you think this domain is incorrectly flagged or if a blocked
@@ -81,6 +94,18 @@
             href="https://github.com/metamask/eth-phishing-detect/issues/new"
             >please file an issue</a
           >.
+        </p>
+      </div>
+      <div id="content__framed-body" class="content__framed-body">
+        <p>
+          This domain is currently on the MetaMask domain warning list. This
+          means that based on information available to us, MetaMask believes
+          this domain could currently compromise your security and, as an added
+          safety feature, MetaMask has restricted access to the site.
+        </p>
+        <p>
+          <a id="open-self-in-new-tab" target="_blank">Open this warning in a new tab</a> for more information
+          on why this domain is blocked, and how to continue at your own risk.
         </p>
       </div>
     </div>
