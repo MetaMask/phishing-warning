@@ -1439,10 +1439,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@endo/env-options@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@endo/env-options@npm:0.1.3"
-  checksum: da8c66865d4d30b0053a00960657dc36f022975a888f0dd6a2f6bb37b9fe731f45a02a2cf263d93b1a40fcb37b25f8ba7076cb8af9e93fd95f496365d9382930
+"@endo/env-options@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "@endo/env-options@npm:0.1.4"
+  checksum: 6099f0a6b700a60bee7b226aa2a39bb5748e22f25e9606d70e5a66a8e62cbd8c972b0fe578735a658f80bf2ebece62e28c20aa3f16417cbfe6c19a8689966dd3
   languageName: node
   linkType: hard
 
@@ -1647,16 +1647,17 @@ __metadata:
   linkType: hard
 
 "@metamask/auto-changelog@npm:^3.0.0":
-  version: 3.2.0
-  resolution: "@metamask/auto-changelog@npm:3.2.0"
+  version: 3.4.2
+  resolution: "@metamask/auto-changelog@npm:3.4.2"
   dependencies:
     diff: ^5.0.0
     execa: ^5.1.1
+    prettier: ^2.8.8
     semver: ^7.3.5
     yargs: ^17.0.1
   bin:
     auto-changelog: dist/cli.js
-  checksum: 7cd19400bb60d478455fbf9ffe7c295b21df64764a01f90776beda04bfa46242f34751112b862b4bd5955f04a7d28cfa7d6b2e745f3d3baaccda7c493f761658
+  checksum: b922db20b3ff8a1957b71128d481c08fdf5ae465a89a03bccacf31cba227e56e48f6b1654ff4c78150cc0cfd3ae57a615d3ab5ab6760f7437e0b9e8aa6aec390
   languageName: node
   linkType: hard
 
@@ -1718,7 +1719,7 @@ __metadata:
     "@metamask/eslint-config": ^9.0.0
     "@metamask/eslint-config-nodejs": ^9.0.0
     "@metamask/eslint-config-typescript": ^9.0.1
-    "@metamask/post-message-stream": ^6.2.0
+    "@metamask/post-message-stream": ^7.0.0
     "@playwright/test": ^1.30.0
     "@testing-library/dom": ^8.13.0
     "@testing-library/user-event": ^14.1.1
@@ -1748,7 +1749,7 @@ __metadata:
     prettier-plugin-packagejson: ^2.2.17
     pump: ^3.0.0
     punycode: ^2.3.0
-    ses: ^0.18.7
+    ses: ^0.18.8
     terser: ^5.13.1
     ts-node: ^10.7.0
     typescript: ~4.4.4
@@ -1756,13 +1757,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@metamask/post-message-stream@npm:^6.2.0":
-  version: 6.2.0
-  resolution: "@metamask/post-message-stream@npm:6.2.0"
+"@metamask/post-message-stream@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@metamask/post-message-stream@npm:7.0.0"
   dependencies:
     "@metamask/utils": ^5.0.0
-    readable-stream: 2.3.3
-  checksum: 657cdb2dd61a46a4da7f036a97ef0aa9ad8e918d8f8c0fd620eaede4a32c2ff909738a7dfb2b1e6099e7771fd03c3466b60fedab56e39a5cc5507927758e3cb7
+    readable-stream: 3.6.2
+  checksum: a922874f00870e0c666216e592dff6c508e926fae122646d2792c9a7fac4f73323c65046a1eb9dc48a4b0e7de3bbcf753f5ad470688ed4ba2298b4d3a9b39c7d
   languageName: node
   linkType: hard
 
@@ -6654,6 +6655,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^2.8.8":
+  version: 2.8.8
+  resolution: "prettier@npm:2.8.8"
+  bin:
+    prettier: bin-prettier.js
+  checksum: b49e409431bf129dd89238d64299ba80717b57ff5a6d1c1a8b1a28b590d998a34e083fa13573bc732bb8d2305becb4c9a4407f8486c81fa7d55100eb08263cf8
+  languageName: node
+  linkType: hard
+
 "pretty-bytes@npm:^5.3.0":
   version: 5.6.0
   resolution: "pretty-bytes@npm:5.6.0"
@@ -6669,13 +6679,6 @@ __metadata:
     ansi-styles: ^5.0.0
     react-is: ^17.0.1
   checksum: cf610cffcb793885d16f184a62162f2dd0df31642d9a18edf4ca298e909a8fe80bdbf556d5c9573992c102ce8bf948691da91bf9739bee0ffb6e79c8a8a6e088
-  languageName: node
-  linkType: hard
-
-"process-nextick-args@npm:~1.0.6":
-  version: 1.0.7
-  resolution: "process-nextick-args@npm:1.0.7"
-  checksum: 41224fbc803ac6c96907461d4dfc20942efa3ca75f2d521bcf7cf0e89f8dec127fb3fb5d76746b8fb468a232ea02d84824fae08e027aec185fd29049c66d49f8
   languageName: node
   linkType: hard
 
@@ -6879,18 +6882,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:2.3.3":
-  version: 2.3.3
-  resolution: "readable-stream@npm:2.3.3"
+"readable-stream@npm:3.6.2":
+  version: 3.6.2
+  resolution: "readable-stream@npm:3.6.2"
   dependencies:
-    core-util-is: ~1.0.0
-    inherits: ~2.0.3
-    isarray: ~1.0.0
-    process-nextick-args: ~1.0.6
-    safe-buffer: ~5.1.1
-    string_decoder: ~1.0.3
-    util-deprecate: ~1.0.1
-  checksum: 76f9863065d7edc14abd78e68784048487e83a4b6908336ba3eacb5e9544d642ad60836f91fab16e1dc6ad9e493dfe6c2e5b65f370ec65454d415efa50361a76
+    inherits: ^2.0.3
+    string_decoder: ^1.1.1
+    util-deprecate: ^1.0.1
+  checksum: bdcbe6c22e846b6af075e32cf8f4751c2576238c5043169a1c221c92ee2878458a816a4ea33f4c67623c0b6827c8a400409bfb3cf0bf3381392d0b1dfb52ac8d
   languageName: node
   linkType: hard
 
@@ -7276,12 +7275,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ses@npm:^0.18.7":
-  version: 0.18.7
-  resolution: "ses@npm:0.18.7"
+"ses@npm:^0.18.8":
+  version: 0.18.8
+  resolution: "ses@npm:0.18.8"
   dependencies:
-    "@endo/env-options": ^0.1.3
-  checksum: 75ac014771d9bc1f747193c6d0f9e7d2d7700a10311ba8d805d9bc78d4c20d4ef40537f0535b1ea6abf06babf67e70f8bd37b2ad68ad54992a0c5ce842181c87
+    "@endo/env-options": ^0.1.4
+  checksum: d7976d2ee218baec021c5cfdfb193d63b52bf2b6cbdbbb90c19d835915a1872b6924910f7fd42bc849eb2de78fc7bdd6e7b4667e1df3c79244cc92d4ede48aa6
   languageName: node
   linkType: hard
 
@@ -7704,15 +7703,6 @@ __metadata:
   dependencies:
     safe-buffer: ~5.2.0
   checksum: 8417646695a66e73aefc4420eb3b84cc9ffd89572861fe004e6aeb13c7bc00e2f616247505d2dbbef24247c372f70268f594af7126f43548565c68c117bdeb56
-  languageName: node
-  linkType: hard
-
-"string_decoder@npm:~1.0.3":
-  version: 1.0.3
-  resolution: "string_decoder@npm:1.0.3"
-  dependencies:
-    safe-buffer: ~5.1.0
-  checksum: 57ef02a148fd1ff2f20fe1accd944505ed3703e78bb28d302d940b2ad3dfb469508f79dcd0275ba1960d9675aa206452f76b2416059a6d0b0200bd7e9f552cdb
   languageName: node
   linkType: hard
 
