@@ -7,20 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [2.1.2]
-### Uncategorized
-- Bump @metamask/auto-changelog from 3.2.0 to 3.4.2 ([#114](https://github.com/MetaMask/phishing-warning/pull/114))
-- Bump @metamask/post-message-stream from 6.2.0 to 7.0.0 ([#104](https://github.com/MetaMask/phishing-warning/pull/104))
-- deps(ses): update to latest version ([#120](https://github.com/MetaMask/phishing-warning/pull/120))
-- 2.1.1 ([#106](https://github.com/MetaMask/phishing-warning/pull/106))
-- Bump @metamask/design-tokens from 1.11.1 to 1.12.0 ([#92](https://github.com/MetaMask/phishing-warning/pull/92))
-- Bump @metamask/post-message-stream from 6.1.2 to 6.2.0 ([#103](https://github.com/MetaMask/phishing-warning/pull/103))
-- Bump ses from 0.18.1 to 0.18.7 ([#102](https://github.com/MetaMask/phishing-warning/pull/102))
-- Bump word-wrap from 1.2.3 to 1.2.4 ([#101](https://github.com/MetaMask/phishing-warning/pull/101))
-- Bump @metamask/auto-changelog from 3.1.0 to 3.2.0 ([#100](https://github.com/MetaMask/phishing-warning/pull/100))
-- Bump @metamask/post-message-stream from 6.1.1 to 6.1.2 ([#86](https://github.com/MetaMask/phishing-warning/pull/86))
-- Bump semver from 5.7.1 to 5.7.2 ([#93](https://github.com/MetaMask/phishing-warning/pull/93))
-- Include `v` prefix in path for releases ([#88](https://github.com/MetaMask/phishing-warning/pull/88))
-- Bump @metamask/post-message-stream from 6.1.0 to 6.1.1 ([#82](https://github.com/MetaMask/phishing-warning/pull/82))
+### Fixed
+- Dependency Updates
+  - Bump @metamask/auto-changelog from 3.2.0 to 3.4.2 ([#114](https://github.com/MetaMask/phishing-warning/pull/114))
+  - Bump @metamask/post-message-stream from 6.2.0 to 7.0.0 ([#104](https://github.com/MetaMask/phishing-warning/pull/104))
+  - Bump ses from 0.18.7 to 0.18.8 ([#102](https://github.com/MetaMask/phishing-warning/pull/102))
 
 ## [2.1.1]
 ### Fixed
