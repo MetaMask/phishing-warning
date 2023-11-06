@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@metamask/design-tokens": "^1.12.0",
-    "@metamask/post-message-stream": "^6.2.0",
+    "@metamask/post-message-stream": "^7.0.0",
     "eth-phishing-detect": "^1.2.0",
     "globalthis": "1.0.1",
     "obj-multiplex": "^1.0.0",
