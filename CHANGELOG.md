@@ -6,6 +6,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0]
+### Uncategorized
+- Streams API v3 ([#122](https://github.com/MetaMask/phishing-warning/pull/122))
+- Bump @babel/traverse from 7.17.3 to 7.23.2 ([#111](https://github.com/MetaMask/phishing-warning/pull/111))
+- Bump browserify-sign from 4.2.1 to 4.2.2 ([#118](https://github.com/MetaMask/phishing-warning/pull/118))
+- BREAKING: Increase minimum Node.js version to 16; recommended to 18 ([#107](https://github.com/MetaMask/phishing-warning/pull/107))
+- Bump @metamask/auto-changelog from 3.2.0 to 3.4.2 ([#114](https://github.com/MetaMask/phishing-warning/pull/114))
+- Bump @metamask/post-message-stream from 6.2.0 to 7.0.0 ([#104](https://github.com/MetaMask/phishing-warning/pull/104))
+- deps(ses): update to latest version ([#120](https://github.com/MetaMask/phishing-warning/pull/120))
+- 2.1.1 ([#106](https://github.com/MetaMask/phishing-warning/pull/106))
+- Bump @metamask/design-tokens from 1.11.1 to 1.12.0 ([#92](https://github.com/MetaMask/phishing-warning/pull/92))
+- Bump @metamask/post-message-stream from 6.1.2 to 6.2.0 ([#103](https://github.com/MetaMask/phishing-warning/pull/103))
+- Bump ses from 0.18.1 to 0.18.7 ([#102](https://github.com/MetaMask/phishing-warning/pull/102))
+- Bump word-wrap from 1.2.3 to 1.2.4 ([#101](https://github.com/MetaMask/phishing-warning/pull/101))
+- Bump @metamask/auto-changelog from 3.1.0 to 3.2.0 ([#100](https://github.com/MetaMask/phishing-warning/pull/100))
+- Bump @metamask/post-message-stream from 6.1.1 to 6.1.2 ([#86](https://github.com/MetaMask/phishing-warning/pull/86))
+- Bump semver from 5.7.1 to 5.7.2 ([#93](https://github.com/MetaMask/phishing-warning/pull/93))
+- Include `v` prefix in path for releases ([#88](https://github.com/MetaMask/phishing-warning/pull/88))
+- Bump @metamask/post-message-stream from 6.1.0 to 6.1.1 ([#82](https://github.com/MetaMask/phishing-warning/pull/82))
+
 ## [2.1.1]
 ### Fixed
 - Dependency updates ([#105](https://github.com/MetaMask/phishing-warning/pull/105))
@@ -63,7 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/MetaMask/phishing-warning/compare/v2.1.1...v3.0.0
 [2.1.1]: https://github.com/MetaMask/phishing-warning/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/MetaMask/phishing-warning/compare/v2.0.1...v2.1.0
 [2.0.1]: https://github.com/MetaMask/phishing-warning/compare/v2.0.0...v2.0.1
