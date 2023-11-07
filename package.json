@@ -1,6 +1,6 @@
 {
   "name": "@metamask/phishing-warning",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A page to warn users about a suspected phishing site.",
   "repository": {
     "type": "git",
@@ -24,13 +24,13 @@
   },
   "dependencies": {
     "@metamask/design-tokens": "^1.12.0",
-    "@metamask/post-message-stream": "^6.2.0",
+    "@metamask/post-message-stream": "^7.0.0",
     "eth-phishing-detect": "^1.2.0",
     "globalthis": "1.0.1",
     "obj-multiplex": "^1.0.0",
     "pump": "^3.0.0",
     "punycode": "^2.3.0",
-    "ses": "^0.18.7"
+    "ses": "^0.18.8"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
@@ -72,7 +72,7 @@
   },
   "packageManager": "yarn@3.4.1",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "^16.20 || ^18.16 || >=20"
   },
   "publishConfig": {
     "access": "public",
