@@ -2,7 +2,7 @@ import pump from 'pump';
 import { toASCII } from 'punycode/';
 import PhishingDetector from 'eth-phishing-detect/src/detector';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
-import ObjectMultiplex from 'obj-multiplex';
+import ObjectMultiplex from '@metamask/object-multiplex';
 
 const MAX = Number.MAX_SAFE_INTEGER;
 
