@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0]
+### Changed
+- **BREAKING**: Increase minimum Node.js version to 16 ([#107](https://github.com/MetaMask/phishing-warning/pull/107))
+- **BREAKING**: This package now returns streams conforming to the API of readable-stream@3.x. ([#122](https://github.com/MetaMask/phishing-warning/pull/122)) ([#104](https://github.com/MetaMask/phishing-warning/pull/104))
+  - Bump @metamask/post-message-stream from ^6.2.0 to ^7.0.0 ([#104](https://github.com/MetaMask/phishing-warning/pull/104))
+  - Upgrade obj-multiplex to @metamask/object-multiplex@^2.0.0 ([#122](https://github.com/MetaMask/phishing-warning/pull/122))
+
+### Fixed
+- Bump ses from ^0.18.7 to ^0.18.8 ([#120](https://github.com/MetaMask/phishing-warning/pull/120))
+
 ## [2.1.1]
 ### Fixed
 - Dependency updates ([#105](https://github.com/MetaMask/phishing-warning/pull/105))
@@ -63,7 +73,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/MetaMask/phishing-warning/compare/v2.1.1...v3.0.0
 [2.1.1]: https://github.com/MetaMask/phishing-warning/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/MetaMask/phishing-warning/compare/v2.0.1...v2.1.0
 [2.0.1]: https://github.com/MetaMask/phishing-warning/compare/v2.0.0...v2.0.1
