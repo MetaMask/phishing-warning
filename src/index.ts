@@ -1,5 +1,5 @@
-import pump from 'pump';
 import { toASCII } from 'punycode/';
+import { pipeline } from 'readable-stream';
 import PhishingDetector from 'eth-phishing-detect/src/detector';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
 import ObjectMultiplex from '@metamask/object-multiplex';
@@ -149,7 +149,7 @@ function start() {
 
   // setup connectionStream multiplexing
   const mux = new ObjectMultiplex();
-  pump(metamaskStream, mux, metamaskStream, (error) => [
+  pipeline(metamaskStream, mux, metamaskStream, (error) => [
     console.error('Disconnected', error),
   ]);
   const phishingSafelistStream = mux.createStream('metamask-phishing-safelist');
