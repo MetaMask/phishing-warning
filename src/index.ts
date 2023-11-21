@@ -139,6 +139,29 @@ async function isBlockedByMetamask(href: string) {
 }
 
 /**
+ * Extract hostname and href from the query string.
+ *
+ * @returns the suspect hostname and href from the query string.
+ * @param href - The href value to check.
+ */
+function getSuspect(
+  href: string | null,
+): {
+  suspectHostname: string;
+  suspectHref: string;
+} {
+  try {
+    const url = new URL(href || '');
+    return {
+      suspectHostname: url.hostname,
+      suspectHref: url.href,
+    };
+  } catch (error) {
+    throw new Error(`Invalid 'href' query parameter`);
+  }
+}
+
+/**
  * Initialize the phishing warning page streams.
  */
 function start() {
@@ -157,14 +180,10 @@ function start() {
   const { hash } = new URL(window.location.href);
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
-  const suspectHostname = hashQueryString.get('hostname');
-  const suspectHref = hashQueryString.get('href');
 
-  if (!suspectHostname) {
-    throw new Error("Missing 'hostname' query parameter");
-  } else if (!suspectHref) {
-    throw new Error("Missing 'href' query parameter");
-  }
+  const { suspectHostname, suspectHref } = getSuspect(
+    hashQueryString.get('href'),
+  );
 
   const suspectLink = document.getElementById('suspect-link');
   if (!suspectLink) {
