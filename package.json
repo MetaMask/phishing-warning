@@ -12,17 +12,17 @@
   ],
   "scripts": {
     "build": "node ./build/index.js",
-    "build:prod": "NODE='production' yarn build",
     "build:dev": "node ./build/dev.js",
+    "build:prod": "NODE='production' yarn build",
+    "dev": "yarn build:dev",
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:eslint": "eslint . --cache --ext js,ts",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
     "lint:misc": "prettier '**/*.json' '**/*.md' '!CHANGELOG.md' '**/*.yml' '!.yarnrc.yml' --ignore-path .gitignore --no-error-on-unmatched-pattern",
     "prepack": "./scripts/prepack.sh",
+    "serve": "yarn http-server ./dist",
     "setup": "yarn install && yarn allow-scripts",
     "start": "yarn build && yarn http-server ./dist",
-    "dev": "yarn build:dev",
-    "serve": "yarn http-server ./dist",
     "test": "yarn playwright test"
   },
   "dependencies": {

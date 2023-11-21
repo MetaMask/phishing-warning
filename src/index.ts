@@ -141,20 +141,21 @@ async function isBlockedByMetamask(href: string) {
 /**
  * Extract hostname and href from the query string.
  *
- * @returns the suspect hostname and href from the query string.
+ * @returns The suspect hostname and href from the query string.
  * @param href - The href value to check.
  */
-function getSuspect(
-  href: string | null,
-): {
+function getSuspect(href: string | null): {
   suspectHostname: string;
   suspectHref: string;
+  suspectHrefPlain: string;
 } {
   try {
-    const url = new URL(href || '');
+    const hrefStr = href || '';
+    const url = new URL(hrefStr);
     return {
       suspectHostname: url.hostname,
       suspectHref: url.href,
+      suspectHrefPlain: hrefStr,
     };
   } catch (error) {
     throw new Error(`Invalid 'href' query parameter`);
@@ -181,7 +182,7 @@ function start() {
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
 
-  const { suspectHostname, suspectHref } = getSuspect(
+  const { suspectHostname, suspectHref, suspectHrefPlain } = getSuspect(
     hashQueryString.get('href'),
   );
 
@@ -197,8 +198,8 @@ function start() {
   }
 
   const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
-    suspectHostname,
-  )}&body=${encodeURIComponent(suspectHref)}`;
+    suspectHrefPlain,
+  )}&body=${encodeURIComponent(suspectHrefPlain)}`;
 
   newIssueLink.addEventListener('click', async () => {
     const listName = (await isBlockedByMetamask(suspectHref))
