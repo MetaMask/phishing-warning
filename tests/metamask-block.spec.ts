@@ -44,7 +44,6 @@ test('correctly matches unicode domains', async ({ context, page }) => {
   await page.waitForLoadState('networkidle');
 
   await expect(page).toHaveURL(
-    // 'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20test.com&body=https%3A%2F%2Fmetamạsk.io',
-    'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20xn--metamsk-en4c.io&body=https%3A%2F%2Fxn--metamsk-en4c.io%2F'
+    'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20test.com&body=https%3A%2F%2Fmetamạsk.io',
   );
 });
