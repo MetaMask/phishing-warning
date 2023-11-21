@@ -144,18 +144,17 @@ async function isBlockedByMetamask(href: string) {
  * @returns The suspect hostname and href from the query string.
  * @param href - The href value to check.
  */
-function getSuspect(href: string | null): {
+function getSuspect(href = ''): {
   suspectHostname: string;
   suspectHref: string;
   suspectHrefPlain: string;
 } {
   try {
-    const hrefStr = href || '';
-    const url = new URL(hrefStr);
+    const url = new URL(href);
     return {
       suspectHostname: url.hostname,
       suspectHref: url.href,
-      suspectHrefPlain: hrefStr,
+      suspectHrefPlain: href,
     };
   } catch (error) {
     throw new Error(`Invalid 'href' query parameter`);
@@ -177,6 +176,20 @@ function start() {
     console.error('Disconnected', error),
   ]);
   const phishingSafelistStream = mux.createStream('metamask-phishing-safelist');
+
+  const backToSafetyLink = document.getElementById('back-to-safety');
+  if (!backToSafetyLink) {
+    throw new Error('Unable to locate back to safety link');
+  }
+
+  backToSafetyLink.addEventListener('click', async () => {
+    phishingSafelistStream.write({
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning',
+      params: [],
+      id: createRandomId(),
+    });
+  });
 
   const { hash } = new URL(window.location.href);
   const hashContents = hash.slice(1); // drop leading '#' from hash
@@ -227,19 +240,5 @@ function start() {
     });
 
     window.location.href = suspectHref;
-  });
-
-  const backToSafetyLink = document.getElementById('back-to-safety');
-  if (!backToSafetyLink) {
-    throw new Error('Unable to locate back to safety link');
-  }
-
-  backToSafetyLink.addEventListener('click', async () => {
-    phishingSafelistStream.write({
-      jsonrpc: '2.0',
-      method: 'backToSafetyPhishingWarning',
-      params: [],
-      id: createRandomId(),
-    });
   });
 }

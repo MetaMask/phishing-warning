@@ -9,7 +9,6 @@ test('directs users to PhishFort to dispute a block, including issue template pa
   page,
 }) => {
   const querystring = new URLSearchParams({
-    hostname: 'test.com',
     href: 'https://test.com',
   });
   await page.goto(`/#${querystring}`);

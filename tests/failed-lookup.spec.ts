@@ -7,7 +7,6 @@ test('directs users to eth-phishing-detect to dispute a block, including issue t
 }) => {
   await setupDefaultMocks(context, { phishingError: true });
   const querystring = new URLSearchParams({
-    hostname: 'test.com',
     href: 'https://test.com',
   });
   await page.goto(`/#${querystring}`);

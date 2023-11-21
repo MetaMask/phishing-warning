@@ -16,7 +16,7 @@ test('throws an error about the href query parameter being invalid', async ({
       errorLogs.push(message.text());
     }
   });
-  const querystring = new URLSearchParams({ hostname: 'example.com' });
+  const querystring = new URLSearchParams({});
 
   await page.goto(`/#${querystring}`);
 
@@ -50,7 +50,6 @@ test('does not allow user to bypass warning for invalid protocols', async ({
     }
   });
   const querystring = new URLSearchParams({
-    hostname: 'evil.com',
     // eslint-disable-next-line no-script-url
     href: 'javascript:console.log("test")',
   });
