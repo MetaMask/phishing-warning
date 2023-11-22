@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [3.0.1]
-### Uncategorized
-- moved to using href only for suspect site ([#124](https://github.com/MetaMask/phishing-warning/pull/124))
+### Changed
+- Using href url param only for suspect site ([#124](https://github.com/MetaMask/phishing-warning/pull/124))
 
 ## [3.0.0]
 ### Changed
