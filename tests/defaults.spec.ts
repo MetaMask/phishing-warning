@@ -58,7 +58,6 @@ test('does nothing when the user tries to bypass the warning', async ({
 test('redirects when the user clicks "Back to safety"', async ({ page }) => {
   const postMessageLogs = await setupStreamInitialization(page);
   const querystring = new URLSearchParams({
-    hostname: 'test.com',
     href: 'https://test.com',
   });
   await page.goto(`/#${querystring}`);

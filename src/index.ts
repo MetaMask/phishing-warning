@@ -139,6 +139,29 @@ async function isBlockedByMetamask(href: string) {
 }
 
 /**
+ * Extract hostname and href from the query string.
+ *
+ * @returns The suspect hostname and href from the query string.
+ * @param href - The href value to check.
+ */
+function getSuspect(href = ''): {
+  suspectHostname: string;
+  suspectHref: string;
+  suspectHrefPlain: string;
+} {
+  try {
+    const url = new URL(href);
+    return {
+      suspectHostname: url.hostname,
+      suspectHref: url.href,
+      suspectHrefPlain: href,
+    };
+  } catch (error) {
+    throw new Error(`Invalid 'href' query parameter`);
+  }
+}
+
+/**
  * Initialize the phishing warning page streams.
  */
 function start() {
@@ -154,17 +177,27 @@ function start() {
   ]);
   const phishingSafelistStream = mux.createStream('metamask-phishing-safelist');
 
+  const backToSafetyLink = document.getElementById('back-to-safety');
+  if (!backToSafetyLink) {
+    throw new Error('Unable to locate back to safety link');
+  }
+
+  backToSafetyLink.addEventListener('click', async () => {
+    phishingSafelistStream.write({
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning',
+      params: [],
+      id: createRandomId(),
+    });
+  });
+
   const { hash } = new URL(window.location.href);
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
-  const suspectHostname = hashQueryString.get('hostname');
-  const suspectHref = hashQueryString.get('href');
 
-  if (!suspectHostname) {
-    throw new Error("Missing 'hostname' query parameter");
-  } else if (!suspectHref) {
-    throw new Error("Missing 'href' query parameter");
-  }
+  const { suspectHostname, suspectHref, suspectHrefPlain } = getSuspect(
+    hashQueryString.get('href'),
+  );
 
   const suspectLink = document.getElementById('suspect-link');
   if (!suspectLink) {
@@ -178,8 +211,8 @@ function start() {
   }
 
   const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
-    suspectHostname,
-  )}&body=${encodeURIComponent(suspectHref)}`;
+    suspectHrefPlain,
+  )}&body=${encodeURIComponent(suspectHrefPlain)}`;
 
   newIssueLink.addEventListener('click', async () => {
     const listName = (await isBlockedByMetamask(suspectHref))
@@ -207,19 +240,5 @@ function start() {
     });
 
     window.location.href = suspectHref;
-  });
-
-  const backToSafetyLink = document.getElementById('back-to-safety');
-  if (!backToSafetyLink) {
-    throw new Error('Unable to locate back to safety link');
-  }
-
-  backToSafetyLink.addEventListener('click', async () => {
-    phishingSafelistStream.write({
-      jsonrpc: '2.0',
-      method: 'backToSafetyPhishingWarning',
-      params: [],
-      id: createRandomId(),
-    });
   });
 }

@@ -11,7 +11,6 @@ test('allows the user to bypass the warning and add the site to the allowlist', 
 }) => {
   const postMessageLogs = await setupStreamInitialization(page);
   const querystring = new URLSearchParams({
-    hostname: 'test.com',
     href: 'https://test.com',
   });
   await page.goto(`/#${querystring}`);
