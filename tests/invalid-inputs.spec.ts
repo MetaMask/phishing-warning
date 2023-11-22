@@ -6,7 +6,7 @@ test.beforeEach(async ({ context }) => {
   await setupDefaultMocks(context);
 });
 
-test('throws an error about the hostname query parameter being missing', async ({
+test('throws an error about the href query parameter being invalid', async ({
   context,
   page,
 }) => {
@@ -16,29 +16,7 @@ test('throws an error about the hostname query parameter being missing', async (
       errorLogs.push(message.text());
     }
   });
-
-  await page.goto('/');
-
-  expect(errorLogs.length).toBe(1);
-  const browserName = context.browser()?.browserType().name();
-  expect(errorLogs[0]).toMatch(
-    browserName === 'firefox'
-      ? 'Error' // for some reason the message is missing on Firefox
-      : `Error: Missing 'hostname' query parameter`,
-  );
-});
-
-test('throws an error about the href query parameter being missing', async ({
-  context,
-  page,
-}) => {
-  const errorLogs: string[] = [];
-  page.on('console', (message) => {
-    if (message.type() === 'error') {
-      errorLogs.push(message.text());
-    }
-  });
-  const querystring = new URLSearchParams({ hostname: 'example.com' });
+  const querystring = new URLSearchParams({});
 
   await page.goto(`/#${querystring}`);
 
@@ -47,7 +25,7 @@ test('throws an error about the href query parameter being missing', async ({
   expect(errorLogs[0]).toMatch(
     browserName === 'firefox'
       ? 'Error' // for some reason the message is missing on Firefox
-      : `Error: Missing 'href' query parameter`,
+      : `Error: Invalid 'href' query parameter`,
   );
 });
 
@@ -72,7 +50,6 @@ test('does not allow user to bypass warning for invalid protocols', async ({
     }
   });
   const querystring = new URLSearchParams({
-    hostname: 'evil.com',
     // eslint-disable-next-line no-script-url
     href: 'javascript:console.log("test")',
   });

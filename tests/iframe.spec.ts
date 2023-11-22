@@ -21,7 +21,6 @@ function getPageWithIframe(url?: string) {
 }
 
 const validQueryParams = new URLSearchParams({
-  hostname: 'test.com',
   href: 'https://test.com',
 });
 
@@ -63,7 +62,7 @@ test('only shows one link, which is to open the same warning in a new tab', asyn
   );
 
   expect(hrefs).toStrictEqual([
-    'http://localhost:8080/#hostname=test.com&href=https%3A%2F%2Ftest.com',
+    'http://localhost:8080/#href=https%3A%2F%2Ftest.com',
   ]);
 });
 
