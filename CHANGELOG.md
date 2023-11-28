@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.2]
+### Uncategorized
+- change to hostname for gh issues ([#127](https://github.com/MetaMask/phishing-warning/pull/127))
+
 ## [3.0.1]
 ### Changed
 - Using href url param only for suspect site ([#124](https://github.com/MetaMask/phishing-warning/pull/124))
@@ -77,7 +81,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v3.0.1...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v3.0.2...HEAD
+[3.0.2]: https://github.com/MetaMask/phishing-warning/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/MetaMask/phishing-warning/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/MetaMask/phishing-warning/compare/v2.1.1...v3.0.0
 [2.1.1]: https://github.com/MetaMask/phishing-warning/compare/v2.1.0...v2.1.1
