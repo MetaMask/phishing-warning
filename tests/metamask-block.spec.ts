@@ -22,7 +22,7 @@ test('directs users to eth-phishing-detect to dispute a block, including issue t
   await page.waitForLoadState('networkidle');
 
   await expect(page).toHaveURL(
-    'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20https%3A%2F%2Ftest.com&body=https%3A%2F%2Ftest.com',
+    'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20test.com&body=https%3A%2F%2Ftest.com%2F',
   );
 });
 
@@ -38,7 +38,7 @@ test('correctly matches unicode domains', async ({ context, page }) => {
     hostname: url,
     href: url,
   });
-  const encoded = encodeURIComponent(url);
+
   await page.goto(`/#${querystring}`);
 
   await page.getByRole('link', { name: 'report a detection problem' }).click();
@@ -46,6 +46,6 @@ test('correctly matches unicode domains', async ({ context, page }) => {
   await page.waitForLoadState('networkidle');
 
   await expect(page).toHaveURL(
-    `https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20${encoded}&body=${encoded}`,
+    'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20metam%E1%BA%A1sk.io&body=https%3A%2F%2Fmetam%E1%BA%A1sk.io%2F',
   );
 });

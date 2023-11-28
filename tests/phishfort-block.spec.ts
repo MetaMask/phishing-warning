@@ -18,6 +18,6 @@ test('directs users to PhishFort to dispute a block, including issue template pa
   await page.waitForLoadState('networkidle');
 
   await expect(page).toHaveURL(
-    'https://github.com/phishfort/phishfort-lists/issues/new?title=[Legitimate%20Site%20Blocked]%20https%3A%2F%2Ftest.com&body=https%3A%2F%2Ftest.com',
+    'https://github.com/phishfort/phishfort-lists/issues/new?title=[Legitimate%20Site%20Blocked]%20test.com&body=https%3A%2F%2Ftest.com%2F',
   );
 });

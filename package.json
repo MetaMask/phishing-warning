@@ -28,7 +28,7 @@
     "@metamask/post-message-stream": "^7.0.0",
     "eth-phishing-detect": "^1.2.0",
     "globalthis": "1.0.1",
-    "punycode": "^2.3.0",
+    "punycode": "^2.3.1",
     "readable-stream": "^3.6.2",
     "ses": "^0.18.8"
   },
