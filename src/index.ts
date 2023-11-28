@@ -1,4 +1,4 @@
-import { toASCII } from 'punycode/';
+import { toASCII, toUnicode } from 'punycode/';
 import { pipeline } from 'readable-stream';
 import PhishingDetector from 'eth-phishing-detect/src/detector';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
@@ -146,15 +146,19 @@ async function isBlockedByMetamask(href: string) {
  */
 function getSuspect(href = ''): {
   suspectHostname: string;
+  suspectHostnameUnicode: string;
   suspectHref: string;
-  suspectHrefPlain: string;
+  suspectHrefUnicode: string;
 } {
   try {
     const url = new URL(href);
+    const unicodeHostname = toUnicode(url.hostname);
+    const unicodeHref = `${url.protocol}//${unicodeHostname}${url.pathname}${url.search}${url.hash}`;
     return {
       suspectHostname: url.hostname,
+      suspectHostnameUnicode: unicodeHostname,
       suspectHref: url.href,
-      suspectHrefPlain: href,
+      suspectHrefUnicode: unicodeHref,
     };
   } catch (error) {
     throw new Error(`Invalid 'href' query parameter`);
@@ -195,9 +199,12 @@ function start() {
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
 
-  const { suspectHostname, suspectHref, suspectHrefPlain } = getSuspect(
-    hashQueryString.get('href'),
-  );
+  const {
+    suspectHostname,
+    suspectHref,
+    suspectHostnameUnicode,
+    suspectHrefUnicode,
+  } = getSuspect(hashQueryString.get('href'));
 
   const suspectLink = document.getElementById('suspect-link');
   if (!suspectLink) {
@@ -211,8 +218,8 @@ function start() {
   }
 
   const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
-    suspectHrefPlain,
-  )}&body=${encodeURIComponent(suspectHrefPlain)}`;
+    suspectHostnameUnicode,
+  )}&body=${encodeURIComponent(toUnicode(suspectHrefUnicode))}`;
 
   newIssueLink.addEventListener('click', async () => {
     const listName = (await isBlockedByMetamask(suspectHref))
