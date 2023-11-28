@@ -50,7 +50,10 @@ test('correctly matches unicode domains', async ({ context, page }) => {
   );
 });
 
-test('correctly matches unicode domains with path', async ({ context, page }) => {
+test('correctly matches unicode domains with path', async ({
+  context,
+  page,
+}) => {
   await setupDefaultMocks(context, {
     phishingConfig: {
       ...defaultPhishingConfig,
@@ -70,6 +73,6 @@ test('correctly matches unicode domains with path', async ({ context, page }) =>
   await page.waitForLoadState('networkidle');
 
   await expect(page).toHaveURL(
-    'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20metam%E1%BA%A1sk.io&body=https%3A%2F%2Fmetam%E1%BA%A1sk.io%2F',
+    'https://github.com/MetaMask/eth-phishing-detect/issues/new?title=[Legitimate%20Site%20Blocked]%20metam%E1%BA%A1sk.io&body=https%3A%2F%2Fmetam%E1%BA%A1sk.io%2Fsomepath%3Fquery%3Dstring',
   );
 });
