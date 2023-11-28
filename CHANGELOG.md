@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [3.0.2]
-### Uncategorized
-- change to hostname for gh issues ([#127](https://github.com/MetaMask/phishing-warning/pull/127))
+### Fixed
+- change to hostname for Github issues ([#127](https://github.com/MetaMask/phishing-warning/pull/127))
 
 ## [3.0.1]
 ### Changed
