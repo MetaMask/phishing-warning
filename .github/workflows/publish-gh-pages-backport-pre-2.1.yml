@@ -1,0 +1,63 @@
+name: Publish Backport GitHub Pages
+# This workflow can be used to backport a release from a tag to the gh-pages branch
+# This is useful when you want to backport a release to the gh-pages branch
+# It is hardcoded for versions <v2.1.0 as they are incomaptible with the v2.1.0 gh-pages
+#  @BASE_REF: the tag you want to backport from
+#  @VERSIONS: the versions you want to backport to
+
+on:
+  workflow_dispatch:
+
+env:
+  BASE_REF: v2.1.0-with-backported-fixes
+  VERSIONS: v2.1.0
+jobs:
+  publish-to-gh-pages:
+    name: Publish to GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.BASE_REF  }}
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - name: Install npm dependencies
+        run: yarn --immutable
+      - name: Run build script
+        run: |
+          yarn build:prod
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: 'gh-pages'
+          path: 'gh-pages'
+
+      - name: prep for pr
+        run: |
+          IFS=',' read -ra VERSION_ARRAY <<< ${{ env.VERSIONS }}
+          for version in "${VERSION_ARRAY[@]}"; do
+            rm -rf "gh-pages/${version}"/*
+            cp -r dist/* "gh-pages/${version}/"
+          done
+
+      - name: Commit files
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git status
+          git remote --verbose
+          git branch -D gh-pages-backport-pre-2.1.0 || true
+          git checkout -b gh-pages-backport-pre-2.1.0
+          git add .
+          git commit -m "Update gh-pages"
+          git push origin gh-pages-backport-pre-2.1.0 -f
+          echo "Pushed build changes to gh-pages-backport-pre-2.1.0"
+          echo "REMEMBER TO CREATE A PR FROM gh-pages-backport-pre-2.1.0 TO gh-pages"

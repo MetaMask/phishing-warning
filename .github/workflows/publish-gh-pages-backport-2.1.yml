@@ -1,7 +1,7 @@
 name: Publish Backport GitHub Pages
 # This workflow can be used to backport a release from a tag to the gh-pages branch
 # This is useful when you want to backport a release to the gh-pages branch
-# Most likely you will want to check and update BASE_REF and VERSIONS env variables
+# It is hardcoded for versions v2.1.0
 #  @BASE_REF: the tag you want to backport from
 #  @VERSIONS: the versions you want to backport to
 
@@ -54,10 +54,10 @@ jobs:
           git config user.email "<>"
           git status
           git remote --verbose
-          git branch -D gh-pages-backport || true
-          git checkout -b gh-pages-backport
+          git branch -D gh-pages-backport-2.1 || true
+          git checkout -b gh-pages-backport-2.1
           git add .
           git commit -m "Update gh-pages"
-          git push origin gh-pages-backport -f
-          echo "Pushed build changes to gh-pages-backport"
-          echo "REMEMBER TO CREATE A PR FROM gh-pages-backport TO gh-pages"
+          git push origin gh-pages-backport-2.1 -f
+          echo "Pushed build changes to gh-pages-backport-2.1"
+          echo "REMEMBER TO CREATE A PR FROM gh-pages-backport-2.1 TO gh-pages"
