@@ -1,4 +1,4 @@
-name: Publish Backport GitHub Pages 
+name: Publish Backport GitHub Pages
 
 on:
   workflow_dispatch:
@@ -8,7 +8,6 @@ env:
   VERSIONS: v1.0.0,v1.1.0,v1.2.1,v1.2.2
 jobs:
   publish-to-gh-pages:
-        
     name: Publish to GitHub Pages
     runs-on: ubuntu-latest
     permissions:
@@ -32,8 +31,8 @@ jobs:
       - name: Checkout gh-pages
         uses: actions/checkout@v3
         with:
-          ref: "gh-pages"
-          path: "gh-pages"
+          ref: 'gh-pages'
+          path: 'gh-pages'
 
       - name: prep for pr
         run: |
@@ -41,8 +40,8 @@ jobs:
           for version in "${VERSION_ARRAY[@]}"; do
             rm -rf "gh-pages/${version}"/*
             cp -r dist/* "gh-pages/${version}/"
-          done          
-      
+          done
+
       - name: Commit files
         run: |
           cd gh-pages
