@@ -1,5 +1,5 @@
 import pump from 'pump';
-import { toASCII } from 'punycode/';
+import { toASCII, toUnicode } from 'punycode/';
 import PhishingDetector from 'eth-phishing-detect/src/detector';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
 import ObjectMultiplex from 'obj-multiplex';
@@ -139,6 +139,33 @@ async function isBlockedByMetamask(href: string) {
 }
 
 /**
+ * Extract hostname and href from the query string.
+ *
+ * @returns The suspect hostname and href from the query string.
+ * @param href - The href value to check.
+ */
+function getSuspect(href = ''): {
+  suspectHostname: string;
+  suspectHostnameUnicode: string;
+  suspectHref: string;
+  suspectHrefUnicode: string;
+} {
+  try {
+    const url = new URL(href);
+    const unicodeHostname = toUnicode(url.hostname);
+    const unicodeHref = `${url.protocol}//${unicodeHostname}${url.pathname}${url.search}${url.hash}`;
+    return {
+      suspectHostname: url.hostname,
+      suspectHostnameUnicode: unicodeHostname,
+      suspectHref: url.href,
+      suspectHrefUnicode: unicodeHref,
+    };
+  } catch (error) {
+    throw new Error(`Invalid 'href' query parameter`);
+  }
+}
+
+/**
  * Initialize the phishing warning page streams.
  */
 function start() {
@@ -157,14 +184,13 @@ function start() {
   const { hash } = new URL(window.location.href);
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
-  const suspectHostname = hashQueryString.get('hostname');
-  const suspectHref = hashQueryString.get('href');
 
-  if (!suspectHostname) {
-    throw new Error("Missing 'hostname' query parameter");
-  } else if (!suspectHref) {
-    throw new Error("Missing 'href' query parameter");
-  }
+  const {
+    suspectHostname,
+    suspectHref,
+    suspectHostnameUnicode,
+    suspectHrefUnicode,
+  } = getSuspect(hashQueryString.get('href'));
 
   const suspectLink = document.getElementById('suspect-link');
   if (!suspectLink) {
@@ -178,8 +204,8 @@ function start() {
   }
 
   const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
-    suspectHostname,
-  )}&body=${encodeURIComponent(suspectHref)}`;
+    suspectHostnameUnicode,
+  )}&body=${encodeURIComponent(toUnicode(suspectHrefUnicode))}`;
 
   newIssueLink.addEventListener('click', async () => {
     const listName = (await isBlockedByMetamask(suspectHref))
@@ -194,7 +220,7 @@ function start() {
   }
 
   continueLink.addEventListener('click', async () => {
-    if (isValidSuspectHref(suspectHref) === false) {
+    if (!isValidSuspectHref(suspectHref)) {
       console.log(`Disallowed Protocol, cannot continue.`);
       return;
     }
