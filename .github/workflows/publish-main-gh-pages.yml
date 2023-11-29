@@ -2,7 +2,7 @@ name: Publish main branch to GitHub Pages
 
 on:
   push:
-    branches: main2
+    branches: main
 
 jobs:
   publish-to-gh-pages:
