@@ -1,0 +1,64 @@
+name: Publish Backport GitHub Pages 
+
+on:
+  workflow_dispatch:
+
+env:
+  BASE_REF: v2.0.1-from-tag
+  VERSIONS: v1.0.0,v1.1.0,v1.2.1,v1.2.2
+jobs:
+  publish-to-gh-pages:
+        
+    name: Publish to GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ env.BASE_REF  }}
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+      - name: Install npm dependencies
+        run: yarn --immutable
+      - name: Run build script
+        run: |
+          yarn build:prod
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        with:
+          ref: "gh-pages"
+          path: "gh-pages"
+
+      - name: prep for pr
+        run: |
+          IFS=',' read -ra VERSION_ARRAY <<< ${{ env.VERSIONS }}
+          for version in "${VERSION_ARRAY[@]}"; do
+            rm -rf "gh-pages/${version}"/*
+            cp -r dist/* "gh-pages/${version}/"
+          done          
+      
+      - name: Commit files
+        run: |
+          cd gh-pages
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git status
+          git remote --verbose
+          git branch -D gh-pages-backport || true
+          git checkout -b gh-pages-backport
+          git add .
+          git commit -m "Update gh-pages"
+          git push origin gh-pages-backport -f
+
+      # - name: Deploy to `${{ env.BASE_REF }}` directory of `gh-pages` branch
+      #   uses: peaceiris/actions-gh-pages@068dc23d9710f1ba62e86896f84735d869951305
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./dist
+      #     destination_dir: ${{ matrix.version }}
