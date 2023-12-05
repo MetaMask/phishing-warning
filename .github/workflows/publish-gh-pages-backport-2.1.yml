@@ -1,3 +1,9 @@
+# This workflow can be used to backport a release from a tag to the gh-pages branch
+# This is useful when you want to backport a release to the gh-pages branch
+# Most likely you will want to check and update BASE_REF and VERSIONS env variables
+#  @BASE_REF: the tag you want to backport from
+#  @VERSIONS: the versions you want to backport to
+
 name: Publish Backport GitHub Pages
 # This workflow can be used to backport a release from a tag to the gh-pages branch
 # This is useful when you want to backport a release to the gh-pages branch
