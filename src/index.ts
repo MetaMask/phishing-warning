@@ -181,6 +181,20 @@ function start() {
   ]);
   const phishingSafelistStream = mux.createStream('metamask-phishing-safelist');
 
+  const backToSafetyLink = document.getElementById('back-to-safety');
+  if (!backToSafetyLink) {
+    throw new Error('Unable to locate back to safety link');
+  }
+
+  backToSafetyLink.addEventListener('click', async () => {
+    phishingSafelistStream.write({
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning',
+      params: [],
+      id: createRandomId(),
+    });
+  });
+
   const { hash } = new URL(window.location.href);
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
@@ -233,19 +247,5 @@ function start() {
     });
 
     window.location.href = suspectHref;
-  });
-
-  const backToSafetyLink = document.getElementById('back-to-safety');
-  if (!backToSafetyLink) {
-    throw new Error('Unable to locate back to safety link');
-  }
-
-  backToSafetyLink.addEventListener('click', async () => {
-    phishingSafelistStream.write({
-      jsonrpc: '2.0',
-      method: 'backToSafetyPhishingWarning',
-      params: [],
-      id: createRandomId(),
-    });
   });
 }
