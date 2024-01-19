@@ -7,14 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [3.0.3]
-### Uncategorized
-- chore: Update `ses` ([#143](https://github.com/MetaMask/phishing-warning/pull/143))
-- Bump @metamask/auto-changelog from 3.4.3 to 3.4.4 ([#140](https://github.com/MetaMask/phishing-warning/pull/140))
-- Bump follow-redirects from 1.15.2 to 1.15.4 ([#142](https://github.com/MetaMask/phishing-warning/pull/142))
-- Fixup and split backporting actions ([#137](https://github.com/MetaMask/phishing-warning/pull/137))
-- Update publish-gh-pages-backport.yml ([#134](https://github.com/MetaMask/phishing-warning/pull/134))
-- Update publish-gh-pages-backport.yml ([#131](https://github.com/MetaMask/phishing-warning/pull/131))
-- Action allowing us to publish backported changes ([#130](https://github.com/MetaMask/phishing-warning/pull/130))
+### Changed
+- Update `ses` to `v1.1.0` ([#143](https://github.com/MetaMask/phishing-warning/pull/143))
 
 ## [3.0.2]
 ### Fixed
