@@ -29,10 +29,6 @@ const filesFromPackages = [
     filename: 'design-tokens.css',
   },
   {
-    source: require.resolve('globalthis/dist/browser.js'),
-    filename: 'globalthis.js',
-  },
-  {
     source: minifiedLockdownSource,
     filename: 'lockdown-install.js',
   },
