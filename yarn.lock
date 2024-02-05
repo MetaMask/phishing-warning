@@ -1677,7 +1677,6 @@ __metadata:
     eth-phishing-detect: ^1.2.0
     exorcist: ^2.0.0
     fs-extra: ^11.1.1
-    globalthis: 1.0.1
     http-server: ^14.1.1
     minify-stream: ^2.1.0
     playwright: ~1.33.0
@@ -4257,15 +4256,6 @@ __metadata:
   dependencies:
     type-fest: ^0.20.2
   checksum: c55ea8fd3afecb72567bac41605577e19e68476993dfb0ca4c49b86075af5f0ae3f0f5502525f69010f7c5ea5db6a1c540a80a4f80ebdfb2f686d87b0f05d7e9
-  languageName: node
-  linkType: hard
-
-"globalthis@npm:1.0.1":
-  version: 1.0.1
-  resolution: "globalthis@npm:1.0.1"
-  dependencies:
-    define-properties: ^1.1.3
-  checksum: d80d625355ebd1174144290766ce96a1465966370d35a05897e3fb96e031493b2c117fb92b55a94dba2f33031e498b5776d03437965ed4514815e6122c78d18c
   languageName: node
   linkType: hard
 
