@@ -30,7 +30,7 @@ test('shows an empty list of detection projects', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.locator('css=#detection-repo')).toHaveText(
-    'Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort',
+    'Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort.',
   );
 });
 
