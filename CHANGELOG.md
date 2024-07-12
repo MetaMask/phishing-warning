@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.4]
+### Uncategorized
+- Update index.html - update attribution copy ([#161](https://github.com/MetaMask/phishing-warning/pull/161))
+- chore(devdeps): @lavamoat/allow-scripts@^2.3.1->^3.0.4 ([#157](https://github.com/MetaMask/phishing-warning/pull/157))
+- Enabling MetaMask security code scanner ([#151](https://github.com/MetaMask/phishing-warning/pull/151))
+- remove globalthis polyfill ([#149](https://github.com/MetaMask/phishing-warning/pull/149))
+- Bump @metamask/post-message-stream from 7.0.0 to 8.0.0 ([#146](https://github.com/MetaMask/phishing-warning/pull/146))
+
 ## [3.0.3]
 ### Changed
 - Update `ses` to `v1.1.0` ([#143](https://github.com/MetaMask/phishing-warning/pull/143))
@@ -85,7 +93,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v3.0.3...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v3.0.4...HEAD
+[3.0.4]: https://github.com/MetaMask/phishing-warning/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/MetaMask/phishing-warning/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/MetaMask/phishing-warning/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/MetaMask/phishing-warning/compare/v3.0.0...v3.0.1
