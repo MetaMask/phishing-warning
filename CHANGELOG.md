@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [3.0.4]
-### Uncategorized
+### Changed
 - Update index.html - update attribution copy ([#161](https://github.com/MetaMask/phishing-warning/pull/161))
 - chore(devdeps): @lavamoat/allow-scripts@^2.3.1->^3.0.4 ([#157](https://github.com/MetaMask/phishing-warning/pull/157))
 - Enabling MetaMask security code scanner ([#151](https://github.com/MetaMask/phishing-warning/pull/151))
