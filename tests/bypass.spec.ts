@@ -24,7 +24,7 @@ test('allows the user to bypass the warning and add the site origin to the allow
       id: expect.any(Number),
       jsonrpc: '2.0',
       method: 'safelistPhishingDomain',
-      params: ['http://test.com'],
+      params: ['https://test.com'],
     },
     name: 'metamask-phishing-safelist',
   });
