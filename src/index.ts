@@ -203,7 +203,7 @@ function start() {
     suspectHref,
     suspectHostnameUnicode,
     suspectHrefUnicode,
-    suspectOrigin
+    suspectOrigin,
   } = getSuspect(hashQueryString.get('href'));
 
   const suspectLink = document.getElementById('suspect-link');
