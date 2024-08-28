@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **BREAKING**: Update `phishingSafelistStream` steam to send `origin` instead of `hostname` as a parameter for `safelistPhishingDomain` method ([#165](https://github.com/MetaMask/phishing-warning/pull/165))
+
 ## [3.0.4]
 ### Changed
 - Update index.html - update attribution copy ([#161](https://github.com/MetaMask/phishing-warning/pull/161))
