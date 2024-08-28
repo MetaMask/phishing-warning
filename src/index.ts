@@ -145,20 +145,20 @@ async function isBlockedByMetamask(href: string) {
  * @param href - The href value to check.
  */
 function getSuspect(href = ''): {
-  suspectHostname: string;
   suspectHostnameUnicode: string;
   suspectHref: string;
   suspectHrefUnicode: string;
+  suspectOrigin: string;
 } {
   try {
     const url = new URL(href);
     const unicodeHostname = toUnicode(url.hostname);
     const unicodeHref = `${url.protocol}//${unicodeHostname}${url.pathname}${url.search}${url.hash}`;
     return {
-      suspectHostname: url.hostname,
       suspectHostnameUnicode: unicodeHostname,
       suspectHref: url.href,
       suspectHrefUnicode: unicodeHref,
+      suspectOrigin: url.origin,
     };
   } catch (error) {
     throw new Error(`Invalid 'href' query parameter`);
@@ -200,10 +200,10 @@ function start() {
   const hashQueryString = new URLSearchParams(hashContents);
 
   const {
-    suspectHostname,
     suspectHref,
     suspectHostnameUnicode,
     suspectHrefUnicode,
+    suspectOrigin
   } = getSuspect(hashQueryString.get('href'));
 
   const suspectLink = document.getElementById('suspect-link');
@@ -242,7 +242,7 @@ function start() {
     phishingSafelistStream.write({
       jsonrpc: '2.0',
       method: 'safelistPhishingDomain',
-      params: [suspectHostname],
+      params: [suspectOrigin],
       id: createRandomId(),
     });
 

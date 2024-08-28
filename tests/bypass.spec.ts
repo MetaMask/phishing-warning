@@ -6,7 +6,7 @@ test.beforeEach(async ({ context }) => {
   await setupDefaultMocks(context);
 });
 
-test('allows the user to bypass the warning and add the site to the allowlist', async ({
+test('allows the user to bypass the warning and add the site origin to the allowlist', async ({
   page,
 }) => {
   const postMessageLogs = await setupStreamInitialization(page);
@@ -24,7 +24,7 @@ test('allows the user to bypass the warning and add the site to the allowlist', 
       id: expect.any(Number),
       jsonrpc: '2.0',
       method: 'safelistPhishingDomain',
-      params: ['test.com'],
+      params: ['http://test.com'],
     },
     name: 'metamask-phishing-safelist',
   });
