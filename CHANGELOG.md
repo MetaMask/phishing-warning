@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.0]
 ### Changed
 - **BREAKING**: Update `phishingSafelistStream` to send `origin` instead of `hostname` as a parameter for `safelistPhishingDomain` method ([#165](https://github.com/MetaMask/phishing-warning/pull/165))
 
@@ -95,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v3.0.4...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/MetaMask/phishing-warning/compare/v3.0.4...v4.0.0
 [3.0.4]: https://github.com/MetaMask/phishing-warning/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/MetaMask/phishing-warning/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/MetaMask/phishing-warning/compare/v3.0.1...v3.0.2
