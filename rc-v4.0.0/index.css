@@ -1,0 +1,165 @@
+@font-face {
+  font-family: 'Euclid';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/EuclidCircularB-Regular-WebXL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Euclid';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/EuclidCircularB-RegularItalic-WebXL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Euclid';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/EuclidCircularB-Bold-WebXL.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-error-alternative);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--typography-s-body-md-font-family);
+  font-weight: var(--typography-s-body-md-font-weight);
+  font-size: var(--typography-s-body-md-font-size);
+  line-height: var(--typography-s-body-md-line-height);
+  letter-spacing: var(--typography-s-body-md-letter-spacing);
+  color: var(--color-error-inverse);
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-family: var(--typography-l-body-md-font-family);
+    font-weight: var(--typography-l-body-md-font-weight);
+    font-size: var(--typography-l-body-md-font-size);
+    line-height: var(--typography-l-body-md-line-height);
+    letter-spacing: var(--typography-l-body-md-letter-spacing);
+  }
+}
+
+.heading-lg {
+  font-family: var(--typography-s-heading-lg-font-family);
+  font-weight: var(--typography-s-heading-lg-font-weight);
+  font-size: var(--typography-s-heading-lg-font-size);
+  line-height: var(--typography-s-heading-lg-line-height);
+  letter-spacing: var(--typography-s-heading-lg-letter-spacing);
+}
+
+@media screen and (min-width: 768px) {
+  .heading-lg {
+    font-family: var(--typography-l-heading-lg-font-family);
+    font-weight: var(--typography-l-heading-lg-font-weight);
+    font-size: var(--typography-l-heading-lg-font-size);
+    line-height: var(--typography-l-heading-lg-line-height);
+    letter-spacing: var(--typography-l-heading-lg-letter-spacing);
+  }
+}
+
+a {
+  text-decoration: underline;
+  color: var(--color-error-inverse);
+  cursor: pointer;
+}
+
+ul {
+  padding-left: 32px;
+}
+
+.button-secondary {
+  color: var(--color-primary-default);
+  background: var(--color-background-default);
+  border: 1px solid var(--color-primary-default);
+  padding-right: 16px;
+  padding-left: 16px;
+  border-radius: 9999px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  margin-top: 48px;
+  font-family: var(--typography-s-body-md-font-family);
+  font-weight: var(--typography-s-body-md-font-weight);
+  font-size: var(--typography-s-body-md-font-size);
+  line-height: var(--typography-s-body-md-line-height);
+  letter-spacing: var(--typography-s-body-md-letter-spacing);
+  cursor: pointer;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .button-secondary {
+    font-family: var(--typography-l-body-md-font-family);
+    font-weight: var(--typography-l-body-md-font-weight);
+    font-size: var(--typography-l-body-md-font-size);
+    line-height: var(--typography-l-body-md-line-height);
+    letter-spacing: var(--typography-l-body-md-letter-spacing);
+  }
+}
+
+.button-secondary:hover {
+  color: var(--color-primary-inverse);
+  background-color: var(--color-primary-default);
+  box-shadow: var(--component-button-primary-shadow);
+}
+
+.button-secondary:active {
+  color: var(--color-primary-inverse);
+  background-color: var(--color-primary-alternative);
+  border-color: var(--color-primary-alternative);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 700px;
+  padding: 24px;
+}
+
+.content__header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.content__header h1 {
+  font-family: var(--typography-s-heading-lg-font-family);
+  font-weight: var(--typography-s-heading-lg-font-weight);
+  font-size: var(--typography-s-heading-lg-font-size);
+  line-height: var(--typography-s-heading-lg-line-height);
+  letter-spacing: var(--typography-s-heading-lg-letter-spacing);
+}
+
+@media screen and (min-width: 768px) {
+  .content__header h1 {
+    font-family: var(--typography-l-heading-lg-font-family);
+    font-weight: var(--typography-l-heading-lg-font-weight);
+    font-size: var(--typography-l-heading-lg-font-size);
+    line-height: var(--typography-l-heading-lg-line-height);
+    letter-spacing: var(--typography-l-heading-lg-letter-spacing);
+  }
+}
+
+.content__header svg {
+  fill: var(--color-error-inverse);
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+}
