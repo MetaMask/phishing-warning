@@ -1,6 +1,6 @@
 {
   "name": "@metamask/phishing-warning",
-  "version": "3.0.4",
+  "version": "4.0.0",
   "description": "A page to warn users about a suspected phishing site.",
   "repository": {
     "type": "git",
