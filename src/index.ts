@@ -245,6 +245,7 @@ function start() {
       params: [suspectOrigin],
       id: createRandomId(),
     });
+  
     window.location.href = suspectHref;
   });
 
