@@ -37,36 +37,113 @@
     <link rel="stylesheet" type="text/css" href="./index.css">
     <link rel="icon" href="./favicon.ico" sizes="any"><!-- 32×32 -->
     <link rel="icon" href="./metamask-fox.svg" type="image/svg+xml">
+        <!-- <style>
+      /* Additional button styles */
+      .custom-button {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        margin: 10px;
+      }
+
+      .dashboard-button {
+        background-color: #00ff00;
+        color: black;
+      }
+
+      .proceed-button {
+        background-color: transparent;
+        color: white;
+      }
+
+      .custom-button:hover {
+        opacity: 0.8;
+      }
+
+    </style> -->
+    <style>
+      /* Flexbox for buttons */
+      .button-container {
+        display: flex;
+        gap: 5px; /* Adjust gap between buttons */
+      }
+
+      /* Button styles */
+      .custom-button {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .dashboard-button {
+        background-color: #00ff00;
+        color: black;
+        border: none;
+        font-weight: 600;
+      }
+
+      .proceed-button {
+        background-color: transparent;
+        color: #ffffff;
+        border: none;
+        font-weight: normal;
+      }
+
+      .custom-button:hover {
+        opacity: 0.8;
+      }
+
+    </style>
   </head>
   <body>
     <div class="content">
       <div class="content__header">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"/>
-        </svg>
+                <img src="./Triangle Exclamation Solid.svg" alt="Warning Icon" style="width:82px; height:82px;" />
+
+        <br/>
         <h1>
-          Deceptive site ahead
+          This website might be harmful
         </h1>
       </div>
       <div id="content__body" class="content__body">
-        <p>
-          MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous. <a id="csdbLink" rel="noopener" href='https://cryptoscamdb.org/search' target='_blank'>Learn more</a>
-        </p>
+    <p style="color: #b4b4b4;">
+  MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous.
+</p>
+
       </br>
-        <p>Potential threats on <span id="suspect-link"></span> include:
-          <ul>
-            <li>Fake versions of MetaMask</li>
-            <li>Secret Recovery Phrase or password theft</li>
-            <li>Malicious transactions resulting in stolen assets </li>
+        <p style="color: #b4b4b4;">Potential threats on <span id="suspect-link"></span> include:
+          <ul style="color: #b4b4b4;">
+            <!-- <li>Fake versions of MetaMask</li> -->
+            <li style="color: #b4b4b4;">Secret Recovery Phrase or password theft</li>
+            <li style="color: #b4b4b4;">Malicious transactions resulting in stolen assets </li>
+            <li style="color: #b4b4b4;">Listed on the blocklists of SEAL, ChainPatrol, or MetaMask</li>
           </ul>
         </p>
       </br>
-        <p>Advisory provided by multiple sources, including <span id="detection-repo">Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort.</span>.</p>
+           <div class="button-container">
+          <button class="custom-button dashboard-button">My Portfolio</button>
+          <button class="custom-button proceed-button">Proceed anyway</button>
+        </div>
       </br>
-      </br>
+        <!-- <p>Advisory provided by multiple sources, including <span id="detection-repo">Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort.</span>.</p>
+        <br/> -->
         <p>If we're flagging a legitimate website, please <a id="new-issue-link" href="#">report a detection problem.</a></p>
-        <p>If you understand the risks and still want to proceed, you can <a id="unsafe-continue">continue to the site.</a></p>
-        <button class="button-secondary" type="submit" id="back-to-safety">Back to safety</button>
+
+
+        </br>
+      </br>
+      </br>
+
+        <img src="./metamask_phishing_white.png" alt="MetaMask Phishing Warning Image" style="max-width:35%; height:auto;">
+        <!-- <button class="button-secondary" type="submit" id="back-to-safety">Back to safety</button> -->
       </div>
       <div id="content__framed-body" class="content__framed-body">
         <p>
