@@ -248,4 +248,7 @@ function start() {
 
     window.location.href = suspectHref;
   });
+
+  // To know when the event listener has been added, to mitigate an e2e race condition
+  continueLink.setAttribute('data-testid', 'unsafe-continue-loaded');
 }
