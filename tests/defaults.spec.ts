@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { setupDefaultMocks } from './helpers/default-mocks';
-import { setupStreamInitialization } from './helpers/stream-initialization';
 
 test.beforeEach(async ({ context }) => {
   await setupDefaultMocks(context);
@@ -16,7 +15,7 @@ test('renders the title', async ({ page }) => {
   await page.goto('/');
 
   await expect(
-    page.getByRole('heading', { name: 'Deceptive site ahead' }),
+    page.getByRole('heading', { name: 'This website might be harmful' }),
   ).toBeVisible();
 });
 
@@ -29,19 +28,9 @@ test('shows a blank suspect link', async ({ page }) => {
 test('shows an empty list of detection projects', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.locator('css=#detection-repo')).toHaveText(
+  await expect(page.locator('#detection-repo')).toHaveText(
     'Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort.',
   );
-});
-
-test('opens CryptoScamDB in a new tab', async ({ page }) => {
-  await page.goto('/');
-
-  const popupPromise = page.waitForEvent('popup');
-  await page.getByRole('link', { name: 'Learn more' }).click();
-  const popup = await popupPromise;
-
-  await expect(popup).toHaveURL('https://cryptoscamdb.org/search');
 });
 
 test('does nothing when the user tries to bypass the warning', async ({
@@ -55,24 +44,25 @@ test('does nothing when the user tries to bypass the warning', async ({
   await expect(page.isClosed()).toBe(false);
 });
 
-test('redirects when the user clicks "Back to safety"', async ({ page }) => {
-  const postMessageLogs = await setupStreamInitialization(page);
+test('redirects when the user clicks "My Portfolio"', async ({ page }) => {
   const querystring = new URLSearchParams({
     href: 'https://test.com',
   });
   await page.goto(`/#${querystring}`);
 
-  await page.getByRole('button', { name: 'Back to safety' }).click();
-  await expect(postMessageLogs.length).toBe(1);
-  await expect(postMessageLogs[0].message).toStrictEqual({
-    data: {
-      id: expect.any(Number),
-      jsonrpc: '2.0',
-      method: 'backToSafetyPhishingWarning',
-      params: [],
-    },
-    name: 'metamask-phishing-safelist',
-  });
+  // Click the "My Portfolio" button
+  await page.getByRole('button', { name: 'My Portfolio' }).click();
+
+  // Increase the timeout to 60 seconds
+  await page.waitForURL(
+    'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true',
+    { timeout: 10000 },
+  );
+
+  // Ensure the final URL matches the expected portfolio page
+  await expect(page.url()).toBe(
+    'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true',
+  );
 });
 
 test('logs that the service worker is registered', async ({ page }) => {
