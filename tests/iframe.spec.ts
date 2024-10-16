@@ -46,7 +46,7 @@ test('does not allow the user to bypass the warning', async ({ page }) => {
   const iframe = await page.frameLocator('#embedded-warning');
   await expect(await iframe.getByRole('button').count()).toBe(0);
   await expect(
-    await iframe.getByRole('link', { name: 'continue to the site' }).count(),
+    await iframe.getByRole('link', { name: 'Proceed anyway' }).count(),
   ).toBe(0);
 });
 
