@@ -101,6 +101,30 @@
         opacity: 0.8;
       }
 
+            /* Style for clickable share text */
+     .twitter-share-container {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Space between image and text */
+      }
+
+      /* Style for clickable share text */
+      .twitter-share {
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .twitter-share:hover {
+        text-decoration: underline;
+      }
+
+      /* Optional styling for the image */
+      .twitter-share-container img {
+        width: 24px; /* Adjust the size of the Twitter icon */
+        height: auto;
+      }
+
     </style>
   </head>
   <body>
@@ -130,12 +154,26 @@
       </br>
            <div class="button-container">
           <button class="custom-button dashboard-button">My Portfolio</button>
-          <button class="custom-button proceed-button">Proceed anyway</button>
+          <button class="custom-button proceed-button" id="unsafe-continue">Proceed anyway</button>
         </div>
       </br>
         <!-- <p>Advisory provided by multiple sources, including <span id="detection-repo">Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort.</span>.</p>
         <br/> -->
         <p>If we're flagging a legitimate website, please <a id="new-issue-link" href="#">report a detection problem.</a></p>
+        <br/>
+  <div class="twitter-share-container">
+    <img src="./x-logo-white.png" alt="Twitter Icon" style="width: 20px; height: auto;">
+    <p>
+      <a
+        class="twitter-share"
+        href="https://twitter.com/intent/tweet?text=MetaMask%20just%20protected%20me%20from%20a%20phishing%20attack!%20Remember%20to%20always%20stay%20vigilant%20when%20clicking%20on%20links.%20Learn%20more%20at&url=https://metamask.io"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        If you found this helpful, click here to share on X!
+      </a>
+    </p>
+</div>
 
 
         </br>
