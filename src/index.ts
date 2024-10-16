@@ -252,3 +252,12 @@ function start() {
   // To know when the event listener has been added, to mitigate an e2e race condition
   continueLink.setAttribute('data-testid', 'unsafe-continue-loaded');
 }
+
+const portfolioLink = document.getElementById('portfolio-link');
+
+if (portfolioLink) {
+  portfolioLink.addEventListener('click', () => {
+    window.location.href =
+      'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true';
+  });
+}

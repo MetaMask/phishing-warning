@@ -13,182 +13,73 @@
       }
     </script>
     <title>MetaMask Phishing Detection</title>
-    <script
-      src="./lockdown-install.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-    <script
-      src="./lockdown-run.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-    <script
-      src="./lockdown-more.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-    <script
-      src="./bundle.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
+    <script src="./lockdown-install.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./lockdown-run.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./lockdown-more.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./bundle.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="./design-tokens.css">
     <link rel="stylesheet" type="text/css" href="./index.css">
-    <link rel="icon" href="./favicon.ico" sizes="any"><!-- 32×32 -->
+    <link rel="icon" href="./favicon.ico" sizes="any">
     <link rel="icon" href="./metamask-fox.svg" type="image/svg+xml">
-        <!-- <style>
-      /* Additional button styles */
-      .custom-button {
-        display: inline-block;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        text-align: center;
-        cursor: pointer;
-        margin: 10px;
-      }
-
-      .dashboard-button {
-        background-color: #00ff00;
-        color: black;
-      }
-
-      .proceed-button {
-        background-color: transparent;
-        color: white;
-      }
-
-      .custom-button:hover {
-        opacity: 0.8;
-      }
-
-    </style> -->
-    <style>
-      /* Flexbox for buttons */
-      .button-container {
-        display: flex;
-        gap: 5px; /* Adjust gap between buttons */
-      }
-
-      /* Button styles */
-      .custom-button {
-        display: inline-block;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        text-align: center;
-        cursor: pointer;
-      }
-
-      .dashboard-button {
-        background-color: #00ff00;
-        color: black;
-        border: none;
-        font-weight: 600;
-      }
-
-      .proceed-button {
-        background-color: transparent;
-        color: #ffffff;
-        border: none;
-        font-weight: normal;
-      }
-
-      .custom-button:hover {
-        opacity: 0.8;
-      }
-
-            /* Style for clickable share text */
-     .twitter-share-container {
-        display: flex;
-        align-items: center;
-        gap: 10px; /* Space between image and text */
-      }
-
-      /* Style for clickable share text */
-      .twitter-share {
-        color: white;
-        cursor: pointer;
-        text-decoration: none;
-      }
-
-      .twitter-share:hover {
-        text-decoration: underline;
-      }
-
-      /* Optional styling for the image */
-      .twitter-share-container img {
-        width: 24px; /* Adjust the size of the Twitter icon */
-        height: auto;
-      }
-
-    </style>
   </head>
   <body>
     <div class="content">
       <div class="content__header">
-                <img src="./Triangle Exclamation Solid.svg" alt="Warning Icon" style="width:82px; height:82px;" />
-
-        <br/>
-        <h1>
+        <img src="./warning-icon.svg" alt="Warning Icon" class="warning-icon" />
+        <h1 class="header-title">
           This website might be harmful
         </h1>
       </div>
       <div id="content__body" class="content__body">
-    <p style="color: #b4b4b4;">
-  MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous.
-</p>
-
-      </br>
-        <p style="color: #b4b4b4;">Potential threats on <span id="suspect-link"></span> include:
-          <ul style="color: #b4b4b4;">
-            <!-- <li>Fake versions of MetaMask</li> -->
-            <li style="color: #b4b4b4;">Secret Recovery Phrase or password theft</li>
-            <li style="color: #b4b4b4;">Malicious transactions resulting in stolen assets </li>
-            <li style="color: #b4b4b4;">Listed on the blocklists of SEAL, ChainPatrol, or MetaMask</li>
-          </ul>
+        <p class="alert-text">
+          MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous.
         </p>
-      </br>
-           <div class="button-container">
-          <button class="custom-button dashboard-button">My Portfolio</button>
-          <button class="custom-button proceed-button" id="unsafe-continue">Proceed anyway</button>
+
+        <p class="alert-text-lists">Potential threats on <span id="suspect-link"></span> include:</p>
+        <ul class="threat-list">
+          <li>Secret Recovery Phrase or password theft</li>
+          <li>Malicious transactions resulting in stolen assets</li>
+          <li>Listed on the blocklists of SEAL, ChainPatrol, or MetaMask</li>
+        </ul>
+
+        <div class="spacer"></div> 
+
+        <div class="button-container">
+          <button class="custom-button dashboard-button" id="portfolio-link">My Portfolio</button>
+          <button class="custom-proceed-button proceed-button" id="unsafe-continue">Proceed anyway</button>
         </div>
-      </br>
-        <!-- <p>Advisory provided by multiple sources, including <span id="detection-repo">Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort.</span>.</p>
-        <br/> -->
-        <p>If we're flagging a legitimate website, please <a id="new-issue-link" href="#">report a detection problem.</a></p>
-        <br/>
-  <div class="twitter-share-container">
-    <img src="./x-logo-white.png" alt="Twitter Icon" style="width: 20px; height: auto;">
-    <p>
-      <a
-        class="twitter-share"
-        href="https://twitter.com/intent/tweet?text=MetaMask%20just%20protected%20me%20from%20a%20phishing%20attack!%20Remember%20to%20always%20stay%20vigilant%20when%20clicking%20on%20links.%20Learn%20more%20at&url=https://metamask.io"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        If you found this helpful, click here to share on X!
-      </a>
-    </p>
-</div>
 
+        <div class="spacer"></div>
 
-        </br>
-      </br>
-      </br>
+        <p class="alert-text-lists">
+          If we're flagging a legitimate website, please <a id="new-issue-link" href="#">report a detection problem.</a>
+        </p>
 
-        <img src="./metamask_phishing_white.png" alt="MetaMask Phishing Warning Image" style="max-width:35%; height:auto;">
-        <!-- <button class="button-secondary" type="submit" id="back-to-safety">Back to safety</button> -->
+        <div class="spacer"></div> 
+        <div class="twitter-share-container">
+          <img src="./x-logo-white.png" alt="X Icon" class="twitter-icon">
+          <a
+            class="twitter-share"
+            href="https://twitter.com/intent/tweet?text=MetaMask%20just%20protected%20me%20from%20a%20phishing%20attack!%20Remember%20to%20always%20stay%20vigilant%20when%20clicking%20on%20links.%20Learn%20more%20at&url=https://metamask.io"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          <p class="alert-text-lists">           
+            If you found this helpful, click here to share on X!
+          </p>
+          </a>
+        </div>
+
+        <div class="spacer-larger"></div> 
+
+        <img src="./metamask-phishing-white.png" alt="MetaMask Phishing Warning Image" class="warning-image">
       </div>
       <div id="content__framed-body" class="content__framed-body">
         <p>
           MetaMask flagged the site you're trying to visit as potentially deceptive. Attackers may trick you into doing something dangerous.
         </p>
         <p>
-          <a id="open-self-in-new-tab" target="_blank">Open this warning in a new tab</a> for more information
+          <a id="open-self-in-new-tab" class="open-new-tab-link" target="_blank">Open this warning in a new tab</a> for more information
           on why this domain is blocked, and how to continue at your own risk.
         </p>
       </div>
