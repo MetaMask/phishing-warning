@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  background-color: black;
+  background-color: var(--color-background-alternative);
   height: 100%;
   display: flex;
   align-items: center;
@@ -40,7 +40,7 @@ body {
   font-size: var(--typography-s-body-md-font-size);
   line-height: var(--typography-s-body-md-line-height);
   letter-spacing: var(--typography-s-body-md-letter-spacing);
-  color: var(--color-error-inverse);
+  color: var(--color-text-default);
 }
 
 @media screen and (min-width: 768px) {
@@ -73,7 +73,7 @@ body {
 
 a {
   text-decoration: underline;
-  color: var(--color-error-inverse);
+  color: var(--color-primary-default);
   cursor: pointer;
 }
 
@@ -81,9 +81,9 @@ ul {
   padding-left: 32px;
 }
 
-.button-secondary {
-  color: var(--color-primary-default);
-  background: var(--color-background-default);
+.button-primary {
+  color: var(--color-background-default);
+  background: var(--color-primary-default);
   border: 1px solid var(--color-primary-default);
   padding-right: 16px;
   padding-left: 16px;
@@ -91,36 +91,60 @@ ul {
   height: 48px;
   display: flex;
   align-items: center;
-  margin-top: 48px;
+  font-weight: var(--typography-l-body-md-medium-font-weight);
   font-family: var(--typography-s-body-md-font-family);
   font-weight: var(--typography-s-body-md-font-weight);
   font-size: var(--typography-s-body-md-font-size);
   line-height: var(--typography-s-body-md-line-height);
   letter-spacing: var(--typography-s-body-md-letter-spacing);
   cursor: pointer;
-  margin-left: auto;
 }
 
 @media screen and (min-width: 768px) {
-  .button-secondary {
-    font-family: var(--typography-l-body-md-font-family);
-    font-weight: var(--typography-l-body-md-font-weight);
+  .button-primary {
+    font-weight: var(--typography-l-body-md-medium-font-weight);
+    font-family: var(--typography-s-body-md-font-family);
+    font-weight: var(--typography-s-body-md-font-weight);
     font-size: var(--typography-l-body-md-font-size);
     line-height: var(--typography-l-body-md-line-height);
-    letter-spacing: var(--typography-l-body-md-letter-spacing);
   }
 }
 
-.button-secondary:hover {
+.button-primary:hover {
   color: var(--color-primary-inverse);
   background-color: var(--color-primary-default);
   box-shadow: var(--component-button-primary-shadow);
 }
 
-.button-secondary:active {
+.button-primary:active {
   color: var(--color-primary-inverse);
   background-color: var(--color-primary-alternative);
   border-color: var(--color-primary-alternative);
+}
+
+.button-link-danger {
+  color: var(--color-error-default);
+  background: transparent;
+  border: none;
+  padding-right: 16px;
+  padding-left: 16px;
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  font-family: var(--typography-s-body-md-font-family);
+  font-weight: var(--typography-s-body-md-font-weight);
+  font-size: var(--typography-s-body-md-font-size);
+  line-height: var(--typography-s-body-md-line-height);
+  letter-spacing: var(--typography-s-body-md-letter-spacing);
+}
+
+@media screen and (min-width: 768px) {
+  .button-link-danger {
+    font-weight: var(--font-weight-medium);
+    font-family: var(--typography-s-body-md-font-family);
+    font-weight: var(--typography-s-body-md-font-weight);
+    font-size: var(--typography-l-body-md-font-size);
+    line-height: var(--typography-l-body-md-line-height);
+  }
 }
 
 .content {
@@ -139,22 +163,10 @@ ul {
   margin-bottom: 16px;
 }
 
-.header-title {
-  font-family: var(--typography-s-heading-lg-font-family);
-  font-weight: var(--typography-s-heading-lg-font-weight);
-  font-size: var(--typography-s-heading-lg-font-size);
-  line-height: var(--typography-s-heading-lg-line-height);
-  letter-spacing: var(--typography-s-heading-lg-letter-spacing);
-}
-
-@media screen and (min-width: 768px) {
-  .header-title {
-    font-family: var(--typography-l-heading-lg-font-family);
-    font-weight: var(--typography-l-heading-lg-font-weight);
-    font-size: var(--typography-l-heading-lg-font-size);
-    line-height: var(--typography-l-heading-lg-line-height);
-    letter-spacing: var(--typography-l-heading-lg-letter-spacing);
-  }
+.content__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .warning-icon {
@@ -164,78 +176,30 @@ ul {
 }
 
 .alert-text {
-  color: #b4b4b4;
-  margin-bottom: 16px; 
+  color: var(--color-text-alternative);
 }
 
 .alert-text-lists {
-  color: #b4b4b4;
+  color: var(--color-text-alternative);
 }
 
 .threat-list {
-  color: #b4b4b4;
+  color: var(--color-text-alternative);
 }
 
 .button-container {
   display: flex;
-}
-
-.custom-button {
-  display: inline-block;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  margin: 10px;
-}
-
-.custom-proceed-button {
-  display: inline-block;
-  padding: 12px 12px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  margin: 10px;
-}
-
-.dashboard-button {
-  background-color: #00ff00;
-  color: black;
-  border: none;
-  font-weight: 600;
-}
-
-.proceed-button {
-  background-color: transparent;
-  color: #ffffff;
-  border: none;
-  font-weight: normal;
-}
-
-.custom-button:hover {
-  opacity: 0.8;
-}
-
-.spacer {
-  height: 16px; 
-}
-
-.spacer-larger {
-  height: 48px; 
+  gap: 16px;
 }
 
 .twitter-share-container {
   display: flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .twitter-share {
-  color: white;
+  color: var(--color-primary-default);
   cursor: pointer;
   text-decoration: none;
 }
@@ -245,7 +209,7 @@ ul {
 }
 
 .twitter-icon {
-  width: 24px; 
+  width: 24px;
   height: auto;
 }
 
