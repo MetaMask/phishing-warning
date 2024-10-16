@@ -1605,10 +1605,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@metamask/design-tokens@npm:^1.12.0":
-  version: 1.13.0
-  resolution: "@metamask/design-tokens@npm:1.13.0"
-  checksum: 7f5b00ba2ae8ee8ea502121aaf52ff47045e64bb815518527a35b038ed21b4d1317650a05dae831dad57053cab8940d028e614f3ccc6b1fe81ed4d54d0402e44
+"@metamask/design-tokens@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@metamask/design-tokens@npm:4.0.0"
+  checksum: 519e12da825ae5f8e265fbab1755e2e665ca6efb72ae5693985b35ef577d233c615255faa6b11622b552382e310a368c5c323d9f18fcb308ce28561f65077814
   languageName: node
   linkType: hard
 
@@ -1669,7 +1669,7 @@ __metadata:
     "@babel/preset-typescript": ^7.22.15
     "@lavamoat/allow-scripts": ^3.0.4
     "@metamask/auto-changelog": ^3.4.3
-    "@metamask/design-tokens": ^1.12.0
+    "@metamask/design-tokens": ^4.0.0
     "@metamask/eslint-config": ^9.0.0
     "@metamask/eslint-config-nodejs": ^9.0.0
     "@metamask/eslint-config-typescript": ^9.0.1
