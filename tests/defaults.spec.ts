@@ -80,3 +80,20 @@ test('logs that the service worker is registered', async ({ page }) => {
   expect(infoLogs.length).toBe(1);
   expect(infoLogs[0]).toMatch(expectedMessage);
 });
+
+test('redirects to X share page when clicked', async ({ page }) => {
+  await page.goto('/');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page
+      .getByRole('link', {
+        name: 'If you found this helpful, click here to share on X!',
+      })
+      .click(),
+  ]);
+
+  await expect(newPage).toHaveURL(
+    'https://x.com/intent/post?text=MetaMask+just+protected+me+from+a+phishing+attack%21+Remember+to+always+stay+vigilant+when+clicking+on+links.+Learn+more+at&url=https%3A%2F%2Fmetamask.io',
+  );
+});

@@ -191,14 +191,24 @@ function start() {
 
   // To know when the event listener has been added, to mitigate an e2e race condition
   continueLink.setAttribute('data-testid', 'unsafe-continue-loaded');
-}
 
-document.addEventListener('DOMContentLoaded', () => {
+  // Add event listener for portfolio link (replacement for back-to-safety)
   const portfolioLink = document.getElementById('portfolio-link');
-  if (portfolioLink) {
-    portfolioLink.addEventListener('click', () => {
-      window.location.href =
-        'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true';
-    });
+  if (!portfolioLink) {
+    throw new Error('Unable to locate portfolio link');
   }
-});
+
+  portfolioLink.addEventListener('click', async () => {
+    // Write to phishingSafelistStream as before
+    phishingSafelistStream.write({
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning', // Keeping method name consistent
+      params: [],
+      id: createRandomId(),
+    });
+
+    // Redirect to MetaMask portfolio
+    window.location.href =
+      'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true';
+  });
+}
