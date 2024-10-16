@@ -44,22 +44,19 @@ test('does nothing when the user tries to bypass the warning', async ({
   await expect(page.isClosed()).toBe(false);
 });
 
-test('redirects when the user clicks "My Portfolio"', async ({ page }) => {
+test('redirects when the user clicks "Back to safety"', async ({ page }) => {
   const querystring = new URLSearchParams({
     href: 'https://test.com',
   });
   await page.goto(`/#${querystring}`);
 
-  // Click the "My Portfolio" button
-  await page.getByRole('button', { name: 'My Portfolio' }).click();
+  await page.getByRole('button', { name: 'Back to safety' }).click();
 
-  // Increase the timeout to 60 seconds
   await page.waitForURL(
     'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true',
     { timeout: 10000 },
   );
 
-  // Ensure the final URL matches the expected portfolio page
   await expect(page.url()).toBe(
     'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true',
   );
