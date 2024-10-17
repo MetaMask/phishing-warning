@@ -23,9 +23,7 @@ const minifiedLockdownSource = path.join(
 
 const filesFromPackages = [
   {
-    source: require.resolve(
-      '@metamask/design-tokens/src/css/design-tokens.css',
-    ),
+    source: require.resolve('@metamask/design-tokens/styles.css'),
     filename: 'design-tokens.css',
   },
   {
