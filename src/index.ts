@@ -86,7 +86,7 @@ function setupOpenSelfInNewTabLink() {
  */
 function isValidSuspectHref(href: string) {
   /* eslint-disable-next-line */
-  const disallowedProtocols = ['javascript:'];
+  const disallowedProtocols = ['javascript:', 'data:', 'vbscript:'];
   const parsedSuspectHref = new URL(href);
 
   return disallowedProtocols.indexOf(parsedSuspectHref.protocol) < 0;
