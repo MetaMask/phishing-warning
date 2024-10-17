@@ -9,14 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.1.0]
 
-### Uncategorized
+### Added
+- Redesign UI of the phishing warning page ([#176](https://github.com/MetaMask/phishing-warning/pull/176))
 
-- feat: redesign UI of the phishing warning page ([#176](https://github.com/MetaMask/phishing-warning/pull/176))
-- fix: add test id once event listener has been added ([#173](https://github.com/MetaMask/phishing-warning/pull/173))
+### Fixed
+- Add test id once event listener has been added ([#173](https://github.com/MetaMask/phishing-warning/pull/173))
+- Fix failing Playwright setup ([#172](https://github.com/MetaMask/phishing-warning/pull/172))
+
+### Changed
 - Bump @metamask/design-tokens from 1.12.0 to 1.13.0 ([#147](https://github.com/MetaMask/phishing-warning/pull/147))
 - Bump the npm_and_yarn group with 3 updates ([#174](https://github.com/MetaMask/phishing-warning/pull/174))
 - Bump the npm_and_yarn group across 1 directory with 4 updates ([#171](https://github.com/MetaMask/phishing-warning/pull/171))
-- ci: Fix failing Playwright setup ([#172](https://github.com/MetaMask/phishing-warning/pull/172))
 
 ## [4.0.0]
 
