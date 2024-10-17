@@ -204,8 +204,5 @@ function start() {
       params: [],
       id: createRandomId(),
     });
-
-    window.location.href =
-      'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true';
   });
 }

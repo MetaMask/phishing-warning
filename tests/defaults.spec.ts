@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { setupDefaultMocks } from './helpers/default-mocks';
+import { setupStreamInitialization } from './helpers/stream-initialization';
 
 test.beforeEach(async ({ context }) => {
   await setupDefaultMocks(context);
@@ -45,21 +46,23 @@ test('does nothing when the user tries to bypass the warning', async ({
 });
 
 test('redirects when the user clicks "Back to safety"', async ({ page }) => {
+  const postMessageLogs = await setupStreamInitialization(page);
   const querystring = new URLSearchParams({
     href: 'https://test.com',
   });
   await page.goto(`/#${querystring}`);
 
   await page.getByRole('button', { name: 'Back to safety' }).click();
-
-  await page.waitForURL(
-    'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true',
-    { timeout: 10000 },
-  );
-
-  await expect(page.url()).toBe(
-    'https://portfolio.metamask.io/?metamaskEntry=phishing_page_portfolio_button&marketingEnabled=true',
-  );
+  await expect(postMessageLogs.length).toBe(1);
+  await expect(postMessageLogs[0].message).toStrictEqual({
+    data: {
+      id: expect.any(Number),
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning',
+      params: [],
+    },
+    name: 'metamask-phishing-safelist',
+  });
 });
 
 test('logs that the service worker is registered', async ({ page }) => {
