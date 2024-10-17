@@ -16,7 +16,7 @@ test('renders the title', async ({ page }) => {
   await page.goto('/');
 
   await expect(
-    page.getByRole('heading', { name: 'Deceptive site ahead' }),
+    page.getByRole('heading', { name: 'This website might be harmful' }),
   ).toBeVisible();
 });
 
@@ -29,19 +29,9 @@ test('shows a blank suspect link', async ({ page }) => {
 test('shows an empty list of detection projects', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.locator('css=#detection-repo')).toHaveText(
-    'Ethereum Phishing Detector, SEAL, ChainPatrol, and PhishFort.',
+  await expect(page.locator('#detection-repo')).toHaveText(
+    'Listed on the blocklists of SEAL, ChainPatrol, or MetaMask',
   );
-});
-
-test('opens CryptoScamDB in a new tab', async ({ page }) => {
-  await page.goto('/');
-
-  const popupPromise = page.waitForEvent('popup');
-  await page.getByRole('link', { name: 'Learn more' }).click();
-  const popup = await popupPromise;
-
-  await expect(popup).toHaveURL('https://cryptoscamdb.org/search');
 });
 
 test('does nothing when the user tries to bypass the warning', async ({
@@ -89,4 +79,21 @@ test('logs that the service worker is registered', async ({ page }) => {
 
   expect(infoLogs.length).toBe(1);
   expect(infoLogs[0]).toMatch(expectedMessage);
+});
+
+test('redirects to X share page when clicked', async ({ page }) => {
+  await page.goto('/');
+
+  const [newPage] = await Promise.all([
+    page.waitForEvent('popup'),
+    page
+      .getByRole('link', {
+        name: 'If you found this helpful, click here to share on X!',
+      })
+      .click(),
+  ]);
+
+  await expect(newPage).toHaveURL(
+    'https://x.com/intent/post?text=MetaMask+just+protected+me+from+a+phishing+attack%21+Remember+to+always+stay+vigilant+when+clicking+on+links.+Learn+more+at&url=https%3A%2F%2Fmetamask.io',
+  );
 });

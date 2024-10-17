@@ -1,6 +1,5 @@
-import { toASCII, toUnicode } from 'punycode/';
+import { toUnicode } from 'punycode/';
 import { pipeline } from 'readable-stream';
-import PhishingDetector from 'eth-phishing-detect/src/detector';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
 import ObjectMultiplex from '@metamask/object-multiplex';
 
@@ -93,50 +92,8 @@ function isValidSuspectHref(href: string) {
   return disallowedProtocols.indexOf(parsedSuspectHref.protocol) < 0;
 }
 
-const newIssueUrls = {
-  metamask: 'https://github.com/MetaMask/eth-phishing-detect/issues/new',
-  phishfort: 'https://github.com/phishfort/phishfort-lists/issues/new',
-};
-
-const metamaskConfigUrl =
-  'https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/config.json';
-
-/**
- * Determines whether the given URL was blocked by our phishing configuration or not.
- *
- * @param href - The blocked URL.
- * @returns `true` if this URL is blocked by our phishing configuration, `false` otherwise.
- */
-async function isBlockedByMetamask(href: string) {
-  try {
-    const response = await fetch(metamaskConfigUrl, { cache: 'no-cache' });
-    if (!response.ok) {
-      throw new Error(`Received non-200 response: ${response.status}`);
-    }
-    const config = await response.json();
-    const detector = new PhishingDetector([
-      {
-        allowlist: config.whitelist,
-        blocklist: config.blacklist,
-        fuzzylist: config.fuzzylist,
-        tolerance: config.tolerance,
-        name: 'MetaMask',
-        version: config.version,
-      },
-    ]);
-    const { hostname } = new URL(href);
-
-    const punycodeHostname = toASCII(hostname);
-    const phishingTestResponse = detector.check(punycodeHostname);
-    console.debug('Phishing config test results:', phishingTestResponse);
-
-    return phishingTestResponse.result;
-  } catch (error) {
-    console.error(error);
-    // default to assuming that it is blocked by our configuration
-    return true;
-  }
-}
+const newIssueUrl =
+  'https://github.com/MetaMask/eth-phishing-detect/issues/new';
 
 /**
  * Extract hostname and href from the query string.
@@ -181,20 +138,6 @@ function start() {
   ]);
   const phishingSafelistStream = mux.createStream('metamask-phishing-safelist');
 
-  const backToSafetyLink = document.getElementById('back-to-safety');
-  if (!backToSafetyLink) {
-    throw new Error('Unable to locate back to safety link');
-  }
-
-  backToSafetyLink.addEventListener('click', async () => {
-    phishingSafelistStream.write({
-      jsonrpc: '2.0',
-      method: 'backToSafetyPhishingWarning',
-      params: [],
-      id: createRandomId(),
-    });
-  });
-
   const { hash } = new URL(window.location.href);
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
@@ -222,10 +165,7 @@ function start() {
   )}&body=${encodeURIComponent(toUnicode(suspectHrefUnicode))}`;
 
   newIssueLink.addEventListener('click', async () => {
-    const listName = (await isBlockedByMetamask(suspectHref))
-      ? 'metamask'
-      : 'phishfort';
-    window.location.href = `${newIssueUrls[listName]}${newIssueParams}`;
+    window.location.href = `${newIssueUrl}${newIssueParams}`;
   });
 
   const continueLink = document.getElementById('unsafe-continue');
@@ -251,4 +191,18 @@ function start() {
 
   // To know when the event listener has been added, to mitigate an e2e race condition
   continueLink.setAttribute('data-testid', 'unsafe-continue-loaded');
+
+  const portfolioLink = document.getElementById('portfolio-link');
+  if (!portfolioLink) {
+    throw new Error('Unable to locate portfolio link');
+  }
+
+  portfolioLink.addEventListener('click', async () => {
+    phishingSafelistStream.write({
+      jsonrpc: '2.0',
+      method: 'backToSafetyPhishingWarning',
+      params: [],
+      id: createRandomId(),
+    });
+  });
 }

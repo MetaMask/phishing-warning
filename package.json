@@ -23,7 +23,7 @@
     "test": "yarn playwright test"
   },
   "dependencies": {
-    "@metamask/design-tokens": "^1.12.0",
+    "@metamask/design-tokens": "^4.0.0",
     "@metamask/object-multiplex": "^2.0.0",
     "@metamask/post-message-stream": "^8.0.0",
     "eth-phishing-detect": "^1.2.0",
