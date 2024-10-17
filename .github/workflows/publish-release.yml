@@ -10,7 +10,7 @@ jobs:
   publish-release:
     permissions:
       contents: write
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
         with:
@@ -35,7 +35,7 @@ jobs:
           key: ${{ github.sha }}
 
   publish-npm-dry-run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: publish-release
     steps:
       - uses: actions/checkout@v3
@@ -56,7 +56,7 @@ jobs:
 
   publish-npm:
     environment: npm-publish
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: publish-npm-dry-run
     steps:
       - uses: actions/checkout@v3
@@ -79,7 +79,7 @@ jobs:
           SKIP_PREPACK: true
 
   get-release-version:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: publish-npm
     outputs:
       RELEASE_VERSION: ${{ steps.get-release-version.outputs.RELEASE_VERSION }}

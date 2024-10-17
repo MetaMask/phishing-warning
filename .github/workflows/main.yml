@@ -8,7 +8,7 @@ on:
 jobs:
   check-workflows:
     name: Check workflows
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
       - name: Download actionlint
@@ -25,7 +25,7 @@ jobs:
 
   all-jobs-completed:
     name: All jobs completed
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - check-workflows
       - build-lint-test
@@ -39,7 +39,7 @@ jobs:
   all-jobs-pass:
     name: All jobs pass
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: all-jobs-completed
     steps:
       - name: Check that all jobs have passed
@@ -59,7 +59,7 @@ jobs:
     needs: all-jobs-pass
     outputs:
       IS_RELEASE: ${{ steps.is-release.outputs.IS_RELEASE }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: MetaMask/action-is-release@v1
         id: is-release
