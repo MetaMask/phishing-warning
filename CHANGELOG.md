@@ -9,10 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [5.0.0]
 
-### Uncategorized
+### Fixed
 
-- fix: Incomplete URL scheme check ([#175](https://github.com/MetaMask/phishing-warning/pull/175))
-- Update GItHub Pages Deployment Token ([#179](https://github.com/MetaMask/phishing-warning/pull/179))
+- **BREAKING**: `data:` and `vbscript:` are now disallowed protocols alongside `javascript:` ([#175](https://github.com/MetaMask/phishing-warning/pull/175))
 
 ## [4.1.0]
 
