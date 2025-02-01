@@ -161,7 +161,7 @@ function start() {
   }
 
   const newIssueParams = `?template=02-blocklist-removal.yaml&domains=${encodeURIComponent(
-    suspectHostnameUnicode,
+    toUnicode(suspectHrefUnicode),
   )}`;
 
   newIssueLink.addEventListener('click', async () => {
