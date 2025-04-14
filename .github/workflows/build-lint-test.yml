@@ -76,7 +76,7 @@ jobs:
   test:
     name: Run Playwright tests
     timeout-minutes: 60
-    runs-on: ubuntu-latest # This currently uses Ubuntu 22.04
+    runs-on: ubuntu-22.04 # Pinned version due to issues with ubuntu-latest
     needs:
       - prepare
     strategy:
@@ -102,7 +102,7 @@ jobs:
       - name: Run Playwright tests
         run: yarn test
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
