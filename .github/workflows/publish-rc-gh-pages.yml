@@ -18,9 +18,8 @@ jobs:
           echo "RELEASE_VERSION=v${BRANCH_NAME#release/}" >> "$GITHUB_OUTPUT"
   publish-to-gh-pages:
     name: Publish build to `rc-${{ needs.get-release-version.outputs.release-version }}` directory of `gh-pages` branch
-    permissions:
-      contents: write
     uses: ./.github/workflows/publish-gh-pages.yml
+    secrets: inherit
     needs: get-release-version
     with:
       destination_dir: rc-${{ needs.get-release-version.outputs.release-version }}

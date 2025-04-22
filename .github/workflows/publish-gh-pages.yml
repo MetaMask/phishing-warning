@@ -16,19 +16,14 @@ jobs:
       - name: Ensure `destination_dir` is not empty
         if: ${{ inputs.destination_dir == '' }}
         run: exit 1
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - name: Setup the repository
+        uses: metamask/action-checkout-and-setup@v1
         with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-      - name: Install npm dependencies
-        run: yarn --immutable
+          is-high-risk-environment: true
       - name: Run build script
         run: yarn build:prod
       - name: Deploy to `${{ inputs.destination_dir }}` directory of `gh-pages` branch
-        uses: peaceiris/actions-gh-pages@068dc23d9710f1ba62e86896f84735d869951305
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
         with:
           personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_dir: ./dist
