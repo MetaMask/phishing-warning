@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Redesign UI of the phishing warning page ([#176](https://github.com/MetaMask/phishing-warning/pull/176))
+- Redesign UI of the phishing warning page ([#176](https://github.com/MetaMask/phishing-warning/pull/176)) 
 
 ## [4.0.0]
 
