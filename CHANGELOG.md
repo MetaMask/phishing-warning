@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [5.0.0]
+### Added
+- Update MetaMask phishing image ([#190](https://github.com/MetaMask/phishing-warning/pull/190))
+
 ### Fixed
 - **BREAKING**: `data:` and `vbscript:` are now disallowed protocols alongside `javascript:` ([#175](https://github.com/MetaMask/phishing-warning/pull/175))
+- Resolve issues with deployment scripts ([#191](https://github.com/MetaMask/phishing-warning/pull/191))
+- Avoid creating playwright artifact with same name across node versions ([#192](https://github.com/MetaMask/phishing-warning/pull/192))
 
 ## [4.1.0]
 ### Added
