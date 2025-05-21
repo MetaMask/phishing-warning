@@ -94,6 +94,6 @@ test('redirects to X share page when clicked', async ({ page }) => {
   ]);
 
   await expect(newPage).toHaveURL(
-    'https://x.com/intent/post?text=MetaMask+just+protected+me+from+a+phishing+attack%21+Remember+to+always+stay+vigilant+when+clicking+on+links.+Learn+more+at&url=https%3A%2F%2Fmetamask.io',
+    'https://x.com/intent/post?text=MetaMask%20just%20protected%20me%20from%20a%20phishing%20attack!%20Remember%20to%20always%20stay%20vigilant%20when%20clicking%20on%20links.%20Learn%20more%20at&url=https%3A%2F%2Fmetamask.io',
   );
 });
