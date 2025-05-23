@@ -8,6 +8,7 @@ jobs:
   get-release-version:
     name: Get release version
     runs-on: ubuntu-latest
+    environment: github-pages
     outputs:
       release-version: ${{ steps.release-name.outputs.RELEASE_VERSION }}
     steps:
