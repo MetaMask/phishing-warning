@@ -1,22 +1,22 @@
 @font-face {
-  font-family: 'Euclid';
-  font-style: normal;
+  font-family: 'CentraNo1';
+  src: url('fonts/CentraNo1-Book.woff2') format('woff2');
   font-weight: 400;
-  src: url('fonts/EuclidCircularB-Regular-WebXL.ttf') format('truetype');
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'Euclid';
-  font-style: italic;
-  font-weight: 400;
-  src: url('fonts/EuclidCircularB-RegularItalic-WebXL.ttf') format('truetype');
+  font-family: 'CentraNo1';
+  src: url('fonts/CentraNo1-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'Euclid';
-  font-style: normal;
+  font-family: 'CentraNo1';
+  src: url('fonts/CentraNo1-Bold.woff2') format('woff2');
   font-weight: 700;
-  src: url('fonts/EuclidCircularB-Bold-WebXL.ttf') format('truetype');
+  font-style: normal;
 }
 
 * {
@@ -35,7 +35,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--typography-s-body-md-font-family);
+  font-family: var(--font-family-default);
   font-weight: var(--typography-s-body-md-font-weight);
   font-size: var(--typography-s-body-md-font-size);
   line-height: var(--typography-s-body-md-line-height);
@@ -45,7 +45,6 @@ body {
 
 @media screen and (min-width: 768px) {
   body {
-    font-family: var(--typography-l-body-md-font-family);
     font-weight: var(--typography-l-body-md-font-weight);
     font-size: var(--typography-l-body-md-font-size);
     line-height: var(--typography-l-body-md-line-height);
@@ -54,7 +53,6 @@ body {
 }
 
 .heading-lg {
-  font-family: var(--typography-s-heading-lg-font-family);
   font-weight: var(--typography-s-heading-lg-font-weight);
   font-size: var(--typography-s-heading-lg-font-size);
   line-height: var(--typography-s-heading-lg-line-height);
@@ -63,7 +61,6 @@ body {
 
 @media screen and (min-width: 768px) {
   .heading-lg {
-    font-family: var(--typography-l-heading-lg-font-family);
     font-weight: var(--typography-l-heading-lg-font-weight);
     font-size: var(--typography-l-heading-lg-font-size);
     line-height: var(--typography-l-heading-lg-line-height);
@@ -81,39 +78,40 @@ ul {
   padding-left: 32px;
 }
 
-.button-primary {
-  color: var(--color-background-default);
-  background: var(--color-primary-default);
-  border: 1px solid var(--color-primary-default);
-  padding-right: 16px;
-  padding-left: 16px;
-  border-radius: 9999px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  font-weight: var(--typography-l-body-md-medium-font-weight);
-  font-family: var(--typography-s-body-md-font-family);
+button {
+  font-family: var(--font-family-default);
+  font-weight: var(--font-weight-medium);
   font-weight: var(--typography-s-body-md-font-weight);
   font-size: var(--typography-s-body-md-font-size);
   line-height: var(--typography-s-body-md-line-height);
   letter-spacing: var(--typography-s-body-md-letter-spacing);
-  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
-  .button-primary {
-    font-weight: var(--typography-l-body-md-medium-font-weight);
-    font-family: var(--typography-s-body-md-font-family);
+  .button-link-danger {
+    font-weight: var(--font-weight-medium);
     font-weight: var(--typography-s-body-md-font-weight);
     font-size: var(--typography-l-body-md-font-size);
     line-height: var(--typography-l-body-md-line-height);
   }
 }
 
+.button-primary {
+  color: var(--color-background-default);
+  background: var(--color-primary-default);
+  border: 1px solid var(--color-primary-default);
+  padding-right: 16px;
+  padding-left: 16px;
+  border-radius: 12px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .button-primary:hover {
   color: var(--color-primary-inverse);
   background-color: var(--color-primary-default);
-  box-shadow: var(--component-button-primary-shadow);
 }
 
 .button-primary:active {
@@ -129,22 +127,6 @@ ul {
   padding-right: 16px;
   padding-left: 16px;
   cursor: pointer;
-  font-weight: var(--font-weight-medium);
-  font-family: var(--typography-s-body-md-font-family);
-  font-weight: var(--typography-s-body-md-font-weight);
-  font-size: var(--typography-s-body-md-font-size);
-  line-height: var(--typography-s-body-md-line-height);
-  letter-spacing: var(--typography-s-body-md-letter-spacing);
-}
-
-@media screen and (min-width: 768px) {
-  .button-link-danger {
-    font-weight: var(--font-weight-medium);
-    font-family: var(--typography-s-body-md-font-family);
-    font-weight: var(--typography-s-body-md-font-weight);
-    font-size: var(--typography-l-body-md-font-size);
-    line-height: var(--typography-l-body-md-line-height);
-  }
 }
 
 .content {
