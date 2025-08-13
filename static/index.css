@@ -149,6 +149,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .warning-icon {
