@@ -160,9 +160,9 @@ function start() {
     throw new Error('Unable to locate new issue link');
   }
 
-  const newIssueParams = `?title=[Legitimate%20Site%20Blocked]%20${encodeURIComponent(
-    suspectHostnameUnicode,
-  )}&body=${encodeURIComponent(toUnicode(suspectHrefUnicode))}`;
+  const newIssueParams = `?template=02-blocklist-removal.yaml&domains=${encodeURIComponent(
+    toUnicode(suspectHrefUnicode),
+  )}`;
 
   newIssueLink.addEventListener('click', async () => {
     window.location.href = `${newIssueUrl}${newIssueParams}`;
