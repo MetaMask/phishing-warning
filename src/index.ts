@@ -182,7 +182,7 @@ function start() {
     phishingSafelistStream.write({
       jsonrpc: '2.0',
       method: 'safelistPhishingDomain',
-      params: [suspectOrigin],
+      params: [suspectHref],
       id: createRandomId(),
     });
 
