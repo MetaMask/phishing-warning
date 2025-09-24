@@ -142,12 +142,8 @@ function start() {
   const hashContents = hash.slice(1); // drop leading '#' from hash
   const hashQueryString = new URLSearchParams(hashContents);
 
-  const {
-    suspectHref,
-    suspectHostnameUnicode,
-    suspectHrefUnicode,
-    suspectOrigin,
-  } = getSuspect(hashQueryString.get('href'));
+  const { suspectHref, suspectHostnameUnicode, suspectHrefUnicode } =
+    getSuspect(hashQueryString.get('href'));
 
   const suspectLink = document.getElementById('suspect-link');
   if (!suspectLink) {
