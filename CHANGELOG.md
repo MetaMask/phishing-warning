@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- feat: sends href to `safelistPhishingDomain` ([#203](https://github.com/MetaMask/phishing-warning/pull/203))
+- Send the entire URL via the `safelistPhishingDomain` stream ([#203](https://github.com/MetaMask/phishing-warning/pull/203))
 
 ## [5.0.1]
 
