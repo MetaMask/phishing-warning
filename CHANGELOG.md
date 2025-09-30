@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [5.1.0]
 
-### Uncategorized
+### Changed
 
 - feat: sends href to `safelistPhishingDomain` ([#203](https://github.com/MetaMask/phishing-warning/pull/203))
 
