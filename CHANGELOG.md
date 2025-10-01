@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.1.0]
+### Changed
+- Send the entire URL via the `safelistPhishingDomain` stream ([#203](https://github.com/MetaMask/phishing-warning/pull/203))
+
 ## [5.0.1]
 ### Fixed
 - fix: add overflow protection on very long urls ([#198](https://github.com/MetaMask/phishing-warning/pull/198))
@@ -21,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.1.0]
 ### Added
-- Redesign UI of the phishing warning page ([#176](https://github.com/MetaMask/phishing-warning/pull/176)) 
+- Redesign UI of the phishing warning page ([#176](https://github.com/MetaMask/phishing-warning/pull/176))
 
 ## [4.0.0]
 ### Changed
@@ -56,7 +60,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Bump ses from ^0.18.7 to ^0.18.8 ([#120](https://github.com/MetaMask/phishing-warning/pull/120))
-
 
 ## [2.1.1]
 ### Fixed
@@ -115,7 +118,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v5.0.1...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v5.1.0...HEAD
+[5.1.0]: https://github.com/MetaMask/phishing-warning/compare/v5.0.1...v5.1.0
 [5.0.1]: https://github.com/MetaMask/phishing-warning/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/MetaMask/phishing-warning/compare/v4.1.0...v5.0.0
 [4.1.0]: https://github.com/MetaMask/phishing-warning/compare/v4.0.0...v4.1.0
