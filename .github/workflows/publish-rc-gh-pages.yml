@@ -24,5 +24,3 @@ jobs:
     needs: get-release-version
     with:
       destination_dir: rc-${{ needs.get-release-version.outputs.release-version }}
-    secrets:
-      DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
