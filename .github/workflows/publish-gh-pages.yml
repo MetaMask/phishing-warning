@@ -6,6 +6,9 @@ on:
       destination_dir:
         required: true
         type: string
+    secrets:
+      DEPLOY_TOKEN:
+        required: true
 
 jobs:
   publish-to-gh-pages:
