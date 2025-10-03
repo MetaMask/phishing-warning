@@ -11,3 +11,5 @@ jobs:
     secrets: inherit
     with:
       destination_dir: latest
+    secrets:
+      DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
