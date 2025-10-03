@@ -92,7 +92,6 @@ jobs:
         run: ./scripts/get.sh ".version" "RELEASE_VERSION"
 
   publish-release-to-gh-pages:
-    environment: github-pages
     needs: get-release-version
     name: Publish site to `v${{ needs.get-release-version.outputs.RELEASE_VERSION }}` directory of `gh-pages` branch
     permissions:
