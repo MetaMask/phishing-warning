@@ -8,6 +8,7 @@ jobs:
   publish-to-gh-pages:
     name: Publish build to `latest` directory of `gh-pages` branch
     uses: ./.github/workflows/publish-gh-pages.yml
-    secrets: inherit
     with:
       destination_dir: latest
+    secrets:
+      DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}

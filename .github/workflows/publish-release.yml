@@ -5,6 +5,8 @@ on:
     secrets:
       NPM_TOKEN:
         required: true
+      DEPLOY_TOKEN:
+        required: true
 
 jobs:
   publish-release:
@@ -99,3 +101,5 @@ jobs:
     uses: ./.github/workflows/publish-gh-pages.yml
     with:
       destination_dir: v${{ needs.get-release-version.outputs.RELEASE_VERSION }}
+    secrets:
+      DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
