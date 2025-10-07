@@ -1,0 +1,203 @@
+@font-face {
+  font-family: 'CentraNo1';
+  src: url('fonts/CentraNo1-Book.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CentraNo1';
+  src: url('fonts/CentraNo1-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CentraNo1';
+  src: url('fonts/CentraNo1-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-background-alternative);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-default);
+  font-weight: var(--typography-s-body-md-font-weight);
+  font-size: var(--typography-s-body-md-font-size);
+  line-height: var(--typography-s-body-md-line-height);
+  letter-spacing: var(--typography-s-body-md-letter-spacing);
+  color: var(--color-text-default);
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-weight: var(--typography-l-body-md-font-weight);
+    font-size: var(--typography-l-body-md-font-size);
+    line-height: var(--typography-l-body-md-line-height);
+    letter-spacing: var(--typography-l-body-md-letter-spacing);
+  }
+}
+
+.heading-lg {
+  font-weight: var(--typography-s-heading-lg-font-weight);
+  font-size: var(--typography-s-heading-lg-font-size);
+  line-height: var(--typography-s-heading-lg-line-height);
+  letter-spacing: var(--typography-s-heading-lg-letter-spacing);
+}
+
+@media screen and (min-width: 768px) {
+  .heading-lg {
+    font-weight: var(--typography-l-heading-lg-font-weight);
+    font-size: var(--typography-l-heading-lg-font-size);
+    line-height: var(--typography-l-heading-lg-line-height);
+    letter-spacing: var(--typography-l-heading-lg-letter-spacing);
+  }
+}
+
+a {
+  text-decoration: underline;
+  color: var(--color-primary-default);
+  cursor: pointer;
+}
+
+ul {
+  padding-left: 32px;
+}
+
+button {
+  font-family: var(--font-family-default);
+  font-weight: var(--font-weight-medium);
+  font-weight: var(--typography-s-body-md-font-weight);
+  font-size: var(--typography-s-body-md-font-size);
+  line-height: var(--typography-s-body-md-line-height);
+  letter-spacing: var(--typography-s-body-md-letter-spacing);
+}
+
+@media screen and (min-width: 768px) {
+  .button-link-danger {
+    font-weight: var(--font-weight-medium);
+    font-weight: var(--typography-s-body-md-font-weight);
+    font-size: var(--typography-l-body-md-font-size);
+    line-height: var(--typography-l-body-md-line-height);
+  }
+}
+
+.button-primary {
+  color: var(--color-background-default);
+  background: var(--color-primary-default);
+  border: 1px solid var(--color-primary-default);
+  padding-right: 16px;
+  padding-left: 16px;
+  border-radius: 12px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  color: var(--color-primary-inverse);
+  background-color: var(--color-primary-default);
+}
+
+.button-primary:active {
+  color: var(--color-primary-inverse);
+  background-color: var(--color-primary-alternative);
+  border-color: var(--color-primary-alternative);
+}
+
+.button-link-danger {
+  color: var(--color-error-default);
+  background: transparent;
+  border: none;
+  padding-right: 16px;
+  padding-left: 16px;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 700px;
+  padding: 24px;
+}
+
+.content__header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.content__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.warning-icon {
+  width: 82px;
+  height: 82px;
+  margin-bottom: 24px;
+}
+
+.alert-text {
+  color: var(--color-text-alternative);
+}
+
+.alert-text-lists {
+  color: var(--color-text-alternative);
+}
+
+.threat-list {
+  color: var(--color-text-alternative);
+}
+
+.button-container {
+  display: flex;
+  gap: 16px;
+}
+
+.twitter-share-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.twitter-share {
+  color: var(--color-primary-default);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.twitter-share:hover {
+  text-decoration: underline;
+}
+
+.twitter-icon {
+  width: 24px;
+  height: auto;
+}
+
+.warning-image {
+  max-width: 35%;
+  height: auto;
+}
