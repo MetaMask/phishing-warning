@@ -52,7 +52,7 @@ html {
 }
 
 body {
-  background-color: var(--color-background-alternative);
+  background-color: var(--color-background-default);
   height: 100%;
   display: flex;
   align-items: center;
@@ -119,9 +119,9 @@ button {
 }
 
 .button-primary {
-  color: var(--color-background-default);
-  background: var(--color-primary-default);
-  border: 1px solid var(--color-primary-default);
+  color: var(--color-icon-inverse);
+  background: var(--color-icon-default);
+  border: 1px solid var(--color-icon-default);
   padding-right: 16px;
   padding-left: 16px;
   border-radius: 12px;
@@ -132,14 +132,15 @@ button {
 }
 
 .button-primary:hover {
-  color: var(--color-primary-inverse);
-  background-color: var(--color-primary-default);
+  color: var(--color-icon-inverse);
+  background-color: var(--color-icon-default-hover);
+  border-color: var(--color-icon-default-hover);
 }
 
 .button-primary:active {
-  color: var(--color-primary-inverse);
-  background-color: var(--color-primary-alternative);
-  border-color: var(--color-primary-alternative);
+  color: var(--color-icon-inverse);
+  background-color: var(--color-icon-default-pressed);
+  border-color: var(--color-icon-default-pressed);
 }
 
 .button-link-danger {
