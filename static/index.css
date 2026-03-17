@@ -133,14 +133,14 @@ button {
 
 .button-primary:hover {
   color: var(--color-icon-inverse);
-  background-color: var(--color-icon-default-hover);
-  border-color: var(--color-icon-default-hover);
+  background-color: var(--color-icon-default);
+  border-color: var(--color-icon-default);
 }
 
 .button-primary:active {
   color: var(--color-icon-inverse);
-  background-color: var(--color-icon-default-pressed);
-  border-color: var(--color-icon-default-pressed);
+  background-color: var(--color-icon-default);
+  border-color: var(--color-icon-default);
 }
 
 .button-link-danger {
