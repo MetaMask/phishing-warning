@@ -1,22 +1,44 @@
+/* Geist */
 @font-face {
-  font-family: 'CentraNo1';
-  src: url('fonts/CentraNo1-Book.woff2') format('woff2');
+  font-family: 'Geist';
+  font-style: normal;
   font-weight: 400;
-  font-style: normal;
+  src: url('fonts/Geist/Geist-Regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'CentraNo1';
-  src: url('fonts/CentraNo1-Medium.woff2') format('woff2');
+  font-family: 'Geist';
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/Geist/Geist-RegularItalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
   font-weight: 500;
-  font-style: normal;
+  src: url('fonts/Geist/Geist-Medium.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'CentraNo1';
-  src: url('fonts/CentraNo1-Bold.woff2') format('woff2');
-  font-weight: 700;
+  font-family: 'Geist';
+  font-style: italic;
+  font-weight: 500;
+  src: url('fonts/Geist/Geist-MediumItalic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist';
   font-style: normal;
+  font-weight: 700;
+  src: url('fonts/Geist/Geist-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist';
+  font-style: italic;
+  font-weight: 700;
+  src: url('fonts/Geist/Geist-BoldItalic.woff2') format('woff2');
 }
 
 * {
@@ -30,7 +52,7 @@ html {
 }
 
 body {
-  background-color: var(--color-background-alternative);
+  background-color: var(--color-background-default);
   height: 100%;
   display: flex;
   align-items: center;
@@ -97,9 +119,9 @@ button {
 }
 
 .button-primary {
-  color: var(--color-background-default);
-  background: var(--color-primary-default);
-  border: 1px solid var(--color-primary-default);
+  color: var(--color-icon-inverse);
+  background: var(--color-icon-default);
+  border: 1px solid var(--color-icon-default);
   padding-right: 16px;
   padding-left: 16px;
   border-radius: 12px;
@@ -110,14 +132,15 @@ button {
 }
 
 .button-primary:hover {
-  color: var(--color-primary-inverse);
-  background-color: var(--color-primary-default);
+  color: var(--color-icon-inverse);
+  background-color: var(--color-icon-default-hover);
+  border-color: var(--color-icon-default-hover);
 }
 
 .button-primary:active {
-  color: var(--color-primary-inverse);
-  background-color: var(--color-primary-alternative);
-  border-color: var(--color-primary-alternative);
+  color: var(--color-icon-inverse);
+  background-color: var(--color-icon-default-pressed);
+  border-color: var(--color-icon-default-pressed);
 }
 
 .button-link-danger {
