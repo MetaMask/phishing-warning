@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "node ./build/index.js",
-    "build:prod": "NODE='production' yarn build",
+    "build:prod": "NODE_ENV='production' yarn build",
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:eslint": "eslint . --cache --ext js,ts",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
