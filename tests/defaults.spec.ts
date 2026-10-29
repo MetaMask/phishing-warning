@@ -81,19 +81,27 @@ test('logs that the service worker is registered', async ({ page }) => {
   expect(infoLogs[0]).toMatch(expectedMessage);
 });
 
-test('redirects to X share page when clicked', async ({ page }) => {
+test('redirects to X share page when clicked', async ({ page, context }) => {
+  // Stub X so the test doesn't depend on its live redirects or availability.
+  await context.route('https://x.com/**', async (route) =>
+    route.fulfill({ status: 200, contentType: 'text/html', body: '' }),
+  );
+
   await page.goto('/');
+
+  const shareLink = page.getByRole('link', {
+    name: 'If you found this helpful, click here to share on X!',
+  });
+  await expect(shareLink).toHaveAttribute('rel', /noopener/u);
 
   const [newPage] = await Promise.all([
     page.waitForEvent('popup'),
-    page
-      .getByRole('link', {
-        name: 'If you found this helpful, click here to share on X!',
-      })
-      .click(),
+    shareLink.click(),
   ]);
 
   await expect(newPage).toHaveURL(
-    'https://x.com/intent/post?text=MetaMask%20just%20protected%20me%20from%20a%20phishing%20attack!%20Remember%20to%20always%20stay%20vigilant%20when%20clicking%20on%20links.%20Learn%20more%20at&url=https%3A%2F%2Fmetamask.io',
+    'https://x.com/intent/post?text=MetaMask%20just%20protected%20me%20from%20a%20phishing%20attack%21%20Remember%20to%20always%20stay%20vigilant%20when%20clicking%20on%20links.%20Learn%20more%20at&url=https%3A%2F%2Fmetamask.com',
   );
+  // The opened tab must not be able to control or redirect the warning page.
+  expect(await newPage.evaluate(() => window.opener)).toBeNull();
 });
