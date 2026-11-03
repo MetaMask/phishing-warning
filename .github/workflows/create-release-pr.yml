@@ -29,6 +29,7 @@ jobs:
           # We check out the specified branch, which will be used as the base
           # branch for all git operations and the release PR.
           ref: ${{ github.event.inputs.base-branch }}
+      - run: corepack enable
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
