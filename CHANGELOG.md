@@ -9,13 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [5.1.1]
 
-### Uncategorized
+### Changed
 
-- Fix/new brand favicon ([#232](https://github.com/MetaMask/phishing-warning/pull/232))
-- fix: upgrade to action-npm-publish@v7 ([#229](https://github.com/MetaMask/phishing-warning/pull/229))
-- fix: update X share link and stub X in e2e test ([#230](https://github.com/MetaMask/phishing-warning/pull/230))
-- feat: update default font from CentraNo1 to Geist ([#210](https://github.com/MetaMask/phishing-warning/pull/210))
-- fix: github workflows ([#205](https://github.com/MetaMask/phishing-warning/pull/205))
+- Update default font from CentraNo1 to Geist ([#210](https://github.com/MetaMask/phishing-warning/pull/210))
+- Upgrade to action-npm-publish@v7 ([#229](https://github.com/MetaMask/phishing-warning/pull/229))
+
+### Fixed
+
+- Update favicon to new brand ([#232](https://github.com/MetaMask/phishing-warning/pull/232))
+- Update X share link and stub X in e2e test ([#230](https://github.com/MetaMask/phishing-warning/pull/230))
+- Fix GitHub workflows ([#205](https://github.com/MetaMask/phishing-warning/pull/205))
 
 ## [5.1.0]
 
