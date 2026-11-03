@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.1.1]
+### Changed
+- Update default font from CentraNo1 to Geist ([#210](https://github.com/MetaMask/phishing-warning/pull/210))
+- Upgrade to action-npm-publish@v7 ([#229](https://github.com/MetaMask/phishing-warning/pull/229))
+
+### Fixed
+- Update favicon to new brand ([#232](https://github.com/MetaMask/phishing-warning/pull/232))
+- Update X share link and stub X in e2e test ([#230](https://github.com/MetaMask/phishing-warning/pull/230))
+- Fix GitHub workflows ([#205](https://github.com/MetaMask/phishing-warning/pull/205))
+
 ## [5.1.0]
 ### Changed
 - Send the entire URL via the `safelistPhishingDomain` stream ([#203](https://github.com/MetaMask/phishing-warning/pull/203))
@@ -118,7 +128,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v5.1.0...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v5.1.1...HEAD
+[5.1.1]: https://github.com/MetaMask/phishing-warning/compare/v5.1.0...v5.1.1
 [5.1.0]: https://github.com/MetaMask/phishing-warning/compare/v5.0.1...v5.1.0
 [5.0.1]: https://github.com/MetaMask/phishing-warning/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/MetaMask/phishing-warning/compare/v4.1.0...v5.0.0
