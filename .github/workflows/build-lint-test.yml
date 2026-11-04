@@ -3,6 +3,9 @@ name: Build, Lint, and Test
 on:
   workflow_call:
 
+permissions:
+  contents: read
+
 env:
   PLAYWRIGHT_BROWSERS: chrome chromium firefox msedge
 
@@ -12,16 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     # In case the `playwright install` command below stalls
     timeout-minutes: 30
+    strategy:
+      matrix:
+        node-version: [22.x, 24.x, 26.x]
     steps:
-      - uses: actions/checkout@v3
-      - run: corepack enable
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - name: Checkout and setup environment
+        uses: MetaMask/action-checkout-and-setup@v3
         with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-      - name: Install Yarn dependencies
-        run: yarn --immutable
+          is-high-risk-environment: false
+          persist-credentials: false
+          node-version: ${{ matrix.node-version }}
+          cache-node-modules: ${{ matrix.node-version == '26.x' }}
+          # We need to always install Node modules to be able to access the
+          # Playwright version below
+          force-setup: true
       - name: Resolve Playwright version and browsers slug
         id: pw-version
         shell: bash
@@ -47,22 +54,20 @@ jobs:
 
   build:
     name: Build
+    needs: prepare
     runs-on: ubuntu-latest
-    needs:
-      - prepare
     strategy:
       matrix:
-        node-version: [22.x, 24.x, 26.x]
+        node-version: [26.x]
     steps:
-      - uses: actions/checkout@v3
-      - run: corepack enable
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout and setup environment
+        uses: MetaMask/action-checkout-and-setup@v3
         with:
+          is-high-risk-environment: false
+          persist-credentials: false
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-      - run: yarn --immutable --immutable-cache
-      - run: yarn build:prod
+      - name: Build
+        run: yarn build:prod
       - name: Require clean working directory
         shell: bash
         run: |
@@ -73,28 +78,26 @@ jobs:
 
   lint:
     name: Lint
+    needs: prepare
     runs-on: ubuntu-latest
-    needs:
-      - prepare
     strategy:
       matrix:
-        node-version: [22.x, 24.x, 26.x]
+        node-version: [26.x]
     steps:
-      - uses: actions/checkout@v3
-      - run: corepack enable
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout and setup environment
+        uses: MetaMask/action-checkout-and-setup@v3
         with:
+          is-high-risk-environment: false
+          persist-credentials: false
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-      - run: yarn --immutable --immutable-cache
-      - run: yarn lint
+      - name: Lint
+        run: yarn lint
       - name: Validate RC changelog
         if: ${{ startsWith(github.head_ref, 'release/') }}
-        run: yarn auto-changelog validate --rc
+        run: yarn lint:changelog --rc
       - name: Validate changelog
         if: ${{ !startsWith(github.head_ref, 'release/') }}
-        run: yarn auto-changelog validate
+        run: yarn lint:changelog
       - name: Require clean working directory
         shell: bash
         run: |
@@ -105,24 +108,19 @@ jobs:
 
   test:
     name: Run Playwright tests
-    timeout-minutes: 60
+    needs: prepare
     runs-on: ubuntu-22.04 # Pinned version due to issues with ubuntu-latest
-    needs:
-      - prepare
+    timeout-minutes: 60
     strategy:
       matrix:
         node-version: [22.x, 24.x, 26.x]
     steps:
-      - uses: actions/checkout@v3
-      - run: corepack enable
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout and setup environment
+        uses: MetaMask/action-checkout-and-setup@v3
         with:
+          is-high-risk-environment: false
+          persist-credentials: false
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-
-      - run: yarn --immutable --immutable-cache
-
       - name: Resolve Playwright version and browsers slug
         id: pw-version
         shell: bash
@@ -133,24 +131,20 @@ jobs:
           # equivalent whitespace variants share one cache key.
           slug=$(printf '%s' "$PLAYWRIGHT_BROWSERS" | tr -s ' ' | tr ' ' '-' | sed 's/^-*//; s/-*$//')
           echo "browsers-slug=$slug" >> "$GITHUB_OUTPUT"
-
       - name: Restore Playwright browser cache
         id: pw-cache
         uses: actions/cache@v6
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ steps.pw-version.outputs.version }}-${{ steps.pw-version.outputs.browsers-slug }}
-
       - name: Run Playwright tests
         run: yarn test
-
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report-node-${{ matrix.node-version }}
           path: playwright-report/
           retention-days: 5
-
       - name: Require clean working directory
         shell: bash
         run: |

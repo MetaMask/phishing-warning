@@ -1,4 +1,4 @@
-name: Publish GitHub Pages
+name: Publish site to GitHub Pages
 
 on:
   workflow_call:
@@ -6,28 +6,38 @@ on:
       destination_dir:
         required: true
         type: string
-    secrets:
-      DEPLOY_TOKEN:
-        required: true
 
 jobs:
-  publish-to-gh-pages:
-    name: Publish to GitHub Pages
+  publish-site-to-gh-pages:
+    name: Publish site to GitHub Pages
     runs-on: ubuntu-latest
     environment: github-pages
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - name: Ensure `destination_dir` is not empty
         if: ${{ inputs.destination_dir == '' }}
         run: exit 1
-      - name: Setup the repository
-        uses: metamask/action-checkout-and-setup@v1
+      - name: Get access token
+        id: get-token
+        uses: MetaMask/github-tools/.github/actions/get-token@v1
+        with:
+          token-exchange-url: ${{ vars.TOKEN_EXCHANGE_URL }}
+          permissions: |
+            contents: write
+      - name: Checkout and setup environment
+        uses: MetaMask/action-checkout-and-setup@v3
         with:
           is-high-risk-environment: true
+          persist-credentials: false
       - name: Run build script
         run: yarn build:prod
       - name: Deploy to `${{ inputs.destination_dir }}` directory of `gh-pages` branch
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e
+        uses: peaceiris/actions-gh-pages@de7ea6f8efb354206b205ef54722213d99067935
         with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          # A policy must be registered for this repo and workflow
+          # within the Token Exchange Service.
+          personal_token: ${{ steps.get-token.outputs.token }}
           publish_dir: ./dist
           destination_dir: ${{ inputs.destination_dir }}
