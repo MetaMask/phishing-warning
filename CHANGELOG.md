@@ -9,16 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [6.0.0]
 
-### Uncategorized
-
-- Sync GitHub workflows/config with module template ([#237](https://github.com/MetaMask/phishing-warning/pull/237))
-- BREAKING: Bump Yarn to v4, min Node to 22, dev Node to 26 ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
-- Optimize test job in CI by caching Playwright browsers ([#236](https://github.com/MetaMask/phishing-warning/pull/236))
-- Revert 5.1.1 ([#239](https://github.com/MetaMask/phishing-warning/pull/239))
-
 ### Changed
 
-- **BREAKING:** Drop support for Node < 22; add support for Node 22, 24, and 26
+- **BREAKING:** Bump minimum Node version to 22 ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
+- Add support for Node 22, 24, and 26 ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
 
 ## [5.1.0]
 
