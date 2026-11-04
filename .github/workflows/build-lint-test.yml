@@ -3,10 +3,15 @@ name: Build, Lint, and Test
 on:
   workflow_call:
 
+env:
+  PLAYWRIGHT_BROWSERS: chrome chromium firefox msedge
+
 jobs:
   prepare:
     name: Prepare
     runs-on: ubuntu-latest
+    # In case the `playwright install` command below stalls
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -16,6 +21,28 @@ jobs:
           cache: 'yarn'
       - name: Install Yarn dependencies
         run: yarn --immutable
+      - name: Resolve Playwright version and browsers slug
+        id: pw-version
+        shell: bash
+        run: |
+          version=$(node -p "require('@playwright/test/package.json').version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          # Normalize the (space-separated) browsers input into a stable slug so
+          # equivalent whitespace variants share one cache key.
+          slug=$(printf '%s' "$PLAYWRIGHT_BROWSERS" | tr -s ' ' | tr ' ' '-' | sed 's/^-*//; s/-*$//')
+          echo "browsers-slug=$slug" >> "$GITHUB_OUTPUT"
+      - name: Restore Playwright browser cache
+        id: pw-cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.pw-version.outputs.version }}-${{ steps.pw-version.outputs.browsers-slug }}
+      - name: Install Playwright browsers (cache miss only)
+        if: steps.pw-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          IFS=' ' read -ra browsers_array <<< "${PLAYWRIGHT_BROWSERS}"
+          yarn playwright install "${browsers_array[@]}"
 
   build:
     name: Build
@@ -93,11 +120,23 @@ jobs:
 
       - run: yarn --immutable --immutable-cache
 
-      - name: Install Playwright Dependencies
-        run: npx playwright install-deps
+      - name: Resolve Playwright version and browsers slug
+        id: pw-version
+        shell: bash
+        run: |
+          version=$(node -p "require('@playwright/test/package.json').version")
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          # Normalize the (space-separated) browsers input into a stable slug so
+          # equivalent whitespace variants share one cache key.
+          slug=$(printf '%s' "$PLAYWRIGHT_BROWSERS" | tr -s ' ' | tr ' ' '-' | sed 's/^-*//; s/-*$//')
+          echo "browsers-slug=$slug" >> "$GITHUB_OUTPUT"
 
-      - name: Install Playwright Browsers
-        run: yarn playwright install chrome chromium firefox msedge
+      - name: Restore Playwright browser cache
+        id: pw-cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.pw-version.outputs.version }}-${{ steps.pw-version.outputs.browsers-slug }}
 
       - name: Run Playwright tests
         run: yarn test
