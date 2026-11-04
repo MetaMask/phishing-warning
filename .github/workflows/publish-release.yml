@@ -115,7 +115,7 @@ jobs:
       id-token: write
     uses: ./.github/workflows/publish-gh-pages.yml
     with:
-      destination_dir: ${{ needs.get-release-version.outputs.RELEASE_VERSION }}
+      destination_dir: v${{ needs.get-release-version.outputs.RELEASE_VERSION }}
 
   publish-site-to-latest-gh-pages:
     name: Publish site to `latest` directory of `gh-pages` branch

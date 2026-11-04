@@ -43,7 +43,7 @@ jobs:
           # A policy must be registered for this repo and workflow
           # within the Token Exchange Service.
           personal_token: ${{ steps.get-token.outputs.token }}
-          publish_dir: ./docs
+          publish_dir: ./dist
           destination_dir: ${{ inputs.destination_dir }}
       - name: Show warning if the get-token step failed
         if: ${{ steps.get-token.outcome == 'failure' }}
