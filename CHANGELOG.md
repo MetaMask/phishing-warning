@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **BREAKING:** Bump minimum Node version to 22 ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
-- Add support for Node 22, 24, and 26 ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
+- Add support for Node 22, 24, and 26+ ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
 
 ## [5.1.0]
 
