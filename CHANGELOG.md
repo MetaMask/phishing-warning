@@ -5,8 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [6.0.0]
 ### Changed
-- **BREAKING:** Drop support for Node < 22; add support for Node 22, 24, and 26
+- **BREAKING:** Bump minimum Node version to 22 ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
+- Add support for Node 22, 24, and 26+ ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
+- Update default font from CentraNo1 to Geist ([#210](https://github.com/MetaMask/phishing-warning/pull/210))
+
+### Fixed
+- Update the phishing warning page favicon to match the new MetaMask brand ([#232](https://github.com/MetaMask/phishing-warning/pull/232))
+- Update the phishing warning page's X sharing link to use the current MetaMask domain ([#230](https://github.com/MetaMask/phishing-warning/pull/230))
 
 ## [5.1.0]
 ### Changed
@@ -56,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [3.0.0]
 ### Changed
 - **BREAKING**: Increase minimum Node.js version to 16 ([#107](https://github.com/MetaMask/phishing-warning/pull/107))
-- **BREAKING**: This package now returns streams conforming to the API of readable-stream@3.x. ([#122](https://github.com/MetaMask/phishing-warning/pull/122)) ([#104](https://github.com/MetaMask/phishing-warning/pull/104))
+- **BREAKING**: This package now returns streams conforming to the API of readable-stream@3.x. ([#122](https://github.com/MetaMask/phishing-warning/pull/122), [#104](https://github.com/MetaMask/phishing-warning/pull/104))
 - Bump @metamask/post-message-stream from ^6.2.0 to ^7.0.0 ([#104](https://github.com/MetaMask/phishing-warning/pull/104))
 - Upgrade obj-multiplex to @metamask/object-multiplex@^2.0.0 ([#122](https://github.com/MetaMask/phishing-warning/pull/122))
 
@@ -120,7 +128,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial implementation of the phishing warning page
   - This should behave identically to the phishing warning page built into the MetaMask extension.
 
-[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v5.1.0...HEAD
+[Unreleased]: https://github.com/MetaMask/phishing-warning/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/MetaMask/phishing-warning/compare/v5.1.0...v6.0.0
 [5.1.0]: https://github.com/MetaMask/phishing-warning/compare/v5.0.1...v5.1.0
 [5.0.1]: https://github.com/MetaMask/phishing-warning/compare/v5.0.0...v5.0.1
 [5.0.0]: https://github.com/MetaMask/phishing-warning/compare/v4.1.0...v5.0.0
