@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **BREAKING:** Bump minimum Node version to 22 ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
 - Add support for Node 22, 24, and 26+ ([#234](https://github.com/MetaMask/phishing-warning/pull/234))
+- Update default font from CentraNo1 to Geist ([#210](https://github.com/MetaMask/phishing-warning/pull/210))
+
+### Fixed
+- Update the phishing warning page favicon to match the new MetaMask brand ([#232](https://github.com/MetaMask/phishing-warning/pull/232))
+- Update the phishing warning page's X sharing link to use the current MetaMask domain ([#230](https://github.com/MetaMask/phishing-warning/pull/230))
 
 ## [5.1.0]
 ### Changed
