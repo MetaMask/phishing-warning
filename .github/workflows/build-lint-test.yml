@@ -139,7 +139,7 @@ jobs:
           key: playwright-${{ runner.os }}-${{ steps.pw-version.outputs.version }}-${{ steps.pw-version.outputs.browsers-slug }}
       - name: Run Playwright tests
         run: yarn test
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: playwright-report-node-${{ matrix.node-version }}
